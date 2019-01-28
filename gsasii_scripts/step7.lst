@@ -1,0 +1,171 @@
+********************************************************************************
+   General Structure Analysis System-II Crystal Structure Refinement
+              by Robert B. Von Dreele & Brian H. Toby
+                Argonne National Laboratory(C), 2010
+ This product includes software developed by the UChicago Argonne, LLC,
+            as Operator of Argonne National Laboratory.
+                          Please cite:
+   B.H. Toby & R.B. Von Dreele, J. Appl. Cryst. 46, 544-549 (2013)
+********************************************************************************
+ Least squares controls:
+ Refinement type: analytic Hessian
+ Maximum number of cycles: 8
+ Regularize hydrogens (if any): False
+ Initial shift factor: 1.000
+
+ Phases:
+
+ Phase name: PbSo4
+=======================================================================================================================================
+
+ X-ray scattering factors:
+   Symbol     fa                                      fb                                      fc
+---------------------------------------------------------------------------------------------------
+ Pb        31.06170  13.06370  18.44200   5.96960   0.69020   2.35760   8.61800  47.25790  13.41180
+ S          6.90530   5.20340   1.43790   1.58630   1.46790  22.21510   0.25360  56.17200   0.86690
+ O          3.04850   2.28680   1.54630   0.86700  13.27710   5.70110   0.32390  32.90890   0.25080
+
+ Neutron scattering factors:
+   Symbol   isotope       mass       b       resonant terms
+---------------------------------------------------------------------------------------------------
+ Pb      Nat. Abund.    207.200    0.940
+ S       Nat. Abund.     32.060    0.285
+ O       Nat. Abund.     15.999    0.581
+
+ Space Group: P n m a
+ The lattice is centrosymmetric primitive orthorhombic
+ The Laue symmetry is mmm
+ The lattice point group is mmm
+ Multiplicity of a general site is 8
+ The inversion center is located at 0,0,0
+ 
+ The equivalent positions are:
+
+ ( 1)     X,     Y,     Z 
+ ( 2) 1/2-X, 1/2+Y, 1/2+Z 
+ ( 3)     X, 1/2-Y,     Z 
+ ( 4) 1/2-X,    -Y, 1/2+Z 
+
+ Atoms:
+   name    type  refine?   x         y         z      frac site sym  mult I/A   Uiso     U11     U22     U33     U12     U13     U23
+---------------------------------------------------------------------------------------------------------------------------------------
+     Pb     Pb          0.18820   0.25000   0.16700   1.000    m(y)    4    I 0.01000                                                
+      S      S          0.06300   0.25000   0.68600   1.000    m(y)    4    I 0.01000                                                
+     O1      O         -0.09500   0.25000   0.60000   1.000    m(y)    4    I 0.01000                                                
+     O2      O          0.18100   0.25000   0.54300   1.000    m(y)    4    I 0.01000                                                
+     O3      O          0.08500   0.02600   0.80600   1.000    1       8    I 0.01000                                                
+
+ Unit cell: a = 8.48690 b = 5.40328 c = 6.96401 alpha = 90.000 beta = 90.000 gamma = 90.000 volume = 319.349 Refine? True
+
+ Spherical harmonics texture: Order:0
+
+ Phase: PbSo4 in histogram: PWDR PBSO4.XRA Bank 1
+=======================================================================================================================================
+ Phase fraction  :     1.0000 Refine? False
+ Extinction coeff:     0.0000 Refine? False
+ March-Dollase PO:     1.0000 Refine? False Axis: 0 0 1
+
+ Size model    : isotropic equatorial:       1.000 Refine? True
+	 LG mixing coeff.:       1.0000 Refine? False
+
+ Mustrain model: isotropic equatorial:      1000.0 Refine? True
+	 LG mixing coeff.:      1.0000 Refine? False
+
+ Hydrostatic/elastic strain:
+ names :         D11         D22         D33
+ values:   3.848e-06   5.744e-06   7.574e-07
+ refine:        True        True        True
+
+ Histogram: PWDR PBSO4.XRA Bank 1 histogram Id: 0
+=======================================================================================================================================
+ Instrument type: Bragg-Brentano
+ Histogram limits:    10.00 deg to   159.97 deg
+
+ Sample Parameters:
+ Goniometer omega = 0.00, chi = 0.00, phi = 0.00
+ name  :         Scale         Shift  Transparency    SurfRoughA    SurfRoughB
+ value :        8.9260        0.0000        0.0000        0.0000        0.0000
+ refine:          True         False         False         False         False
+
+ Instrument Parameters:
+ name  :     Azimuth        Bank I(L2)/I(L1)        Lam1        Lam2    Polariz.        SH/L
+ value :    0.000000    1.000000    0.500000    1.540500    1.544300    0.700000    0.002000
+ refine:                   False       False                               False       False
+
+ name  :           U           V           W           X           Y           Z        Zero
+ value :    2.000000   -2.000000    5.000000    0.000000    0.000000    0.000000    0.000000
+ refine:       False       False       False       False       False       False       False
+
+ Background function: chebyschev Refine? False
+ Coefficients:      1.000     0.000     0.000
+
+ Refinement results:
+---------------------------------------------------------------------------------------------------------------------------------------
+ Number of function calls: 19 No. of observations: 6000 No. of parameters: 9 User rejected: 0 Sp. gp. extinct: 0
+ Refinement time =   12.890s,    1.432s/cycle, for 9 cycles
+ wR =   37.44%, chi**2 =       344045, GOF =   7.58
+
+ Phases:
+ Result for phase: PbSo4
+=======================================================================================================================================
+ Reciprocal metric tensor: 
+  names :            A11            A22            A33            A12            A13            A23
+  values:    0.013880582    0.034249109    0.020612432    0.000000000    0.000000000    0.000000000
+  esds  :    0.000000530    0.000001391    0.000000791                                             
+ New unit cell:
+  names :           a           b           c       alpha        beta       gamma      Volume
+  values:    8.487820    5.403503    6.965229     90.0000     90.0000     90.0000     319.453
+  esds  :    0.000162    0.000110    0.000134                                           0.007
+
+ Atoms:
+   name      x         y         z      frac   Uiso     U11     U22     U33     U12     U13     U23
+---------------------------------------------------------------------------------------------------------------------------------------
+     Pb     Pb:
+ values:   0.18820   0.25000   0.16700   1.000 0.01000
+ sig   :                                              
+      S      S:
+ values:   0.06300   0.25000   0.68600   1.000 0.01000
+ sig   :                                              
+     O1      O:
+ values:  -0.09500   0.25000   0.60000   1.000 0.01000
+ sig   :                                              
+     O2      O:
+ values:   0.18100   0.25000   0.54300   1.000 0.01000
+ sig   :                                              
+     O3      O:
+ values:   0.08500   0.02600   0.80600   1.000 0.01000
+ sig   :                                              
+
+ Phase: PbSo4 in histogram: PWDR PBSO4.XRA Bank 1
+=======================================================================================================================================
+ Final refinement RF, RF^2 = 13.26%, 22.63% on 384 reflections
+ Durbin-Watson statistic = 0.083
+ Bragg intensity sum = 2.11e+06
+
+ Size model:     isotropic equatorial:     0.00100, sig:  0.3338 LG mix coeff.:      1.0000
+
+ Mustrain model: isotropic
+ equatorial:      4809.4, sig:   167.7 LG mix coeff.:      1.0000
+
+ Hydrostatic/elastic strain:
+ name  :         D11         D22         D33
+ value :     8.4e-07   2.897e-06  -6.465e-06
+ sig   :   5.298e-07   1.391e-06   7.909e-07
+
+ Histogram: PWDR PBSO4.XRA Bank 1 histogram Id: 0
+=======================================================================================================================================
+ PWDR histogram weight factor = 1.000
+ Final refinement wR = 37.44% on 6000 observations in this histogram
+ Other residuals: R = 29.66%, R-bkg = 29.34%, wR-bkg = 37.44% wRmin = 4.94%
+ Instrument type: Bragg-Brentano
+
+ Resonant form factors:
+ Element:       Pb        S        O
+ f'     :   -4.078    0.333    0.049
+ f"     :    8.501    0.557    0.032
+
+ Sample Parameters:
+ names :         Scale         Shift  Transparency    SurfRoughA    SurfRoughB
+ values:       11.0099        0.0000        0.0000        0.0000        0.0000
+ sig   :        0.0579                                                        
+ Background sums: empirical 6e+03, Debye 0, peaks 0, Total 6e+03
