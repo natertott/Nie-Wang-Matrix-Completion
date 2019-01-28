@@ -5,6 +5,12 @@ import pandas
 import glob
 from matplotlib import pyplot as plt
 
+# Why is it so difficult to comment your code, Nathan?
+# This code plots the intensity of diffraction peaks as a function of time
+# It operates on integrated diffraction spectra (I vs 2theta, for example)
+# and it plots subsequent spectra such that evolution in peak intensity or 
+# position can be seen through time
+
 def plot_intensities():
 
     hertz = input('Detector Hertz?')

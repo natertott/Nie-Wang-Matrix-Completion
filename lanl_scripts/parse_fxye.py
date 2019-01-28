@@ -2,6 +2,12 @@ import sys
 import csv
 import glob
 
+# This file takes .fxye files exported from GSASII and re-writes them 
+# so that they can be read into GSAS
+
+# Currently not working properly. Something is wrong with the spacing of 
+# the output file. 
+
 def parser():
 
     inputs = glob.glob('*.fxye')

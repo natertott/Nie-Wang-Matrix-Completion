@@ -6,6 +6,8 @@ import glob
 from matplotlib import pyplot as plt
 from matplotlib import animation as animation
 
+# This is a code to animate temperature data obtained from diffraction analysis
+
 hertz = input('Detector Hertz?')
 hertz = float(hertz)
 wavey = input('Wavelength (nm)?')
