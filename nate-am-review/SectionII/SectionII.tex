@@ -10,20 +10,18 @@ where the inputs $x_i$ are $n$ different manufacturing parameters and the output
 
 Currently, these process-property relationships are often developed by connecting separate process-structure and structure-property models of individual physical processes within AM.
 For example, individual process-structure models are developed to relate : heat source parameters to melt pool topologies \cite{Khairallah2016} using the finite element method or similar computational techniques; melt pool topologies to solidification routes using thermal- and mass-diffusion models  \cite{Tan2011}; solidification to microstructure evolution using phase field methods \cite{Kundin2015}.
-Separately, structure-property models are developed such as relating grain orientations and stress to material properties using crystal plasticity \cite{Pal2013, Pal2014}.
+Separately, structure-property models are developed such as relating grain orientations and stress to material properties using crystal plasticity \cite{Pal2014}.
 It is then by making connections between individual process-structure and structure-property models that researchers relate process parameters to material properties.
 This understanding-through-sequential-modeling approach has the added detriment that the errors and uncertainty of each approach compound on one another, so that the final result is less accurate, more time consuming, and more expensive than the direct build-break approach to develop process-property relationships.
 Machine learning is not a complete replacement for these traditional approaches, but rather a complementary modeling approach that can accelerate or even automate that process of building connections across many degrees of freedom that span the many different individual phenomenon within AM processes.
 Two assumptions are necessary when using machine learning:
 \begin{enumerate}
 \item \textit{The Relational Hypothesis}: A correlative relationship exists between the data input to the model and the response of the system.
-\item \textit{The Locality Hypothesis}: \deleted[id=CB]{Different} parts manufactured at similar points in the design space will have similar properties.
+\item \textit{The Locality Hypothesis}: Parts manufactured at similar points in the design space will have similar properties.
 \end{enumerate}
 
 The first hypothesis is required for finding regression and classification functions that are physically accurate.
-\added[id=CB]{Not entirely sure what this means.
-Maybe a more generic statement could work.
-Hypothesis implies that if we expect to be able to optimize a pathway for a particular output there should exist some relationship between the inputs parameters, or subset of, and the output.}
+
 The second hypothesis is used to compare data and datasets, as well as to search and optimize through regression and classification algorithms.
 
 \subsection{Unsupervised Machine Learning}\label{unsupervised}
@@ -58,7 +56,7 @@ Computing the $\ell _2$ norm of $\mathbf{a}-\mathbf{b}$ yields
 || \mathbf{a} - \mathbf{b}||_2 = \delta.
 \equ
 
-\added[id=CB]{Is it important to define L2-norm / compare to L1-norm.}
+
 
 
 
@@ -80,7 +78,7 @@ Comparing the manufacturing inputs through vector distance gives a rough idea of
 If the intent is exploring design spaces then manufacturing at conditions \textit{furthest away} from previously observed points may be the answer.
 If looking for local maxima of quality, an operator would want to manufacture at conditions \textit{nearest to} the conditions currently known to have high quality.
 
-Using vector distances as metrics of similarities can produce results that are analogous to creating process maps \cite{Beuth2013}.
+Using vector distances as metrics of similarities can produce results that are analogous to creating process maps \cite{Beuth2001}.
 Process maps are used to divide $2$ dimensional plots of manufacturing inputs into regions of quality, or regions of different material responses.
 The following demonstration is based on $k$-means clustering, a commonly used unsupervised machine learning clustering algorithm.
 
@@ -122,8 +120,6 @@ Further analysis can also be conducted, such as analyzing which regimes of input
 The difference in this case is that $n$ many manufacturing conditions can be related to a quality metric simultaneously, with little to no human inspection or intervention.
 Additionally, a researcher can dig further and analyze \textit{why} groups of input settings result in given quality for a material property.
 
-\added[id=CB]{Should we show a clustering plot? Is it fair to say that we're just covering one unsupervised technique (clustering and dimensionality reduction). Do you want to cover clustering methods specifically (k-means, PCA, t-SNE)}
-\added[id=CB]{It may also be useful to comment on how clustering differs from DoX}
 
 
 \subsection{Supervised Machine Learning}
@@ -321,14 +317,14 @@ Also, storing these data in a human and machine-readable format allows for quick
 Table XX highlights a variety of computational tools and Python packages and their relevance to AM synthesis optimization.
 
 
-\begin{figure}
-  \includegraphics[width=0.9\linewidth]{SectionII/design_example.png}
-  \caption{Illustrating a sequential learning workflow. In this example, there are 16 total possible experiments and
-   4 experiments are performed for initial data collection. To reduce potential bias due subsampling of the input space,
-  the most dissimilar experiments should be performed first. After populating some amount of the design space,
-  machine learning should be used to begin informative data collection until design goal is realized.}
-  \label{fig:SL}
-\end{figure}
+%\begin{figure}
+%  \includegraphics[width=0.9\linewidth]{SectionII/design_example.png}
+%  \caption{Illustrating a sequential learning workflow. In this example, there are 16 total possible experiments and
+%   4 experiments are performed for initial data collection. To reduce potential bias due subsampling of the input space,
+%  the most dissimilar experiments should be performed first. After populating some amount of the design space,
+%  machine learning should be used to begin informative data collection until design goal is realized.}
+%  \label{fig:SL}
+%\end{figure}
 
 %%%
 \begin{table*}[t]
@@ -345,4 +341,3 @@ Search algorithms & \raggedright Genetic algorithms, Evolutionary algorithms & S
 
 \end{tabular}
 \end{table*}
-\added[id=CB]{move refs to their own column. A roadmap like this \href{https://scikit-learn.org/stable/tutorial/machine_learning_map/index.html} may be more informative than a table. It should be clear which methods are supervised/unsupervised}

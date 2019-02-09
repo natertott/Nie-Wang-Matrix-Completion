@@ -15,6 +15,7 @@ $(TARGET).bbl $(TARGET).aux: $(BIB).bib
 	# rerun to fix up the .aux file
 	pdflatex -shell-escape -draftmode $(TARGET)
 	bibtex $(TARGET)
+	bibtex $(TARGET)
 
 clean:
 	rm -f *~ *.ilg *bak *.idx *.ind *.aux *.toc *.ps *.log *.lof *.loa
