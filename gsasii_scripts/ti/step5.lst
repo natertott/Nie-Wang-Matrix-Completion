@@ -1,0 +1,155 @@
+********************************************************************************
+   General Structure Analysis System-II Crystal Structure Refinement
+              by Robert B. Von Dreele & Brian H. Toby
+                Argonne National Laboratory(C), 2010
+ This product includes software developed by the UChicago Argonne, LLC,
+            as Operator of Argonne National Laboratory.
+                          Please cite:
+   B.H. Toby & R.B. Von Dreele, J. Appl. Cryst. 46, 544-549 (2013)
+********************************************************************************
+ Least squares controls:
+ Refinement type: analytic Hessian
+ Maximum number of cycles: 3
+ Regularize hydrogens (if any): False
+ Initial shift factor: 1.000
+
+ Phases:
+
+ Phase name: alpha
+=======================================================================================================================================
+
+ X-ray scattering factors:
+   Symbol     fa                                      fb                                      fc
+---------------------------------------------------------------------------------------------------
+ Ti         9.75950   7.35580   1.69910   1.90210   7.85080   0.50000  35.63380 116.10500   1.28070
+
+ Neutron scattering factors:
+   Symbol   isotope       mass       b       resonant terms
+---------------------------------------------------------------------------------------------------
+ Ti      Nat. Abund.     47.900   -0.337
+
+ Space Group: P 63/m m c
+ The lattice is centrosymmetric primitive hexagonal
+ The Laue symmetry is 6/mmm
+ The lattice point group is 6/mmm
+ Multiplicity of a general site is 24
+ The inversion center is located at 0,0,0
+ 
+ The equivalent positions are:
+
+ ( 1)     X,     Y,     Z 
+ ( 2)   X-Y,     X, 1/2+Z 
+ ( 3)    -Y,   X-Y,     Z 
+ ( 4)    -X,    -Y, 1/2+Z 
+ ( 5)   Y-X,    -X,     Z 
+ ( 6)     Y,   Y-X, 1/2+Z 
+ ( 7)   Y-X,     Y,     Z 
+ ( 8)    -X,   Y-X, 1/2+Z 
+ ( 9)    -Y,    -X,     Z 
+ (10)   X-Y,    -Y, 1/2+Z 
+ (11)     X,   X-Y,     Z 
+ (12)     Y,     X, 1/2+Z 
+
+ Atoms:
+   name    type  refine?   x         y         z      frac site sym  mult I/A   Uiso     U11     U22     U33     U12     U13     U23
+---------------------------------------------------------------------------------------------------------------------------------------
+    Ti1     Ti          0.33330   0.66670   0.25000   1.000-6m2(100)    2    I 0.01000                                                
+
+ Unit cell: a = 2.95111 b = 2.95111 c = 4.68433 alpha = 90.000 beta = 90.000 gamma = 120.000 volume = 35.330 Refine? True
+
+ Spherical harmonics texture: Order:0
+
+ Phase: alpha in histogram: PWDR ti.fxye Bank 1
+=======================================================================================================================================
+ Phase fraction  :     1.0000 Refine? False
+ Extinction coeff:     0.0000 Refine? False
+ March-Dollase PO:     1.0000 Refine? False Axis: 0 0 1
+
+ Size model    : isotropic equatorial:       1.000 Refine? False
+	 LG mixing coeff.:       1.0000 Refine? False
+
+ Mustrain model: isotropic equatorial:      1000.0 Refine? False
+	 LG mixing coeff.:      1.0000 Refine? False
+
+ Hydrostatic/elastic strain:
+ names :         D11         D33
+ values:           0           0
+ refine:       False       False
+
+ Histogram: PWDR ti.fxye Bank 1 histogram Id: 0
+=======================================================================================================================================
+ Instrument type: Debye-Scherrer
+ Histogram limits:     3.80 deg to     6.30 deg
+
+ Sample Parameters:
+ Goniometer omega = 0.00, chi = 0.00, phi = 0.00
+ name  :         Scale    Absorption     DisplaceX     DisplaceY
+ value :        1.0000        0.0000        0.0000        0.0000
+ refine:          True         False         False         False
+
+ Instrument Parameters:
+ name  :     Azimuth        Bank         Lam    Polariz.        SH/L           U           V
+ value :   45.000000    1.000000    0.172979    0.990000    0.002000  147.632400  -13.086590
+ refine:                   False       False       False       False       False       False
+
+ name  :           W           X           Y           Z        Zero
+ value :    0.501797    0.000000    0.000000    0.000000    0.000000
+ refine:       False       False       False       False       False
+
+ Background function: chebyschev Refine? False
+ Coefficients:      1.000     0.000     0.000
+
+ Refinement results:
+---------------------------------------------------------------------------------------------------------------------------------------
+ Number of function calls: 7 No. of observations: 2500 No. of parameters: 3 User rejected: 0 Sp. gp. extinct: 0
+ Refinement time =    0.146s,    0.049s/cycle, for 3 cycles
+ wR = 3913.54%, chi**2 =      12781.4, GOF =   2.26
+----------------------------------------------------------------------------------------------------------------------------------
+Parameters generated by constraints
+
+ name  :          0::A0
+ value :         0.1531
+ sig   :         0.0001
+
+ Phases:
+ Result for phase: alpha
+=======================================================================================================================================
+ Reciprocal metric tensor: 
+  names :            A11            A22            A33            A12            A13            A23
+  values:    0.153066483    0.153066483    0.045579493    0.153066483    0.000000000    0.000000000
+  esds  :    0.000087144                   0.000014150                                             
+ New unit cell:
+  names :           a           b           c       alpha        beta       gamma      Volume
+  values:    2.951408    2.951408    4.683982     90.0000     90.0000    120.0000      35.335
+  esds  :    0.001400    0.001400    0.000727                                           0.019
+
+ Atoms:
+   name      x         y         z      frac   Uiso     U11     U22     U33     U12     U13     U23
+---------------------------------------------------------------------------------------------------------------------------------------
+    Ti1     Ti:
+ values:   0.33330   0.66670   0.25000   1.000 0.01000
+ sig   :                                              
+
+ Phase: alpha in histogram: PWDR ti.fxye Bank 1
+=======================================================================================================================================
+ Final refinement RF, RF^2 = 71.97%, 92.86% on 4 reflections
+ Durbin-Watson statistic = 1.691
+ Bragg intensity sum = -203
+
+ Histogram: PWDR ti.fxye Bank 1 histogram Id: 0
+=======================================================================================================================================
+ PWDR histogram weight factor = 1.000
+ Final refinement wR = 100.00% on 2500 observations in this histogram
+ Other residuals: R = 100.00%, R-bkg = 100.00%, wR-bkg = 100.00% wRmin = 100.00%
+ Instrument type: Debye-Scherrer
+
+ Resonant form factors:
+ Element:       Ti
+ f'     :    0.000
+ f"     :    0.026
+
+ Sample Parameters:
+ names :         Scale    Absorption     DisplaceX     DisplaceY
+ values:       -0.0017        0.0000        0.0000        0.0000
+ sig   :        0.0001                                          
+ Background sums: empirical 2.5e+03, Debye 0, peaks 0, Total 2.5e+03

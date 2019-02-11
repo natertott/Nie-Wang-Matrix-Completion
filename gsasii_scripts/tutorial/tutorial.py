@@ -12,14 +12,14 @@ Colorado School of Mines"""
 #These are the minimum packages you need just to run GSASII from the cmd line
 #The second line (sys.path.insert) adds the GSASII scriptable directory to your current path
 import os, sys
-sys.path.insert(0,os.path.expanduser("~/Applications/g2conda/GSASII/"))
+sys.path.insert(0,os.path.expanduser("~/g2conda/GSASII/"))
 import GSASIIscriptable as G2sc
 
 #Prints refinement results
 def HistStats(gpx):
     print(u"*** profile Rwp, "+os.path.split(gpx.filename)[1])
     for hist in gpx.histograms():
-	print("/t{:20s}:{:.2f}".format(hist.name,hist.get_wR()))
+        print("/t{:20s}:{:.2f}".format(hist.name,hist.get_wR()))
     print("")
     gpx.save()
 
@@ -32,10 +32,8 @@ gpx = G2sc.G2Project(filename='PBSO4.gpx')
 
 #Define a data directory and a work directory
 #Data directory stores the data (profound)
-#Work directory stores all your GSASII project files 
-datadir = "~/Google Drive/Science/Graduate/git/gsasii_scripts/datadir"
-workdir = "~/Google Drive/Science/Graduate/git/gsasii_scripts/workdir"
-
+datadir = "~/git/gsasii_scripts/tutorial/datadir/"
+workdir = "~/git/gsasii_scripts/tutorial/datadir/"
 
 #Let's add a histogram
 #The author of the tutorial uses os.path.join to look for files in the data and work directories -- not what I would have used, but keeping it for now for the sake of following directions
@@ -46,7 +44,7 @@ hist1=gpx.add_powder_histogram(os.path.join(datadir,"PBSO4.XRA"),os.path.join(da
 phase0 = gpx.add_phase(os.path.join(datadir,"PbSO4-Wyckoff.cif"),phasename="PbSo4",histograms=[hist1])
 
 #Here is a hack found by the author of this tutorial for setting the number of refinement cycles
-gpx.data['Controls']['data']['max cyc'] = 8
+gpx.data['Controls']['data']['max cyc'] = 3
 
 #Now we're going to start defining refinement steps
 # The first refinement step will be for the background

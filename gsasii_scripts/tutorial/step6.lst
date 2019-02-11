@@ -9,7 +9,7 @@
 ********************************************************************************
  Least squares controls:
  Refinement type: analytic Hessian
- Maximum number of cycles: 8
+ Maximum number of cycles: 3
  Regularize hydrogens (if any): False
  Initial shift factor: 1.000
 
@@ -49,13 +49,13 @@
  Atoms:
    name    type  refine?   x         y         z      frac site sym  mult I/A   Uiso     U11     U22     U33     U12     U13     U23
 ---------------------------------------------------------------------------------------------------------------------------------------
-     Pb     Pb          0.18820   0.25000   0.16700   1.000    m(y)    4    I 0.01000                                                
-      S      S          0.06300   0.25000   0.68600   1.000    m(y)    4    I 0.01000                                                
-     O1      O         -0.09500   0.25000   0.60000   1.000    m(y)    4    I 0.01000                                                
-     O2      O          0.18100   0.25000   0.54300   1.000    m(y)    4    I 0.01000                                                
-     O3      O          0.08500   0.02600   0.80600   1.000    1       8    I 0.01000                                                
+     Pb     Pb          0.18820   0.25000   0.16700   1.000   m(y)    4    I 0.01000                                                
+      S      S          0.06300   0.25000   0.68600   1.000   m(y)    4    I 0.01000                                                
+     O1      O         -0.09500   0.25000   0.60000   1.000   m(y)    4    I 0.01000                                                
+     O2      O          0.18100   0.25000   0.54300   1.000   m(y)    4    I 0.01000                                                
+     O3      O          0.08500   0.02600   0.80600   1.000      1    8    I 0.01000                                                
 
- Unit cell: a = 8.48808 b = 5.40373 c = 6.96414 alpha = 90.000 beta = 90.000 gamma = 90.000 volume = 319.426 Refine? True
+ Unit cell: a = 8.49310 b = 5.40554 c = 6.96738 alpha = 90.000 beta = 90.000 gamma = 90.000 volume = 319.871 Refine? True
 
  Spherical harmonics texture: Order:0
 
@@ -84,7 +84,7 @@
  Sample Parameters:
  Goniometer omega = 0.00, chi = 0.00, phi = 0.00
  name  :         Scale         Shift  Transparency    SurfRoughA    SurfRoughB
- value :        8.7954        0.0000        0.0000        0.0000        0.0000
+ value :        7.9621        0.0000        0.0000        0.0000        0.0000
  refine:          True         False         False         False         False
 
  Instrument Parameters:
@@ -101,21 +101,21 @@
 
  Refinement results:
 ---------------------------------------------------------------------------------------------------------------------------------------
- Number of function calls: 13 No. of observations: 6000 No. of parameters: 7 User rejected: 0 Sp. gp. extinct: 0
- Refinement time =    6.591s,    1.098s/cycle, for 6 cycles
- wR =   54.69%, chi**2 =       733988, GOF =  11.07
+ Number of function calls: 7 No. of observations: 6000 No. of parameters: 7 User rejected: 0 Sp. gp. extinct: 0
+ Refinement time =    4.324s,    1.081s/cycle, for 4 cycles
+ wR =   56.67%, chi**2 =       788131, GOF =  11.47
 
  Phases:
  Result for phase: PbSo4
 =======================================================================================================================================
  Reciprocal metric tensor: 
   names :            A11            A22            A33            A12            A13            A23
-  values:    0.013883590    0.034251955    0.020619654    0.000000000    0.000000000    0.000000000
-  esds  :    0.000000293    0.000000716    0.000000453                                             
+  values:    0.013868465    0.034230898    0.020607357    0.000000000    0.000000000    0.000000000
+  esds  :    0.000000302    0.000000748    0.000000483                                             
  New unit cell:
   names :           a           b           c       alpha        beta       gamma      Volume
-  values:    8.486901    5.403278    6.964009     90.0000     90.0000     90.0000     319.349
-  esds  :    0.000090    0.000056    0.000077                                           0.004
+  values:    8.491527    5.404940    6.966086     90.0000     90.0000     90.0000     319.717
+  esds  :    0.000093    0.000059    0.000082                                           0.004
 
  Atoms:
    name      x         y         z      frac   Uiso     U11     U22     U33     U12     U13     U23
@@ -138,20 +138,20 @@
 
  Phase: PbSo4 in histogram: PWDR PBSO4.XRA Bank 1
 =======================================================================================================================================
- Final refinement RF, RF^2 = 22.29%, 32.30% on 384 reflections
- Durbin-Watson statistic = 0.150
- Bragg intensity sum = 1.71e+06
+ Final refinement RF, RF^2 = 23.97%, 34.78% on 384 reflections
+ Durbin-Watson statistic = 0.162
+ Bragg intensity sum = 1.64e+06
 
  Hydrostatic/elastic strain:
  name  :         D11         D22         D33
- value :   3.848e-06   5.744e-06   7.574e-07
- sig   :   2.932e-07   7.159e-07   4.533e-07
+ value :   5.131e-06   7.627e-06   7.654e-06
+ sig   :   3.023e-07   7.476e-07   4.831e-07
 
  Histogram: PWDR PBSO4.XRA Bank 1 histogram Id: 0
 =======================================================================================================================================
  PWDR histogram weight factor = 1.000
- Final refinement wR = 54.69% on 6000 observations in this histogram
- Other residuals: R = 46.90%, R-bkg = 46.54%, wR-bkg = 54.69% wRmin = 4.94%
+ Final refinement wR = 56.67% on 6000 observations in this histogram
+ Other residuals: R = 48.37%, R-bkg = 48.01%, wR-bkg = 56.67% wRmin = 4.94%
  Instrument type: Bragg-Brentano
 
  Resonant form factors:
@@ -161,6 +161,6 @@
 
  Sample Parameters:
  names :         Scale         Shift  Transparency    SurfRoughA    SurfRoughB
- values:        8.9260        0.0000        0.0000        0.0000        0.0000
- sig   :        0.0759                                                        
+ values:        8.5801        0.0000        0.0000        0.0000        0.0000
+ sig   :        0.0777                                                        
  Background sums: empirical 6e+03, Debye 0, peaks 0, Total 6e+03

@@ -3,6 +3,12 @@ import numpy as np
 from matplotlib import pyplot as plt
 import csv
 
+def is_empty(any_structure):
+    if any_structure:
+        return 1
+    else:
+        return 0
+
 def alldata(csv_path,hertz,name):
     hertz = float(hertz)
 
@@ -10,63 +16,36 @@ def alldata(csv_path,hertz,name):
     raw = get_data(csv_path)
     size = raw.shape
 
+    data_dict = {}
+
     count = -1
     for item in raw[0,:]:
         count += 1
         if item == "0:*:Scale":
-            alpha = raw[2:size[0]-1,count]
+            data_dict["alpha"] = raw[2:size[0]-1,count]
         elif item == "1:*:Scale":
-            beta = raw[2:size[0]-1,count]
+            data_dict["beta"] = raw[2:size[0]-1,count]
         elif item == ":*:BkPkint;0":
-            liq = raw[2:size[0]-1,count]
+            data_dict["liq"] = raw[2:size[0]-1,count]
         elif item == "0::a":
-            alpha_a = raw[2:size[0]-1,count]
+            data_dict["alpha_a"] = raw[2:size[0]-1,count]
         elif item == "0::c":
-            alpha_c = raw[2:size[0]-1,count]
+            data_dict["alpha_c"] = raw[2:size[0]-1,count]
         elif item == "1::a":
-            beta_a = raw[2:size[0]-1,count]
+            data_dict["beta_a"] = raw[2:size[0]-1,count]
         elif item == "0::Vol":
-            alpha_vol = raw[2:size[0]-1,count]
+            data_dict["alpha_vol"] = raw[2:size[0]-1,count]
         elif item == "1::Vol":
-            beta_vol = raw[2:size[0]-1,count]
+            data_dict["beta_vol"] = raw[2:size[0]-1,count]
 
-    for ii in np.arange(len(alpha)):
-        if alpha[ii] == 'None':
-            alpha[ii] = 0.0
-    for ii in np.arange(len(beta)):
-        if beta[ii] =='None':
-            beta[ii] = 0
-    for ii in np.arange(len(liq)):
-        if liq[ii] == 'None':
-            liq[ii] = 0
-    for ii in np.arange(len(alpha_a)):
-        if alpha_a[ii] == 'None':
-            alpha_a[ii] = float(0)
-    for ii in np.arange(len(alpha_c)):
-        if alpha_c[ii] == 'None':
-            alpha_c[ii] = float(0)
-    for ii in np.arange(len(beta_a)):
-        if beta_a[ii] == 'None':
-            beta_a[ii] = 0
-    for ii in np.arange(len(alpha_vol)):
-        if alpha_vol[ii] == 'None':
-            alpha_vol[ii] = 0
-    for ii in np.arange(len(beta_vol)):
-        if beta_vol[ii] == 'None':
-            beta_vol[ii] = 0
+    for k, v in data_dict.items():
+        for ii in v:
+            if ii == 'None':
+                ii == 0.0
 
-    alpha = alpha.astype(np.float)
-    beta = beta.astype(np.float)
-    liq = liq.astype(np.float)
-    alpha_a = alpha_a.astype(np.float)
-    alpha_c = alpha_c.astype(np.float)
-    beta_a = beta_a.astype(np.float)
-    alpha_vol = alpha_vol.astype(np.float)
-    beta_vol = beta_vol.astype(np.float)
-    index = np.arange(len(alpha))
-    index = index/hertz
-
-    data_dict = {'alpha':alpha,'beta':beta,'liq':liq,'alpha_a':alpha_a,'alpha_c':alpha_c,'beta_a':beta_a,'alpha_vol':alpha_vol,'beta_vol':beta_vol,'index':index,'hertz':hertz}
+    index = np.asarray(np.arange(len(data_dict["alpha"])))
+    data_dict["index"] = index
+    data_dict["hertz"] = hertz
     return data_dict
 
 ########################################
@@ -74,9 +53,15 @@ def phasefrac(data_dict):
     #Hacks. Hacks everywhere.
     #First let's pull the values we need out of the data dictionary
 
-    alpha = data_dict['alpha']
-    beta = data_dict['beta']
-    liq = data_dict['liq']
+    alpha = np.asarray(data_dict['alpha'])
+    
+    beta = np.asarray(data_dict['beta'])
+
+    hack = 0
+    if "liq" in data_dict.keys():
+        liq = data_dict['liq']
+        hack = 1
+
     hertz = data_dict['hertz']
 
     #Store the length of the arrays
@@ -90,12 +75,15 @@ def phasefrac(data_dict):
     for ii in np.arange(len(beta)):
        if beta[ii] < 0:
                beta[ii] = 0
-
-    for ii in np.arange(len(liq)):
-        if liq[ii] < 0:
+    if hack == 1:
+        for ii in np.arange(len(liq)):
+            if liq[ii] < 0:
                 liq[ii] = 0
+
     fudge = alpha[size-4]+beta[size-4]
-    liq = (liq/max(liq))*fudge
+    
+    if hack == 1:
+        liq = (liq/max(liq))*fudge
 
     alpha_frac = np.zeros(len(alpha))
     beta_frac = np.zeros(len(beta))
@@ -151,9 +139,9 @@ def lat_param(data_dict):
             beta_a_index.append(index[ii])
 
     # Later we'll need to do some computation with these, so let's convert them to numpy arrays of floats
-    plot_alpha_a = np.asarray(plot_alpha_a)
-    plot_alpha_c = np.asarray(plot_alpha_c)
-    plot_beta_a = np.asarray(plot_beta_a)
+    plot_alpha_a = np.asarray(plot_alpha_a,dtype="float")
+    plot_alpha_c = np.asarray(plot_alpha_c,dtype="float")
+    plot_beta_a = np.asarray(plot_beta_a,dtype="float")
     alpha_a_index = np.asarray(alpha_a_index)
     alpha_c_index = np.asarray(alpha_c_index)
     beta_a_index = np.asarray(beta_a_index)
@@ -191,24 +179,37 @@ def tiTemp(strain_dict,plot_param_dict):
 
     #### Calculating temperature
     #Elmer and Palmer report in Mat. Sci & Eng. A, 391, (2005), 104-113 that the coefficient of linear thermal expansion for the a parameter in alpha Ti is alpha_v = 9.7*1-^-6
-    coef1 = 5.8 * (10**-6)
-    coef2 = 5.8 * (10**-6)
-    print(beta_strain[10])
-    print(beta_a[10])
+    coef1 = 5.8 * (10**-5)
+    coef2 = 9.2 * (10**-6)
     beta_temp = np.zeros(len(beta_strain))
-    for nn in np.arange(len(beta_strain)):
+    for nn in index:
         if beta_a[nn] > 3.26:
-            beta_temp[nn] = beta_strain[nn]/coef2
-        else:
             beta_temp[nn] = beta_strain[nn]/coef1
+        else:
+            beta_temp[nn] = beta_strain[nn]/coef2
 
-    plt.plot(beta_temp,'r*')
-    plt.show()
+    for nn in np.arange(len(beta_temp)):
+        if beta_temp[nn] < 0:
+            beta_temp[nn] = 0
 
+    #Now we'll try to do the same thing using the alpha lattice parameter
+    coef = 9.7 * (10**-6)    
+    alpha_a = plot_param_dict['plotalpha']['a']
+    alpha_strain = strain_dict['alpha']['a']
+    alpha_temp = np.zeros(len(alpha_strain)) 
+    alpha_index = plot_param_dict['plotalpha']['aindex']
+    for nn in alpha_index:
+        alpha_temp[nn] = alpha_strain[nn]/coef
+
+
+
+    ### Calculating macroscopic strain fit
+    # I am going to regress the macroscopic strain polynomial on a vector of the beta and alpha strains at different times
+    
     # # This method is from 'Thermophysical Properties of Matter Volume 12: Thermal Expansion, Metallic Elements and Alloys'
     # # pg. 1278 has polynomial fits for linear expansion of Ti-6Al-4V alloys as a function of temperature
-    # roots = np.zeros((len(beta_strain),3))
-    # for ii in np.arange(len(beta_strain)):
+    #roots = np.zeros((len(strain),3))
+    #for ii in np.arange(len(strains)):
     #     roots[ii,:] = np.roots([-1.994*(10**-10), 5.807*(10**-7), 5.992*(10**-4), -0.22 - beta_strain[ii]])
     #
     # temperature = roots[:,2]
