@@ -1,0 +1,29 @@
+\subsection{Supervised Machine Learning}
+In a \textit{supervised machine learning algorithm} the goal is to find a functional relationship that best approximates the underlying physical relationship $f(\mathbf{x}) = \mathbf{y}$. That is, supervised machine learning algorithms relate model inputs to labeled data. It is not necessary to make any assumptions up front about the nature of $f(\mathbf{x}) = \mathbf{y}$ to find $T$. We only need to rely on the relational hypothesis and assume the relationship exists.
+Functional relationships can take many forms, depending on the specific supervised ML algorithm being used. One method is to model the relationships as a vector product 
+\eqn
+\mathbf{X}T = \mathbf{Y}.
+\label{map}
+\equ
+where $T$ is a vector of coefficients that weigh the machine inputs to approximate an entry in $\mathbf{Y}$. 
+
+A researcher usually seeks this relationship through the measurements they have observed; in this case, the measurements are stored in the matrices of Eqn. \ref{initialmeasure}.
+A common method to find a vector representation of $T$, and a critical element in most machine learning algorithms, is through least squares regression. Least squares regression finds $T$ through a minimization problem, given by
+\eqn
+\min || \mathbf{X}T - \mathbf{Y} ||_{2}^{2}.
+\label{leastsquares}
+\equ
+Equation \ref{leastsquares} can be interpreted analogously to similarity measurements for unsupervised algorithms: the closer that $\mathbf{X}T - \mathbf{Y}$ is to zero, the more similar $T$ is to $f(\mathbf{x})$.
+
+The methods of solving equation \ref{leastsquares} are many and varied; indeed, much of this review will focus on finding solutions to Eqn. \ref{leastsquares} to various problems through additive manufacturing.
+The result is an approximation to the functional relationship $f(\mathbf{x}) = \mathbf{y}$.
+A new point of interest in the design space $\mathbf{x'}$ can be chosen and its associated material property $\mathbf{y'}$ can be predicted by computing
+
+\eqn
+\mathbf{x'}T = \mathbf{y'}.
+\equ
+
+This simple example demonstrates how functional relationships can elucidate more information about design spaces.
+Commonly used machine learning algorithms in materials science and engineering are given in Table \ref{ML}.
+Note that the field of Machine Learning is evolving as fast as AM itself; hence Table \ref{ML} is by no means a comprehensive review of all machine learning algorithms, but rather is intended to provide a comparison between the form and function of some of the most widely adopted algorithms in materials science and engineering.
+

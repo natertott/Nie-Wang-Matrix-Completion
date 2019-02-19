@@ -1,0 +1,25 @@
+\subsection{The Assumptions Behind Machine Learning}
+Ultimately, AM users desire a model that relates manufacturing parameters to material properties; i.e., a process-property model. In a functional form, this model can be written as
+\eqn
+f(x_1, x_2, ... , x_n) = \mathbf{y},
+\label{fundamentalgoal}
+\equ
+where the inputs $x_i$ are $n$ different manufacturing parameters and the outputs $\mathbf{y}$ are measurable properties.
+
+Currently, these process-property relationships are often developed by connecting separate process-structure and structure-property models of individual physical processes within AM.
+For example, individual process-structure models are developed to relate : heat source parameters to melt pool topologies \cite{Khairallah2016} using the finite element method or similar computational techniques; melt pool topologies to solidification routes using thermal- and mass-diffusion models  \cite{Tan2011}; solidification to microstructure evolution using phase field methods \cite{Kundin2015}.
+Separately, structure-property models are developed such as relating grain orientations and stress to material properties using crystal plasticity \cite{Pal2014}.
+It is then by making connections between individual process-structure and structure-property models that researchers relate process parameters to material properties.
+This understanding-through-sequential-modeling approach has the added detriment that the errors and uncertainty of each approach compound on one another, so that the final result is less accurate, more time consuming, and more expensive than the direct build-break approach to develop process-property relationships.
+Machine learning is not a complete replacement for these traditional approaches, but rather a complementary modeling approach that can accelerate or even automate that process of building connections across many degrees of freedom that span the many different individual phenomenon within AM processes.
+
+%Two assumptions are necessary when using machine learning:
+%\begin{enumerate}
+%\item \textit{The Relational Hypothesis}: A correlative relationship exists between the data input to the model and the response of the system.
+%\item \textit{The Locality Hypothesis}: Parts manufactured at similar points in the design space will have similar properties.
+%\end{enumerate}
+%
+%The first hypothesis is required for finding regression and classification functions that are physically accurate.
+%
+%The second hypothesis is used to compare data and datasets, as well as to search and optimize through regression and classification algorithms.
+
