@@ -5,7 +5,6 @@ import pandas
 import glob
 from matplotlib import pyplot as plt
 
-# Why is it so difficult to comment your code, Nathan?
 # This code plots the intensity of diffraction peaks as a function of time
 # It operates on integrated diffraction spectra (I vs 2theta, for example)
 # and it plots subsequent spectra such that evolution in peak intensity or 
@@ -46,6 +45,7 @@ def plot_intensities():
     im = ax.imshow(intensity,cmap='gist_stern',extent = [0,1/hertz*len(d),upper,lower],aspect = 15)
     plt.xlabel('Time (s)')
     plt.ylabel('d Spacing (Ang.)')
+    plt.ylim([low upper])
     plt.show()
 
 if __name__ == '__main__':
