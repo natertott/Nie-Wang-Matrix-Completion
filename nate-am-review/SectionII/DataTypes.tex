@@ -3,8 +3,11 @@ Data types and sources in additive manufacturing are as widespread as any field 
 
 Scalar data values are some of the most common and easily obtained data in additive. A single set of manufacturing parameters, such as heat source parameters, can be represented as a list of scalars. Other scalar data can include material property measurements such as strength, hardness, density, moduli, and more. A good portion of this review covers how to model relationships between manufacturing parameters and material properties. In these cases, the machine inputs will most often be represented as a vector, such as
 \begin{equation}
-	\mathbf{x} = \left[\text{Machine Input 1, Machine Input 2,} \hdots \text{, Machine Input } n \right].
+\begin{split}
+	\mathbf{x} & = \text{[} \text{Machine Input 1, Machine Input 2,} \hdots  \\
+		& \hdots \text{, Machine Input } n \text{]} \\
 	\label{vector}
+\end{split}
 \end{equation}
 out of $n$ many scalar machine inputs. Vector representations of the design space are useful in determining manufacturing conditions which will result in similar results, as well as in building regression models of the AM process.
 
@@ -23,4 +26,4 @@ where the columns of $\mathbf{X}$ represent individual machine inputs or materia
 
 Scalar, vector, and matrix representations of AM data will be among the most common types of inputs for machine learning algorithms. If a particular algorithm discussed differs from this paradigm, it will be explicitly noted. 
 
-A final concept which is core to machine learning is \textit{covariance}. Covariance is measured between data points, instead of being a property of a single data point. The covariance between data points encodes cross-correlated information within the design space. Ways of calculating covariance are many and varied and will be explicitly discussed where they are used. While many machine learning algorithms can operate directly on machine inputs and processing outputs, it can be equally useful to calculate covariances between data points and use those as machine learning inputs.
+A final concept which is core to machine learning is \textit{covariance}. Covariance is measured between two data points $\kappa (\mathbf{x}\mathbf{x}')$, instead of being a property of a single data point. The covariance between data points encodes cross-correlated information within the design space. Ways of calculating covariance are many and varied and will be explicitly discussed where they are used. While many machine learning algorithms can operate directly on machine inputs and processing outputs, it can be equally useful to calculate covariances between data points and use those as machine learning inputs.

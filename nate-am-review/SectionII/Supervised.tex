@@ -1,6 +1,5 @@
 \subsection{Supervised Machine Learning}
-In a \textit{supervised machine learning algorithm} the goal is to find a functional relationship that best approximates the underlying physical relationship $f(\mathbf{x}) = \mathbf{y}$. That is, supervised machine learning algorithms relate model inputs to labeled data. It is not necessary to make any assumptions up front about the nature of $f(\mathbf{x}) = \mathbf{y}$ to find $T$. We only need to rely on the relational hypothesis and assume the relationship exists.
-Functional relationships can take many forms, depending on the specific supervised ML algorithm being used. One method is to model the relationships as a vector product 
+In a \textit{supervised machine learning algorithm} the goal is to find a functional relationship that best approximates the underlying physical relationship $f(\mathbf{x}) = \mathbf{y}$. That is, supervised machine learning algorithms relate model inputs to labeled data. Functional relationships can take many forms, depending on the specific supervised ML algorithm being used. One method is to model the relationships as a vector product 
 \eqn
 \mathbf{X}T = \mathbf{Y}.
 \label{map}
@@ -15,7 +14,7 @@ A common method to find a vector representation of $T$, and a critical element i
 \equ
 Equation \ref{leastsquares} can be interpreted analogously to similarity measurements for unsupervised algorithms: the closer that $\mathbf{X}T - \mathbf{Y}$ is to zero, the more similar $T$ is to $f(\mathbf{x})$.
 
-The methods of solving equation \ref{leastsquares} are many and varied; indeed, much of this review will focus on finding solutions to Eqn. \ref{leastsquares} to various problems through additive manufacturing.
+The methods of solving equation \ref{leastsquares} are many and varied; indeed, much of this review will focus on finding solutions to Eqn. \ref{leastsquares} for various problems throughout additive manufacturing.
 The result is an approximation to the functional relationship $f(\mathbf{x}) = \mathbf{y}$.
 A new point of interest in the design space $\mathbf{x'}$ can be chosen and its associated material property $\mathbf{y'}$ can be predicted by computing
 

@@ -1,6 +1,7 @@
 \subsection{Unsupervised Machine Learning}\label{unsupervised}
 
-Unsupervised machine learning algorithms are used to identify similarities or draw conclusions from unlabeled data by relying on the locality hypothesis.
+Unsupervised machine learning algorithms are used to identify similarities or draw conclusions from unlabeled data by relying on the similarity hypothesis.
+
 Consider an experiment that varies three different manufacturing inputs $x_1, x_2, x_3$ and measures a single material property $y$.
 In matrix form, the data are expressed as:
 
@@ -21,10 +22,7 @@ In matrix form, the data are expressed as:
 \end{split}\label{initialmeasure}
 \equ
 
-where $x_{i,j}$ is the $j^{th}$ measurement of the $i^{th}$ manufacturing input.
-A distance metric can be defined between data points in the design space.
-For example, data can be collected at two points $\mathbf{a} = (x_{1}, x_{2}, x_{3})$ and $\mathbf{b} = (x_{1} + \delta, x_{2}, x_{3})$ and treat these quantities as vectors.
-Computing the $\ell _2$ norm of $\mathbf{a}-\mathbf{b}$ yields
+where $x_{i,j}$ is the $j^{th}$ measurement of the $i^{th}$ manufacturing input. A distance metric can be defined between data points in the design space. For example, data can be collected at two points $\mathbf{a} = (x_{1}, x_{2}, x_{3})$ and $\mathbf{b} = (x_{1} + \delta, x_{2}, x_{3})$. The $\ell _2$ norm of $\mathbf{a}-\mathbf{b}$ yields
 
 \eqn
 || \mathbf{a} - \mathbf{b}||_2 = \delta.

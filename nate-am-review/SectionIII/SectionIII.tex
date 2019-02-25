@@ -1,7 +1,7 @@
 \section{Current ICME Tools are Well Equipped to Integrate with an ML Framework}
-The interdisciplinary nature of AM has naturally led to a compartmentalization of scientific efforts. Many scientists choose to focus on a single problem or process because of the richness of problems in AM, even those that are narrow in scope.  
-
 The following section details how machine learning approaches can tie-in to current efforts in AM. Since the study of AM is often focused around specific problems, this section is tailored to many common areas of study within AM. Different methods of analysis and characterization for different aspects of AM all tie-in well with different machine learning algorithms. Even more so, ML can be used to automate the generation of knowledge about AM process-structure and process-property relationships. 
+
+This article is not an exhaustive review of machine learning algorithms. The algorithms discussed were chosen because they were previously demonstrated in a materials science and engineering applications \textbf{or} because the possible application of an algorithm to AM was clear and immediate. Similarly, the additive manufacturing problems addressed are not all-encompassing. The AM problems discussed are those which the authors felt most immediately addressable with machine learning. 
 
 %~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~
 \subsection{Pre-Build Design}
@@ -11,20 +11,16 @@ The following section details how machine learning approaches can tie-in to curr
 
 %~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~
 \subsection{Process Design}
-Integrated computational materials engineering, as the name may imply, is primarily focused around \textit{computational} engineering of materials. The design space in AM makes choosing useful experiments difficult; the wide range of physics of AM makes full-scale, full-physics computational modeling a burden. This section focuses around applying machine learning algorithms to aid in computational studies and design of additive manufacturing. 
+Integrated computational materials engineering, as the name may imply, is primarily focused around \textit{computational} engineering of materials. In experimental and engineering studies, the design space in AM makes choosing useful experiments difficult. Similarly, in modeling the wide range of AM physics to consider makes full-scale, full-physics computational difficult. This section focuses around applying machine learning algorithms to aid in computational studies and design of additive manufacturing. 
 
 \input{SectionIII/ReducingComputationalComplexity}
 \input{SectionIII/SurrogateModeling}
 
 %~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~
 \subsection{Process Monitoring and Characterization}
-Monitoring of AM processes produces data equally numerous to, if not in excess of, the data produced by parametric analysis and modeling. The numerousness of time series data in AM warrants usage of quick, efficient, and robust signal processing methods for process monitoring, feedback, and control. These signal processing algorithms are closely related to machine learning and may serves as pre-processing techniques for using data in other machine learning applications like clustering and regression. 
+Computer vision is a class of image recognition algorithms that have been developed for automated feature identification in signals. Intelligent computer vision utilizes machine learning algorithms to identify objects and features in images and time-series data. 
 
-Machine learning algorithms can serve three problems in signal processing of AM:
-\begin{itemize}
-	\item real time analysis, event detection, and feedback mechanisms during manufacture;
-	\item fast analysis and quantification of image data
-\end{itemize}
+Monitoring of AM processes produces data equally numerous to, if not in excess of, the data produced by parametric analysis and modeling. The numerousness of time series data in AM warrants usage of quick, efficient, and robust signal processing methods for process monitoring, feedback, and control. These signal processing algorithms are closely related to machine learning. They serve as tools in their own right, and can also pre-process data for use in other machine learning applications, like clustering and regression. 
 
 \input{SectionIII/InSituMonitoring}
 \input{SectionIII/Featurization}
