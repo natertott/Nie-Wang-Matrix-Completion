@@ -97,7 +97,7 @@ def alldata(csv_path,hertz):
 ########################################
 def phasefrac(data):
     # This is a function to calculate phase fractions (if you want to call it that)
-    # It takes as input the full data dict returned from alldata
+    # It takes as input the full data dict returned from alldata()
 
     #Hacks. Hacks everywhere.
     #First let's pull the values we need out of the data dictionary
@@ -106,11 +106,13 @@ def phasefrac(data):
     alpha = pf['alpha']
     beta = pf['beta']
 
+    #check if the liquid phase is present
     hack = 0
     if "liq" in pf.keys():
         liq = pf['liq']
         hack = 1
 
+    #For calculating time from indices
     hertz = data['hertz']
 
     #Store the length of the arrays
@@ -129,15 +131,12 @@ def phasefrac(data):
         for ii in np.arange(len(liq)):
             if liq[ii] < 0:
                 liq[ii] = 0
+        #This is a 'fudge factor' which we will use to scale the background peak
+        # intensity fit of the liquid amorphous scatter.
 
-    """ This is a 'fudge factor' which we will use to scale the background peak
-    intensity fit of the liquid amorphous scatter.
-
-    The maximum intensity of the liquid phase will be scaled by the sum of the peak
-    intensity for alpha + beta in the final frame """
-    fudge = alpha[size-1]+beta[size-1]
-
-    if hack == 1:
+        # The maximum intensity of the liquid phase will be scaled by the sum of the peak
+        # intensity for alpha + beta in the final frame
+        fudge = alpha[size-1]+beta[size-1]
         liq = (liq/max(liq))*fudge
 
     alpha_frac = np.zeros(len(alpha))
