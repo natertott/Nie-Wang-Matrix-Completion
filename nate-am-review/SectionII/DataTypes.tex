@@ -1,7 +1,7 @@
 \subsection{Additive Manufacturing Data Types and Formats}
 Data types and sources in additive manufacturing are as widespread as any field of engineering and science. Machine learning algorithms, however, typically operate using specific mathematical representations of data. It is important to recognize all the different sources and formats of AM data and consider how they can be coerced into use for machine learning. 
 
-Scalar data values are some of the most common and easily obtained data in additive. A single set of manufacturing parameters, such as heat source parameters, can be represented as a list of scalars. Other scalar data can include material property measurements such as strength, hardness, density, moduli, and more. A good portion of this review covers how to model relationships between manufacturing parameters and material properties. In these cases, the machine inputs will most often be represented as a vector, such as
+Scalar data values are the most commonly obtained data in additive studies. A single set of manufacturing parameters, such as heat source parameters, can be represented as a list of scalars. Other scalar data can include material property measurements such as strength, hardness, density, moduli, and more. A good portion of this review covers how to model relationships between manufacturing parameters and material properties. In these cases, the machine inputs will most often be represented as a vector, such as
 \begin{equation}
 \begin{split}
 	\mathbf{x} & = \text{[} \text{Machine Input 1, Machine Input 2,} \hdots  \\
@@ -22,8 +22,8 @@ Often, experimenters and modelers have quite a few data points already collected
 				\end{bmatrix}
 	\label{matrix}
 \end{equation}
-where the columns of $\mathbf{X}$ represent individual machine inputs or material properties and each row is a different measurement made somewhere in the design space. 
+where the columns of $\mathbf{X}$ represent individual machine inputs $x_i,j$ or material properties $y_i$ and each row is a different measurement made somewhere in the design space. 
 
 Scalar, vector, and matrix representations of AM data will be among the most common types of inputs for machine learning algorithms. If a particular algorithm discussed differs from this paradigm, it will be explicitly noted. 
 
-A final concept which is core to machine learning is \textit{covariance}. Covariance is measured between two data points $\kappa (\mathbf{x}\mathbf{x}')$, instead of being a property of a single data point. The covariance between data points encodes cross-correlated information within the design space. Ways of calculating covariance are many and varied and will be explicitly discussed where they are used. While many machine learning algorithms can operate directly on machine inputs and processing outputs, it can be equally useful to calculate covariances between data points and use those as machine learning inputs.
+A final concept which is core to machine learning is \textit{covariance}. Covariance is measured between two data points $\kappa (\mathbf{x},\mathbf{x}')$, instead of being a property of a single data point. The covariance between data points encodes cross-correlated information within the design space. Ways of calculating covariance are many and varied and will be explicitly discussed where they are used. While many machine learning algorithms can operate directly on machine inputs and processing outputs, it can be equally useful to calculate covariances between data points and use those as machine learning inputs.

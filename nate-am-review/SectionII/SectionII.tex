@@ -1,5 +1,5 @@
 \section{Phrasing Additive Manufacturing as a Machine Learning Problem}\label{phrasing}
-Data-driven modeling and machine learning have been employed to great success across several fields including materials science. While machine learning may seem foreign at first, readers will see that it can be expressed and understood in plain terms. Many of the tenets and frameworks for machine learning are based in mathematical operations which will seem familiar to the reader, but applied in new ways. 
+Data-driven modeling and machine learning have been employed to great success across several fields including materials science. While machine learning may seem foreign at first, readers will see that it can be expressed and understood in plain terms. Many of the tenets and frameworks for machine learning are based in mathematical operations which may be familiar to the reader, but applied in new ways. 
 
 
 \input{SectionII/DesignSpace}
@@ -7,6 +7,7 @@ Data-driven modeling and machine learning have been employed to great success ac
 \input{SectionII/Assumptions}
 \input{SectionII/Unsupervised}
 \input{SectionII/Supervised}
+\input{SectionII/Tools}
 
 \begin{table*}
 \caption{Several of the most widely used machine learning algorithms that have been used in materials science are compared.} \label{ML}
@@ -22,47 +23,5 @@ Search algorithms & \raggedright Genetic algorithms, Evolutionary algorithms & S
 
 \end{tabular}
 \end{table*}
-
-
-\begin{table*}
-    \renewcommand{\arraystretch}{0.8}
-    \setlength{\tabcolsep}{5pt}
-    \begin{center}
-        \begin{tabular}{@{}llll@{}}
-            \toprule
-            Data source (instrument/software) & file type & processing tools & "ML-ready" output \\ \midrule
-            \hline
-            \hline
-            X-Ray tomography (Zeiss Xradia Versa) & .tiff & image featurizer & vectorized image \\
-            X-Ray tomography (TRACR) & .txt, .csv & Python (pypif, pandas, citriantion-client) & porosity statistics \\
-            X-Ray diffraction (Panalytical empyrean) & .xy & Python (pypif, csv, pandas) & XRD features (\% desired phase) \\
-            Optical microscopy (Keyence VHX-5000) & .tiff & image featurizer & vectorized image (grain size and distributions) \\
-            Uniaxial tensile testing (MTS 370) & .xy & Python (Hough transform algorithm) & real-valued mechanical properties \\
-            Composition (TOF-SIMS) & & Python (pymatgen, matminer, magpie) & composition feature vectors \\
-            Semi-structured web page & .html & Python (requests, beautifulsoup) & csv-formatted records \\
-            Semi-structured pdf (txt-based) & .pdf & tabula, AbbyyFineReader, Python (pdftotext) & csv-formatted records \\
-            ML packages & & Python (sklearn, tensorflow, keras, OpenCV) & \\
-            \hline
-            \bottomrule
-        \end{tabular}
-        \caption{Common tools and packages for preparing data for ML applications}
-        \label{table:data_tools}
-    \end{center}
-\end{table*}
-
-
-\subsection{Preparing data for machine learning}
-Table XX highlights a variety of computational tools and Python packages and their relevance to AM synthesis optimization.
-
-
-%\begin{figure}
-%  \includegraphics[width=0.9\linewidth]{SectionII/design_example.png}
-%  \caption{Illustrating a sequential learning workflow. In this example, there are 16 total possible experiments and
-%   4 experiments are performed for initial data collection. To reduce potential bias due subsampling of the input space,
-%  the most dissimilar experiments should be performed first. After populating some amount of the design space,
-%  machine learning should be used to begin informative data collection until design goal is realized.}
-%  \label{fig:SL}
-%\end{figure}
-
 %%%
 

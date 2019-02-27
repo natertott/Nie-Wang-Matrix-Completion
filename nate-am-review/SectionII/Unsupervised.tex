@@ -1,6 +1,6 @@
 \subsection{Unsupervised Machine Learning}\label{unsupervised}
 
-Unsupervised machine learning algorithms are used to identify similarities or draw conclusions from unlabeled data by relying on the similarity hypothesis.
+Unsupervised machine learning algorithms are used to identify similarities or draw conclusions from unlabeled data by relying on the similarity hypothesis. Unsupervised approaches are useful for visualizing or finding trends in high dimensional data sets, screening out irrelevant modeling inputs, or finding manufacturing conditions which produce similar material properties. 
 
 Consider an experiment that varies three different manufacturing inputs $x_1, x_2, x_3$ and measures a single material property $y$.
 In matrix form, the data are expressed as:
@@ -47,43 +47,45 @@ If the intent is exploring design spaces then manufacturing at conditions \texti
 If looking for local maxima of quality, an operator would want to manufacture at conditions \textit{nearest to} the conditions currently known to have high quality.
 
 Using vector distances as metrics of similarities can produce results that are analogous to creating process maps \cite{Beuth2001}.
-Process maps are used to divide $2$ dimensional plots of manufacturing inputs into regions of quality, or regions of different material responses.
-The following demonstration is based on $k$-means clustering, a commonly used unsupervised machine learning clustering algorithm.
+Process maps are used to divide $2$ dimensional plots of manufacturing inputs into regions of quality, or regions of different material responses. A common application of unsupervised learning is finding clusters in data sets which produce useful partitions of material behavior. Similarly to how process maps define boundaries between material performance and response, clustering with unsupervised learning can identify manufacturing conditions which will result in similar material performance.
 
-A researcher has acquired the datasets in Eqn. \ref{initialmeasure} and wants to partition $\mathbf{Y}$ into groupings of high quality parts and low quality parts.
-However, there are several values of $y \in \mathbf{Y}$ that lie between two extremes and the cutoff for quality is not well defined.
-It would be useful to use similarity metrics to find the best possible partition of quality.
-To begin, the data set is partitioned randomly into two groups, $\mathbf{Y}_1$ and $\mathbf{Y}_2$.
-The centroids $m_1$, $m_2$ (or centers of mass, in engineering) of each grouping can be calculated as
 
-\eqn
-	\begin{split}
-		m_1 & = \frac{1}{|\mathbf{Y}_1|} \sum_{y_j \in \mathbf{Y}_1} y_j \\
-		m_2 & = \frac{1}{|\mathbf{Y}_2|} \sum_{y_j \in \mathbf{Y}_2} y_j. \\
-		\label{moment}
-	\end{split}
-\equ
+%The following demonstration is based on $k$-means clustering, a commonly used unsupervised machine learning clustering algorithm.
 
-where $|\mathbf{Y}|$ is the average value of a grouping.
-The measurements were randomly partitioned at first; the goal is to re-partition each set so that similar measurements (similar levels of quality) are in the same set.
-To do this, we can re-assign each set by
-
-\eqn
-	\begin{split}
-		\mathbf{Y}_1 & = \{y_i : ||y_i - m_1||_2 \leq ||y_i - m_2||_2 \} \\
-		\mathbf{Y}_2 & = \{y_j : ||y_j - m_2||_2 \leq ||y_j - m_1||_2 \}. \\
-	\end{split}
-	\label{reassign}
-\equ
-
-We can interpret the re-assignment in Eqn. \ref{reassign} physically: if a measurement initially assigned to set $\mathbf{Y}_1$ is closer in distance to $\mathbf{Y}_2$ then it is \textit{more similar} to the other set.
-Thus, it is re-assigned.
-Since the original partition was random it is likely that there are low quality parts mixed in with high quality parts - in other words, outliers exist in each partition.
-Measuring the similarity of each data point to the mean of the groupings re-classifies these outliers into groupings that are more reflective of their quality.
-
-Once re-assignment is complete the centroids in Eqn. \ref{moment} can be re-calculated and updated.
-Then, data points are re-assigned once more based on how similar they are to the centroid of each partition.
-If we have partitioned the input settings $(x_1, x_2, x_3)$ along with their corresponding measurements, then we have lists of input settings which are likely to give good/bad quality parts.
-Further analysis can also be conducted, such as analyzing which regimes of inputs lead to good or bad quality - this is precisely what process maps represent.
-The difference in this case is that $n$ many manufacturing conditions can be related to a quality metric simultaneously, with little to no human inspection or intervention.
-Additionally, a researcher can dig further and analyze \textit{why} groups of input settings result in given quality for a material property.
+%A researcher has acquired the datasets in Eqn. \ref{initialmeasure} and wants to partition $\mathbf{Y}$ into groupings of high quality parts and low quality parts.
+%However, there are several values of $y \in \mathbf{Y}$ that lie between two extremes and the cutoff for quality is not well defined.
+%It would be useful to use similarity metrics to find the best possible partition of quality.
+%To begin, the data set is partitioned randomly into two groups, $\mathbf{Y}_1$ and $\mathbf{Y}_2$.
+%The centroids $m_1$, $m_2$ (or centers of mass, in engineering) of each grouping can be calculated as
+%
+%\eqn
+%	\begin{split}
+%		m_1 & = \frac{1}{|\mathbf{Y}_1|} \sum_{y_j \in \mathbf{Y}_1} y_j \\
+%		m_2 & = \frac{1}{|\mathbf{Y}_2|} \sum_{y_j \in \mathbf{Y}_2} y_j. \\
+%		\label{moment}
+%	\end{split}
+%\equ
+%
+%where $|\mathbf{Y}|$ is the average value of a grouping.
+%The measurements were randomly partitioned at first; the goal is to re-partition each set so that similar measurements (similar levels of quality) are in the same set.
+%To do this, we can re-assign each set by
+%
+%\eqn
+%	\begin{split}
+%		\mathbf{Y}_1 & = \{y_i : ||y_i - m_1||_2 \leq ||y_i - m_2||_2 \} \\
+%		\mathbf{Y}_2 & = \{y_j : ||y_j - m_2||_2 \leq ||y_j - m_1||_2 \}. \\
+%	\end{split}
+%	\label{reassign}
+%\equ
+%
+%We can interpret the re-assignment in Eqn. \ref{reassign} physically: if a measurement initially assigned to set $\mathbf{Y}_1$ is closer in distance to $\mathbf{Y}_2$ then it is \textit{more similar} to the other set.
+%Thus, it is re-assigned.
+%Since the original partition was random it is likely that there are low quality parts mixed in with high quality parts - in other words, outliers exist in each partition.
+%Measuring the similarity of each data point to the mean of the groupings re-classifies these outliers into groupings that are more reflective of their quality.
+%
+%Once re-assignment is complete the centroids in Eqn. \ref{moment} can be re-calculated and updated.
+%Then, data points are re-assigned once more based on how similar they are to the centroid of each partition.
+%If we have partitioned the input settings $(x_1, x_2, x_3)$ along with their corresponding measurements, then we have lists of input settings which are likely to give good/bad quality parts.
+%Further analysis can also be conducted, such as analyzing which regimes of inputs lead to good or bad quality - this is precisely what process maps represent.
+%The difference in this case is that $n$ many manufacturing conditions can be related to a quality metric simultaneously, with little to no human inspection or intervention.
+%Additionally, a researcher can dig further and analyze \textit{why} groups of input settings result in given quality for a material property.

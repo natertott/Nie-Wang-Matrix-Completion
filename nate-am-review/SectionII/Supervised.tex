@@ -1,5 +1,5 @@
 \subsection{Supervised Machine Learning}
-In a \textit{supervised machine learning algorithm} the goal is to find a functional relationship that best approximates the underlying physical relationship $f(\mathbf{x}) = \mathbf{y}$. That is, supervised machine learning algorithms relate model inputs to labeled data. Functional relationships can take many forms, depending on the specific supervised ML algorithm being used. One method is to model the relationships as a vector product 
+In a \textit{supervised machine learning algorithm} the goal is to find a functional relationship that approximates the underlying physical relationship $f(\mathbf{x}) = \mathbf{y}$ based on previously measurements of $\mathbf{y}$ at point $\mathbf{x}$ in the design space. That is, supervised machine learning algorithms relate manufacturing inputs to labeled data. Functional relationships can take many forms, depending on the specific supervised ML algorithm being used. One method is to model the relationships as a vector product 
 \eqn
 \mathbf{X}T = \mathbf{Y}.
 \label{map}
@@ -21,8 +21,8 @@ A new point of interest in the design space $\mathbf{x'}$ can be chosen and its 
 \eqn
 \mathbf{x'}T = \mathbf{y'}.
 \equ
+This simple example demonstrates how functional relationships can elucidate more information about design spaces from previously generated data.
 
-This simple example demonstrates how functional relationships can elucidate more information about design spaces.
 Commonly used machine learning algorithms in materials science and engineering are given in Table \ref{ML}.
 Note that the field of Machine Learning is evolving as fast as AM itself; hence Table \ref{ML} is by no means a comprehensive review of all machine learning algorithms, but rather is intended to provide a comparison between the form and function of some of the most widely adopted algorithms in materials science and engineering.
 
