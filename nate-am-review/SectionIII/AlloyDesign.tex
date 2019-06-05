@@ -1,9 +1,4 @@
 \subsubsection{Alloy Design}
-%\begin{figure}
-%	\includegraphics[width=1\linewidth]{Images/AlloyDesign}
-%	\caption{}
-%	\label{}
-%\end{figure}
 Choice of alloy impacts the physics of AM from start to finish, starting with the optics of energy sources incident on feedstock and ending with the material properties of the final part. For example, the reflected/absorbed intensity of lasers on powder beds is determined by the powder's composition \cite{Boley2016, Trapp2017}. The density of feedstock, both intra- and inter-granular density, plays a role in final part density \cite{Bi2013}. Conduction modes in the melt are partially determined by the thermal properties of the alloy \cite{Martin2017}. All of this is not to mention that different alloys exhibit different solidification kinetics, which can lead to drastically different microstructures after manufacture \cite{Collins2016}. 
 
 Problems in the additive process can also be linked to composition such as vaporization of constituent elements due to rapid thermal fluxes, impacting the stoichiometry of melt pools and, ultimately, quality \cite{Brice2018}. Traditional engineering alloys sometimes need to be altered to improve compatibility with AM. Searching for new alloys specifically for AM may also be fruitful, as unique strengthening mechanisms can arise \cite{Brice2018, Wang2017}. Designing alloys for AM -- either altering currently used alloys or starting from scratch -- requires taking into consideration the compatibility of alloys' physical properties with AM. Alloy design for AM must take into consideration general alloy properties, like melting point, to feedstock-level properties, like vaporization temperature, to bulk alloy properties, like strength. Much of this information has been collated into databases that are compatible with design for AM. Alloy designers from AM should take advantage of these databases to search for new alloys for use in additive. 
@@ -17,6 +12,14 @@ The same process employed by Martin -- identify the properties which need to be 
 A limiting factor in database mining is that designers are limited to properties which have been measured or calculated. We do not have information about the vast space of \textit{possible} materials. Consider a set of alloying elements for Ti such as $\{\text{Al}, \text{V}, \text{Zr}, \text{Cr}\}$. Researchers may need to test the impact of alloying composition on the dendrite arm spacing of Ti alloys. Phase field models exist which simulate the growth of and measure dendrite arm spacing as a function of a continuum of composition. A particularly efficient combined phase field/cellular automata model was implemented by Tan et al. precisely to model dendrite arm spacing in laser manufactured alloys \cite{Tan2011}. 
 
 Modeling all possible combinations of $\{\text{Ti},\text{Al}, \text{V}, \text{Zr}, \text{Cr}\}$ is possible with coarse additions of alloying elements, but undesirable. Machine learning can aid in the process to find an optimal composition without modeling all possibilities. \textit{Genetic alogrithms} (GA) can search the space of possible alloys to find the optimal dendrite arm spacing. Genetic algorithms have been one of the most-used data driven approaches in materials science over the past few decades \cite{Morris1996, Ho1998, Wolf2000, Johannesson2002, Stucke2003, Hart2005, Oganov2006}.
+
+%
+\begin{figure}[h!]
+	\includegraphics[width=1\linewidth]{Images/AlloyDesign}
+	\caption{An illustrator of genetic algorithm selection, mutation, and crossover for alloy design. As the algorithm proceeds, the selection step typically focuses in on a local minimum of `best' alloys for the intended outcome/application. The model assessment, or selection, step can vary depending on the alloy property being optimized. The model used should be able to predict material response based on composition.}
+	\label{fig:GA}
+\end{figure}
+%
 
 The principle of genetic algorithms is to evaluate the \textit{fitness} of a population of candidate alloys against a \textit{fitness function}. The fitness function is a method of evaluating how well a candidate alloy meets a criteria.
 
@@ -75,7 +78,7 @@ Genetic algorithms generate similar compositions from those selected in the pare
 \end{table}
 \noindent where in the second generation V and Zr have been interchanged.
 
-Selection, mutation, and crossover followed by model assessment and further selection, mutation, and crossover continues until the design criteria is met. The intuition behind genetic algorithms is that eventually the selection process is narrowed down to alloys within a given region of the design space such that further mutation and crossover do not produce new genes. Eventually, all the `fittest` genes as determined by the model will converge to be approximately the same composition. 
+Selection, mutation, and crossover followed by model assessment and further selection, mutation, and crossover continues until the design criteria is met. A schematic of the GA process can be seen in Figure \ref{fig:GA}. The intuition behind genetic algorithms is that eventually the selection process is narrowed down to alloys within a given region of the design space such that further mutation and crossover do not produce new genes. Eventually, all the `fittest` genes as determined by the model will converge to be approximately the same composition. 
 
 Genetic algorithms have been applied to alloy design for low and high temperature structural materials \cite{Ikeda1997, Kulkarni2004}, ultra high strength steels \cite{Xu2008}, specific electronic band gaps \cite{Dudiy2006}, minimum defect structures \cite{Anijdan2006}, exploring stable ternary or higher alloys alloys \cite{Hautier2010, Johannesson2002}, and more. For a review on the application of GA's to alloy design through the early 2000s see Ref. \cite{Chakraborti2004}.
 

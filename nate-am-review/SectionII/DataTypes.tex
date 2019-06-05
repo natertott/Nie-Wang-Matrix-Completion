@@ -1,5 +1,12 @@
 \subsection{Additive Manufacturing Data Types and Formats}
-Data types and sources in additive manufacturing are as widespread as any field of engineering and science. Machine learning algorithms, however, typically operate using specific mathematical representations of data. It is important to recognize all the different sources and formats of AM data and consider how they can be coerced into use for machine learning. Representing data in the design space properly will be a major pre-processing step for machine algorithms to be amenable to AM optimization.
+
+\begin{figure}
+	\includegraphics[width=1\linewidth]{Images/data_types.png}
+	\caption{Common data types and sources in additive manufacturing research and development. This is not an exhaustive list but rather an example of how data often comes in multiple forms from multiple sources.}
+	\label{datatypes}
+\end{figure}
+
+Data types and sources in additive manufacturing are as widespread as any field of engineering and science. Machine learning algorithms, however, typically operate using specific mathematical representations of data. It is important to recognize all the different sources and formats of AM data and consider how they can be coerced into use for machine learning. Examples of different AM data sources and they formats they can be collected in are shown in Figure \ref{datatypes}. Representing data in the design space properly will be a major pre-processing step for machine algorithms to be amenable to AM optimization.
 
 Scalar data are the most commonly obtained data in materials science -- one simply needs to feel the weight of an ASME book on measured material properties to see this truth. Scalar data can include material property measurements such as strength, hardness, density and modulus. A single set of manufacturing parameters, such as heat source parameters, can also be represented as a list of scalars. Desired models in AM research include models of the relationships between material properties and manufacturing parameters. In these cases, the machine inputs will most often be represented as a vector, such as
 \begin{equation}
@@ -14,7 +21,7 @@ out of $n$ many scalar machine inputs. Vector representations of the design spac
 
 Another common data type often represented by vectors is \textit{time series} data. Time series data are usually measured during the manufacturing process. Highly desired time series data collected during AM are temperature histories; others include videos, spectroscopy, and part deformation and strain. These data can sometimes be used as-is, or operations can be performed to extract scalar data values from the time series. Scalar statistical values such as the maximum, minimum, mean, and standard deviation of a time series signal can be equally useful in machine learning applications. Signal processing of time series data is also an active area of machine learning research which seeks to extract the most useful information from a time series. Pre-processing time series data can result in useful machine learning inputs; separately, signal processing algorithms have been used to reduce the amount of data required for machine learning to be successful \cite{Candes2008}.
 
-Matrices are perhaps the most diverse type of data used in terms of the range of materials science information that the can convey. Large datasets of scalar values measured multiple times will often be represented by a matrix where the columns represent each individual measurement type and the rows are repeated measurements of that value, usually for different samples. Representing this collection of scalar measurements as as a matrix can be useful; one example would be
+Matrices are perhaps the most diverse type of data used in terms of the range of materials science information that they can convey. Large datasets of scalar values measured multiple times will often be represented by a matrix where the columns represent each individual measurement type and the rows are repeated measurements of that value, usually for different samples. Representing this collection of scalar measurements as as a matrix can be useful; one example would be
 \begin{equation}
 	\mathbf{X} = \begin{bmatrix} x_{1,1} & x_{1,2} & \hdots & x_{1,m} \\
 						x_{2,1} & x_{2,2} & \hdots & x_{2,m} \\

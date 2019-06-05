@@ -3,15 +3,13 @@ Data-driven modeling and machine learning have been employed to great success ac
 
 
 \input{SectionII/DesignSpace}
-\input{SectionII/DataTypes}
-\input{SectionII/Assumptions}
-\input{SectionII/Unsupervised}
-\input{SectionII/Supervised}
-\input{SectionII/Tools}
 
+
+
+%%%
 \begin{table*}
-\caption{Several of the most widely used machine learning algorithms that have been used in materials science are compared.} \label{ML}
-\begin{tabular}{p{2.25cm}|p{2.25cm}|p{3cm}|p{4cm}|p{4cm}}
+\caption{Several of the most widely used machine learning algorithms that have been used in materials science.} \label{ML}
+\begin{tabular}{|p{2.25cm}|p{2.25cm}|p{3cm}|p{4cm}|p{4cm}|}\hline
 \raggedright Class of Algorithm & Examples & Applications & Strengths & Constraints \\ \hline \hline
 Weighted neighborhood clustering & Decision trees, k-Nearest neighbor & \raggedright Regression, Classification, Clustering and similarity & These algorithms are robust against uncertainty in data sets and can provide intuitive relationships between inputs and outputs. See Ref. \cite{Quinlan1986} for a primer on clustering. & They can be susceptible to classification bias toward descriptors with more data entries than others. \\ \hline
 
@@ -19,9 +17,17 @@ Weighted neighborhood clustering & Decision trees, k-Nearest neighbor & \raggedr
 
 \raggedright Linear dimensionality reduction & \raggedright Principle component analysis (PCA), Support vector regression (SVR) & Dimensionality reduction, Clustering and similarity, Input/output visualization, Descriptor analysis, Regression, Predictive modeling & \raggedright This type of algorithm can produce orthogonal basis sets which reproduce the training data space. They can also provide quick and accurate regression analysis. For a primer on PCA specifically, see Ref. \cite{Bro2014}. & The relationships studied must be linear in nature, and these algorithms are susceptible to bias when descriptors are scaled differently. \\ \hline
 
-Search algorithms & \raggedright Genetic algorithms, Evolutionary algorithms & Searching a material space to optimize on a certain condition, Lowest-energy state searches, Crystal structure prediction &  \raggedright Search algorithms are intuitive for material properties that can be described geometrically, such as topology optimization for weight reduction. They are efficient at searching spaces with multiple local extrema, such as finding local maxima of quality in multidimensional design spaces. &  These algorithms are highly dependent upon selection and mutation criteria. For a useful application of genetic algorithms to process characterization, see Ref. \cite{Grefenstette1986}. \\
+Search algorithms & \raggedright Genetic algorithms, Evolutionary algorithms & Searching a material space to optimize on a certain condition, Lowest-energy state searches, Crystal structure prediction &  \raggedright Search algorithms are intuitive for material properties that can be described geometrically, such as topology optimization for weight reduction. They are efficient at searching spaces with multiple local extrema, such as finding local maxima of quality in multidimensional design spaces. &  These algorithms are highly dependent upon selection and mutation criteria. For a useful application of genetic algorithms to process characterization, see Ref. \cite{Grefenstette1986}. \\ \hline
 
 \end{tabular}
 \end{table*}
 %%%
+
+\input{SectionII/DataTypes}
+\input{SectionII/Assumptions}
+\input{SectionII/Unsupervised}
+\input{SectionII/Supervised}
+\input{SectionII/Tools}
+
+
 

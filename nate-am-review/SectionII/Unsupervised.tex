@@ -8,10 +8,10 @@ In matrix form, the data are expressed as:
 \eqn
 \begin{split}
 \mathbf{X} &= \begin{bmatrix}
-	x_{1,1} & x_{2,1} & x_{3,1} \\
-	x_{1,2} & x_{2,2} & x_{3,2} \\
+	x_{1,1} & x_{1,2} & x_{1,3} \\
+	x_{2,1} & x_{2,2} & x_{2,3} \\
 	\vdots & \vdots & \vdots \\
-	x_{1,m} & x_{2, m} & x_{3, m} \\
+	x_{m,1} & x_{m,2} & x_{m,3} \\
 	\end{bmatrix} \\
 \mathbf{Y} &= \begin{bmatrix}
 	y_1 \\
@@ -22,7 +22,7 @@ In matrix form, the data are expressed as:
 \end{split}\label{initialmeasure}
 \equ
 
-where $x_{i,j}$ is the $j^{th}$ measurement of the $i^{th}$ manufacturing input. A distance metric can be defined between data points in the design space. For example, data can be collected at two points $\mathbf{a} = (x_{1}, x_{2}, x_{3})$ and $\mathbf{b} = (x_{1} + \delta, x_{2}, x_{3})$. The $\ell _2$ norm of $\mathbf{a}-\mathbf{b}$ yields
+where $x_{i,j}$ is the $i^{th}$ measurement of the $j^{th}$ manufacturing input. A distance metric can be defined between data points in the design space. For example, data can be collected at two points $\mathbf{a} = (x_{1}, x_{2}, x_{3})$ and $\mathbf{b} = (x_{1} + \delta, x_{2}, x_{3})$. The $\ell _2$ norm of $\mathbf{a}-\mathbf{b}$ yields
 
 \eqn
 || \mathbf{a} - \mathbf{b}||_2 = \delta.
@@ -41,7 +41,7 @@ Since $\mathbf{c}$ was manufactured at similar conditions to $\mathbf{a}$, as me
 
 To better understand why unsupervised learning is desirable for AM R\&D consider research project with initial manufacturing inputs $\mathbf{a}$, $\mathbf{b}$, $\mathbf{c}$, $\mathbf{d}$, etc., and associated property measurements that have been tested. Churning through the remainder of all possible design space coordinates to map the process-structure-property-performance relationship becomes expensive and tedious quickly. Instead, researchers can use similarity metrics to determine whether or not a future test is worth running. Comparing the manufacturing inputs through vector distance gives a rough idea of the possible outcome before spending time and resources on running a test. If the intent is exploring design spaces then manufacturing at conditions \textit{furthest away} from previously observed points may be the answer. If looking for local maxima of quality, an operator would want to manufacture at conditions \textit{nearest to} the conditions currently known to have high quality.
 
-Another common application of unsupervised learning is finding clusters in data sets which produce useful partitions of material behavior.Using vector distances as metrics of similarities can produce results that are analogous to creating process maps \cite{Beuth2001}. Process maps are used to divide $2$ dimensional plots of manufacturing inputs into regions of quality, or regions of different material responses. Similarly to how process maps define boundaries between material performance and response, clustering with unsupervised learning can identify manufacturing conditions which will result in similar material performance.
+Another common application of unsupervised learning is finding clusters in data sets which produce useful partitions of material behavior. Using vector distances as metrics of similarities can produce results that are analogous to creating process maps \cite{Beuth2001}. Process maps are used to divide $2$ dimensional plots of manufacturing inputs into regions of quality, or regions of different material responses. Similarly to how process maps define boundaries between material performance and response, clustering with unsupervised learning can identify manufacturing conditions which will result in similar material performance.
 
 
 %The following demonstration is based on $k$-means clustering, a commonly used unsupervised machine learning clustering algorithm.

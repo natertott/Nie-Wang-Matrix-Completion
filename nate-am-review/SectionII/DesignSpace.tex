@@ -1,7 +1,3 @@
-\subsection{The Design Space of Additive Manufacturing}
-The \textbf{design space} of additive manufacturing is the set of all manufacturing parameters and material properties. More generally, the term `design space' will be used throughout this article to discuss the set of all additive manufacturing data which can be used with data-driven methods and machine learning algorithms. An example design space for laser powder bed fusion metals, the most prolific of current technologies, is depicted in Figure \ref{AMgene}. A complementary example of controllable manufacturing parameters is given in Table \ref{table:design_space}. Observable manufacturing phenomena may link the manufacturing parameters to the resulting materials properties, hence they may also be used to augment the manufacturing parameters and material properties within the design space. Examples include melt pool morphology, temperature and cooling rates.
-
-A single set of machine parameters, observed process phenomenon, and measured material properties can be considered as a \textit{coordinate}, or point, in the design space. A single set of manufacturing parameters -- for example, a fixed laser power, scan speed, scan path, and layer thickness in LPBF -- is often thought of as a design space coordinate. Single coordinates, defined this way, can sometimes lead to a multitude of material properties due to latent variables, unforseen complications, and the stochasticity of the process. Include manufacturing phenomenon in the design space coordinate can more accurately identify truly unique points in the design space. Under a broader definition, any part which is manufactured under a single set of conditions and is observed to have a set thermal history and material properties can be considered to be manufactured \textit{at that point} in the design space.
 
 \begin{table*}[t]
     \renewcommand{\arraystretch}{0.8}
@@ -31,3 +27,11 @@ A single set of machine parameters, observed process phenomenon, and measured ma
         \label{table:design_space}
     \end{center}
 \end{table*}
+
+\subsection{The Design Space of Additive Manufacturing}
+
+The \textbf{design space} of additive manufacturing is the set of all manufacturing parameters and material properties. More generally, the term `design space' will be used throughout this article to discuss the set of all additive manufacturing data which can be used with data-driven methods and machine learning algorithms. An example design space for laser powder bed fusion metals, the most prolific of current technologies, is depicted in Figure \ref{AMgene}. A complementary example of controllable manufacturing parameters is given in Table \ref{table:design_space}. Observable manufacturing phenomena may link the manufacturing parameters to the resulting materials properties, hence they may also be used to augment the manufacturing parameters and material properties within the design space. Examples include melt pool morphology, temperature and cooling rates.
+
+A single set of machine parameters, observed process phenomenon, and measured material properties can be considered as a \textit{coordinate}, or point, in the design space. A single set of manufacturing parameters -- for example, a fixed laser power, scan speed, scan path, and layer thickness in LPBF -- is often thought of as a design space coordinate. Single coordinates, defined this way, can sometimes lead to a multitude of material properties due to latent variables, unforseen complications, and the stochasticity of the process. Include manufacturing phenomenon in the design space coordinate can more accurately identify truly unique points in the design space. Under a broader definition, any part which is manufactured under a single set of conditions and is observed to have a set thermal history and material properties can be considered to be manufactured \textit{at that point} in the design space.
+
+
