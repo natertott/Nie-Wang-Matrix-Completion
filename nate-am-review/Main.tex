@@ -1,0 +1,81 @@
+\documentclass[twocolumn,superscriptaddress,nofootinbib]{revtex4-1}
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\usepackage{amscd}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{float}
+%\usepackage{floatrow}
+\usepackage{graphicx}
+\usepackage{import}
+\usepackage{mathtools}
+\usepackage{natbib}
+\floatstyle{plaintop}
+\usepackage{subfiles}
+\restylefloat{table}
+\usepackage{tabularx}
+\usepackage{verbatim}
+\usepackage{xcolor}
+\usepackage{subcaption}
+%\usepackage[bottom]{footmisc}
+
+
+%%Place New Commands Here
+
+\newcommand{\cn}{\textbf{citation needed}} 
+\newcommand{\eqn}{\begin{equation}}
+\newcommand{\equ}{\end{equation}}
+\newcommand{\fig}{\begin{figure}}
+\newcommand{\fiu}{\end{figure}}
+\newcommand{\tabitem}{~~\llap{\textbullet}~~}
+
+ 
+\begin{document}
+\title{Data Driven Modeling, Statistical Analysis, and Machine Learning for Additive Manufacturing}
+\author{N.S. Johnson}
+\affiliation{Department of Mechanical Engineering, Colorado School of Mines, Golden, CO 80401}
+
+\author{C.K.H. Borg}
+\author{J. Saal}
+\affiliation{Citrine Informatics, Redwood City, CA 94063}
+
+\author{R. Liu}
+\author{X. Zhang}
+\author{C.A. Brice}
+\affiliation{Department of Mechanical Engineering, Colorado School of Mines, Golden, CO 80401}
+
+\author{H. Wang}
+\affiliation{Department of Computer Science, Colorado School of Mines, Golden, CO 80401}
+
+
+\author{J. Ling}
+\author{B. Meredig}
+\affiliation{Citrine Informatics, Redwood City, CA 94063}
+
+\author{B. Kappes}
+\author{A.P. Stebner$^*$}
+\affiliation{Department of Mechanical Engineering, Colorado School of Mines, Golden, CO 80401}
+
+
+\begin{abstract}
+In metal additive manufacturing (AM), materials and components are concurrently made in a single process as layers of metal are fabricated on top of each other in the (near) final topology required for the end-use product.
+Consequently, a large number of processing degrees of freedom (tens to hundreds) must be simultaneously controlled and understood; hence, metal AM is a highly interdisciplinary technology that requires synchronized consideration of physics, chemistry, materials science, physical metallurgy, computer science, electrical engineering, and mechanical engineering.
+The use of modern statistics-based approaches to modeling data sets with many degrees of freedom (known as machine learning) with metal AM can reduce the time and cost to elucidate and optimize the complex multidisciplinary phenomena.
+Machine learning techniques have been used in materials science for several decades.
+Most prolifically, the density functional theory community (DFT) rapidly adopted machine learning and has used it since the early 2000s for evaluating many combinations of elements and crystal structures to discover new materials.
+This focused review examines the potential of machine learning in metal AM, highlighting the many parallels to previous efforts in materials science and manufacturing, and discusses new challenges specific to metal AM.
+\end{abstract}
+
+ 
+\maketitle
+\tableofcontents
+
+\input{SectionI/SectionI.tex}
+\input{SectionII/SectionII.tex}
+\input{SectionIII/SectionIII.tex}
+\input{SectionIV/SectionIV.tex}
+\input{SectionV/SectionV.tex}
+
+\bibliographystyle{aipnum4-1}
+\bibliography{APR}
+\end{document}

@@ -1,0 +1,33 @@
+\subsection{The Design Space of Additive Manufacturing}
+The \textbf{design space} of additive manufacturing is the set of all manufacturing parameters and material properties. More generally, the term `design space' will be used throughout this article to discuss the set of all additive manufacturing data which can be used with data-driven methods and machine learning algorithms. An example design space for laser powder bed fusion metals, the most prolific of current technologies, is depicted in Figure \ref{AMgene}. A complementary example of controllable manufacturing parameters is given in Table \ref{table:design_space}. Observable manufacturing phenomena may link the manufacturing parameters to the resulting materials properties, hence they may also be used to augment the manufacturing parameters and material properties within the design space. Examples include melt pool morphology, temperature and cooling rates.
+
+A single set of machine parameters, observed process phenomenon, and measured material properties can be considered as a \textit{coordinate}, or point, in the design space. A single set of manufacturing parameters -- for example, a fixed laser power, scan speed, scan path, and layer thickness in LPBF -- is often thought of as a design space coordinate. Single coordinates, defined this way, can sometimes lead to a multitude of material properties due to latent variables, unforseen complications, and the stochasticity of the process. Include manufacturing phenomenon in the design space coordinate can more accurately identify truly unique points in the design space. Under a broader definition, any part which is manufactured under a single set of conditions and is observed to have a set thermal history and material properties can be considered to be manufactured \textit{at that point} in the design space.
+
+\begin{table*}[t]
+    \renewcommand{\arraystretch}{0.8}
+    \setlength{\tabcolsep}{5pt}
+    \begin{center}
+        \begin{tabular}{@{}llll@{}}
+            \toprule
+            \hline
+             Parameter & range & step size & levels \\ \midrule
+            \hline
+            \hline
+            Power & 100-200 W & 10 W & 10 \\
+            Scan speed & 500-1000 mm/s & 100 mm/s & 5 \\
+            Spot size & 50-100 $\mu$m & 10 $\mu$m & 5 \\
+            Energy density & 1-5 J/mm$^2$ & 1 J/mm$^2$ & 5 \\
+            Polar angle & 0-90$^\circ$ & 30$^\circ$  & 4 \\
+            Azimuth angle & 0-180$^\circ$ & 90$^\circ$  & 3 \\
+            Sieve count & 0-10 & 2 & 5 \\
+            Amount of recycled powder & 0-100\% & 10\% & 10 \\
+            Blade direction & 0-300 mm & 10 mm  & 30 \\
+            Transverse direction & 0-300 mm & 10 mm  & 30 \\
+            Hatch spacing & 0.1-0.50 mm & 0.1 nm  & 5 \\
+            \hline
+            \bottomrule
+        \end{tabular}
+        \caption{A possible design space for laser powder bed fusion additive manufacturing. There are over $10^9$ possible combinations of machine inputs, based on the listed ranges and step sizes. Any possible combination of these parameters is a point in the design space.}
+        \label{table:design_space}
+    \end{center}
+\end{table*}
