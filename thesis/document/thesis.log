@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  8 FEB 2020 13:44
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  11 FEB 2020 11:50
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -447,6 +447,23 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 713.
 LaTeX Info: Redefining \[ on input line 2817.
 LaTeX Info: Redefining \] on input line 2818.
 )
+(/usr/local/texlive/2017/texmf-dist/tex/latex/xcolor/xcolor.sty
+Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
+
+(/usr/local/texlive/2017/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Driver file: pdftex.def on input line 225.
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1348.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1352.
+Package xcolor Info: Model `RGB' extended on input line 1364.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1366.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1367.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1368.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1369.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
+)
 \csm@temp@endhead=\box49
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/subfig/subfig.sty
@@ -491,25 +508,27 @@ Package caption Info: rotating package is loaded.
 \sf@top=\skip68
 \sf@bottom=\skip69
 )
-No file thesis.aux.
+(./thesis.aux
+\csm@redefined@appendix@saved=\count179
+\csm@appendicies=\count180
+)
 \openout1 = `thesis.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 87.
-LaTeX Font Info:    ... okay on input line 87.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 87.
-LaTeX Font Info:    ... okay on input line 87.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 87.
-LaTeX Font Info:    ... okay on input line 87.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 87.
-LaTeX Font Info:    ... okay on input line 87.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 87.
-LaTeX Font Info:    ... okay on input line 87.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 87.
-LaTeX Font Info:    ... okay on input line 87.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 87.
-LaTeX Font Info:    ... okay on input line 87.
-No file thesis.lot.
-No file thesis.lof.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 75.
+LaTeX Font Info:    ... okay on input line 75.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 75.
+LaTeX Font Info:    ... okay on input line 75.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 75.
+LaTeX Font Info:    ... okay on input line 75.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 75.
+LaTeX Font Info:    ... okay on input line 75.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 75.
+LaTeX Font Info:    ... okay on input line 75.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 75.
+LaTeX Font Info:    ... okay on input line 75.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 75.
+LaTeX Font Info:    ... okay on input line 75.
+ (./thesis.lot) (./thesis.lof)
 
 LaTeX Warning: There are no tables or figures..
 
@@ -549,16 +568,16 @@ LaTeX Warning: There are no tables or figures..
 
 (/usr/local/texlive/2017/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count179
+\scratchcounter=\count181
 \scratchdimen=\dimen148
 \scratchbox=\box50
-\nofMPsegments=\count180
-\nofMParguments=\count181
+\nofMPsegments=\count182
+\nofMParguments=\count183
 \everyMPshowfont=\toks32
-\MPscratchCnt=\count182
+\MPscratchCnt=\count184
 \MPscratchDim=\dimen149
-\MPnumerator=\count183
-\makeMPintoPDFobject=\count184
+\MPnumerator=\count185
+\makeMPintoPDFobject=\count186
 \everyMPtoPDFconversion=\toks33
 ) (/usr/local/texlive/2017/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
@@ -578,7 +597,7 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 \AtBeginShipoutBox=\box51
-Package hyperref Info: Link coloring OFF on input line 87.
+Package hyperref Info: Link coloring OFF on input line 75.
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
@@ -586,268 +605,100 @@ Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 (/usr/local/texlive/2017/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count185
+\c@section@level=\count187
 )
-LaTeX Info: Redefining \ref on input line 87.
-LaTeX Info: Redefining \pageref on input line 87.
-LaTeX Info: Redefining \nameref on input line 87.
+LaTeX Info: Redefining \ref on input line 75.
+LaTeX Info: Redefining \pageref on input line 75.
+LaTeX Info: Redefining \nameref on input line 75.
+
+(./thesis.out) (./thesis.out)
 \@outlinefile=\write3
 \openout3 = `thesis.out'.
 
-\c@lstlisting=\count186
+\c@lstlisting=\count188
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: subfig package v1.3 is loaded.
 Package caption Info: End \AtBeginDocument code.
-
-[1
+ [1
 
 {/usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 103.
-
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 88.
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/bx/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/b/n' tried instead on input line 103.
+(Font)              Font shape `OMS/cmsy/b/n' tried instead on input line 88.
  [2] [2] [3]
-
-LaTeX Warning: Your abstract contains 597 words, a dissertation (PhD thesis) ma
-y not exceed 350 words. If you are submitting a dissertation you may alternativ
-ely submit a shorter summary to OGS that adheres to the 350-word limit.
-
-[4]
+(./thesis.toc [4])
 \tf@toc=\write4
 \openout4 = `thesis.toc'.
 
- [5]
+ [5] (./thesis.lof)
 \tf@lof=\write5
 \openout5 = `thesis.lof'.
 
+ (./thesis.lot)
 \tf@lot=\write6
 \openout6 = `thesis.lot'.
 
- [6]
+ [6] (./thesis.los)
 \tf@los=\write7
 \openout7 = `thesis.los'.
 
- [7]
+
+[7] (./thesis.loabbrv)
 \tf@loabbrv=\write8
 \openout8 = `thesis.loabbrv'.
 
  [8]
-LaTeX Font Info:    Try loading font information for OML+cmr on input line 196.
+Underfull \hbox (badness 10000) in paragraph at lines 161--163
 
+ []
 
-(/usr/local/texlive/2017/texmf-dist/tex/latex/base/omlcmr.fd
-File: omlcmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
-)
-LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <12> not available
-(Font)              Font shape `OML/cmm/m/it' tried instead on input line 196.
- [9] [10]
-
-Package natbib Warning: Citation `ref:A' on page 1 undefined on input line 218.
-
-
-
-Package natbib Warning: Citation `ref:B' on page 1 undefined on input line 218.
-
-
-
-Package natbib Warning: Citation `ref:C' on page 1 undefined on input line 218.
-
-
-
-LaTeX Warning: Reference `sec:longtable' on page 1 undefined on input line 218.
-
-
+[9] [10] (./chapters/outline.tex
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 231.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 6.
+) (./chapters/review.tex [1
 
-LaTeX Warning: Reference `app:encoding' on page 1 undefined on input line 240.
-
-[1
-
-]
-
-LaTeX Warning: Reference `eq:importance' on page 2 undefined on input line 253.
-
-
-
-LaTeX Warning: Reference `eq:newton' on page 2 undefined on input line 253.
-
-
-LaTeX Warning: Reference `eq:vector' on page 2 undefined on input line 253.
-
-
-LaTeX Warning: Reference `sec:important-section' on page 2 undefined on input l
-ine 269.
-
-
-LaTeX Warning: Reference `cha:important-chapter' on page 2 undefined on input l
-ine 269.
-
-
-LaTeX Warning: Reference `fig:Stomata' on page 2 undefined on input line 272.
-
-<figures/stomata.png, id=72, 513.92pt x 513.92pt>
-File: figures/stomata.png Graphic file (type png)
- <use figures/stomata.png>
-Package pdftex.def Info: figures/stomata.png used on input line 274.
-(pdftex.def)             Requested size: 513.91873pt x 513.91873pt.
-
-[2] [3 <./figures/stomata.png>]
-\openout2 = `latex-example-chapter.aux'.
-
- (./latex-example-chapter.tex) [4
-
+])
+(./chapters/insitu.tex [2
 
 ]
 
-LaTeX Warning: Reference `fig:Strongbad' on page 5 undefined on input line 312.
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 23.
 
 
-
-LaTeX Warning: Reference `fig:fsm' on page 5 undefined on input line 312.
-
-
-LaTeX Warning: Reference `fig:fsm-pirates' on page 5 undefined on input line 31
-2.
-
-<figures/strongbad.png, id=102, 150.5625pt x 249.93375pt>
-File: figures/strongbad.png Graphic file (type png)
-
-<use figures/strongbad.png>
-Package pdftex.def Info: figures/strongbad.png used on input line 314.
-(pdftex.def)             Requested size: 150.56212pt x 249.93314pt.
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\alpha' on input line 23.
 
 
-Package natbib Warning: Citation `ref:Wikipedia' on page 5 undefined on input l
-ine 314.
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\beta' on input line 23.
 
 
-Package natbib Warning: Citation `ref:Wikipedia' on page 5 undefined on input l
-ine 314.
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 23.
 
-<figures/fsm.png, id=103, 401.5pt x 325.215pt>
-File: figures/fsm.png Graphic file (type png)
- <use figures/fsm.png>
-Package pdftex.def Info: figures/fsm.png used on input line 323.
-(pdftex.def)             Requested size: 401.49901pt x 325.2142pt.
+[3
 
-<figures/fsm-pirates.png, id=104, 501.875pt x 359.3425pt>
-File: figures/fsm-pirates.png Graphic file (type png)
-
-<use figures/fsm-pirates.png>
-Package pdftex.def Info: figures/fsm-pirates.png used on input line 327.
-(pdftex.def)             Requested size: 501.87376pt x 359.34161pt.
- [5
-
-
- <./figures/strongbad.png>] [6 <./figures/fsm.png> <./figures/fsm-pirates.png>]
-
-
-Package natbib Warning: Citation `ref:D' on page 7 undefined on input line 336.
-
-
-
-LaTeX Warning: Reference `tab:magic' on page 7 undefined on input line 345.
-
-[7
+] [4]) (./chapters/lattices.tex [5]) [6
 
 ]
 No file thesis.bbl.
-
-LaTeX Warning: Reference `tab:encoding' on page 8 undefined on input line 445.
-
-
-LaTeX Warning: Reference `tab:longtable' on page 8 undefined on input line 465.
-
-
-[8
+[7
 
 
 ]
-
-Package longtable Warning: Column widths have changed
-(longtable)                in table \relax Table\nobreakspace {A}.2 on input li
-ne 575.
-
-
-Overfull \hbox (36.135pt too wide) has occurred while \output is active
- [] 
- []
-
-[9
-
-]
-Overfull \hbox (36.135pt too wide) has occurred while \output is active
- [] 
- []
-
-[10]
-
-Package longtable Warning: Column widths have changed
-(longtable)                in table \relax Table\nobreakspace {A}.3 on input li
-ne 587.
-
-
-Overfull \hbox (36.135pt too wide) has occurred while \output is active
- [] 
- []
-
-[11
-
-
-]
-
-Package longtable Warning: Column widths have changed
-(longtable)                in table \relax Table\nobreakspace {A}.4 on input li
-ne 599.
-
-
-Overfull \hbox (36.135pt too wide) has occurred while \output is active
- [] 
- []
-
-[12
-
-
-] [13
-
-]
-
-LaTeX Warning: Reference `lst:hello-world' on page 14 undefined on input line 6
-07.
-
-(/usr/local/texlive/2017/texmf-dist/tex/latex/listings/lstlang1.sty
-File: lstlang1.sty 2015/06/04 1.6 listings language file
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 196.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 196.
+ (./thesis.aux
+\csm@redefined@appendix@saved=\count189
+\csm@appendicies=\count190
 )
-Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 609.
-
-(./matlab_code.m)
-
-LaTeX Warning: Number of appendicies is not known. Rerun to get appendicies rig
-ht..
-
-[14
-
-]
-
-Package natbib Warning: There were undefined citations.
-
-
-Package longtable Warning: Table widths have changed. Rerun LaTeX.
-
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 678.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 678.
-(./thesis.aux (./latex-example-chapter.aux)
-\csm@redefined@appendix@saved=\count187
-\csm@appendicies=\count188
-)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 678.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 678.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 196.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 196.
 
 
 Package rerunfilecheck Warning: File `thesis.out' has changed.
@@ -855,41 +706,27 @@ Package rerunfilecheck Warning: File `thesis.out' has changed.
 (rerunfilecheck)                or use package `bookmark'.
 
 Package rerunfilecheck Info: Checksums for `thesis.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  1B1BD59FD329F7456B40AFC9FB6A7AAB;1902.
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 678.
+(rerunfilecheck)             Before: DF875130E32DE9460FF52E32F606C0E7;1970
+(rerunfilecheck)             After:  6B44415DDE72DFB1DBE5320FFFFDEDE1;2034.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 196.
  ) 
 Here is how much of TeX's memory you used:
- 10933 strings out of 492995
- 164900 string characters out of 6132704
- 320415 words of memory out of 5000000
- 14249 multiletter control sequences out of 15000+600000
- 10568 words of font info for 38 fonts, out of 8000000 for 9000
+ 10646 strings out of 492995
+ 160723 string characters out of 6132704
+ 274470 words of memory out of 5000000
+ 13987 multiletter control sequences out of 15000+600000
+ 7612 words of font info for 28 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 48i,14n,100p,973b,1558s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 48i,6n,44p,600b,372s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pf
-b></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
-></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
-</usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><
-/usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></
-usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></us
-r/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/
-local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/lo
-cal/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local
-/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/te
-xlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/tex
-live/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texli
-ve/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on thesis.pdf (25 pages, 724394 bytes).
+b></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
+></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb>
+</usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></
+usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
+Output written on thesis.pdf (18 pages, 77199 bytes).
 PDF statistics:
- 250 PDF objects out of 1000 (max. 8388607)
- 201 compressed objects within 3 object streams
- 79 named destinations out of 1000 (max. 500000)
- 21 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 240 PDF objects out of 1000 (max. 8388607)
+ 212 compressed objects within 3 object streams
+ 43 named destinations out of 1000 (max. 500000)
+ 185 words of extra memory for PDF output out of 10000 (max. 10000000)
 
