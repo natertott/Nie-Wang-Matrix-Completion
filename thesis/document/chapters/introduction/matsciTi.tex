@@ -1,0 +1,64 @@
+\paragraph{Material Properties of Ti-6Al-4V}
+This is where we include important background information on Ti-6Al-4V including things like:
+\begin{itemize}
+	\item Composition
+	\item Phase diagram
+	\item Thermomechanical properties including CTEs and moduli
+	\item Microstructural characteristics, both the possible microstructures and the ones we observe
+	\item Deviations in material properties between traditional manufacturing and wire feed DED
+\end{itemize}
+
+\paragraph{Composition}
+The nominal composition of Ti-6Al-4V is shown in Table \ref{Ti64_comp}.
+\begin{table} \caption{The composition of Ti-6Al-4V in weight percent, taken from \cite{Ti64matweb}.} \label{Ti64_comp}
+	\begin{center}
+		\begin{tabular}{cccccccc}\hline
+		Ti & Al & V & C & H & Fe & N & O\\ \hline
+		Balance & 6 & 4 & 0.08 & 0.015 & 0.4 & .03 & 0.2 \\
+		\end{tabular}
+	\end{center}
+\end{table}
+			
+
+\paragraph{Phase Diagram}
+A pseudobinary TiAl-V phase diagram can be seen in Figure \ref{Ti64phasediagram}. Ti-6Al-4V is a two-phase $\alpha + \beta$ alloy. It has a melting point around 1650$^\circ$ C and a solidus at 950$^\circ$ C where the $\beta \to \alpha$ transition occurs. Ti$_3$Al, shown at room temperature in Figure \ref{Ti64phasediagram} has not been observed in the samples studied herein. 
+
+Some phase diagrams of Ti-6Al-4V also include a transition temperature for a martensitic phase transformation. The existence of this type of phase transformation in Ti-6Al-4V is under contention in this thesis and will be discussed in greater detail later.
+
+\begin{figure}
+	\includegraphics[width=1\linewidth]{/Users/njohnson/git/thesis/document/chapters/introduction/introduction_images/ElmerPalmerPhaseDiagramTi64}
+	\caption{A pseudobinary phase diagram for the TiAl-V system. Ti-6Al-4V is shown as the blue line. Image taken from Elmer, Palmer \cite{Elmer2005}}
+	\label{Ti64phasediagram}
+\end{figure}
+
+\paragraph{Microstructures of Ti-6Al-4V}
+Sources to cite on the microstructures of Ti6Al4V and what they discuss
+\begin{itemize}
+	\item Plichta et al. \cite{Plichta1977} this is one of the earliest sources discussing the `massive' transformation form beta to alpha Ti in the systems Ti-Au, Ti-Ag, and Ti-Si. From 1977. Likely has some information that I would now disagree with
+	\item Xu et al. 2015 \cite{Xu2015}. This article discusses `in situ martensite decomposition' during the SLM process. 
+	\item Xu et al. 2017 \cite{Xu2017}. This is an important article because they do EDS analysis and show that even in rapidly cooled (SLM) Ti-6Al-4V there is still a higher V content in small $\beta$ laths. This indicates that the $\beta \to \alpha$ diffusional transformation occurs even under rapid solidification conditions, contradicting the idea that a martensitic phase transformation occurs in Ti-6Al-4V.
+	\item Lim and Rollett 2020 \cite{Lim2020}. This is Tony Rollett's student who measured the CTEs of Ti-7Al. Could be relevant to our investigations.
+	\item Dumontet 2019 \cite{Dumontet2019}. This paper measures the elastic properties of the martensitic phase of Ti-6Al-4V. One important aspect of this is that they use laboratory XRD to quantify the amount of $\beta$ phase -- this is NOT an acceptable method of quantification. It is very likely that the $\beta$ phase was present in the as-printed condition but the crystallite size was so small that peaks could not be detected (especially by a lab XRD). They made the explicit assumption that the as-printed microstructure was martensite and that a heat treated microstructure was $\alpha + \beta$. They did no microscopy to confirm this.
+	\item Ter Harr and Becker \cite{TerHarr2018}. This article goes into a DEEP dive on transformation mechanisms of selective laser melted Ti-6Al-4V microstructures during heat treatment. It talks a lot about the $\alpha'$ martensitic phase and its decomposition. It makes the argument that there is a higher V content in the martensitic phase as observed in XRD data. A very good reference to come back to, especially for transformation mechanisms.
+	\item Just a note for myself -- a lot of people identify martensitic $\alpha'$ as a brighter version of the $\alpha$ phase in microscopy. They argue that the higher V content leads to this discoloration. Isn't it possible they are just looking at $\beta$ phase?
+	\item Wang et al 2020 \cite{Wang2020a}. Need to come back to this one. Can't quite concentrate at the moment. It focuses on heat treatments of Ti-6Al-4V and the transformation mechanisms resultant.
+	\item Hennig et al. \cite{Hennig2008} describes a DFT method for assessing martensitic transformation pathways from $\beta \to \alpha \to \omega$. Not super relevant.
+	\item Zhang et al. \cite{Zhang2019}. Figure 5 shows compositional segregation of V and Al near the heat affected zone and fusion zone of an EBM weld. There is significant segregation of the V in the baseplate (two phase microstructure) and less segregation in the near HAZ and the fusion zone -- BUT there is still segregation nonetheless. They also demonstrate in Figure 6 that the V concentration in the fusion zone goes all the way up to 10 wt pct for certain (likely beta) phases. They cite an interesting statistic from Luterjing et al that says that V has a low solubility in the alpha phase
+	\item Mishin and Herzig \cite{Mishin2000} show many diffusion rates and constants for species in the Ti-Al system --- V does not seem to be represented.
+	\item Williams \cite{Williams1972} provides a review of martensites in titanium alloys. This is the OG paper on martensite in titanium. He identifies many different types of martensites including hexagonal and orthorhombic. This is where the terminology $\alpha'$ is solidified for the first time in the literature. This is a seminal paper that doesn't provide too much useful information but should be cited for its historical significance.
+	\item Stanford and Bate \cite{Stanford2004} both measure and calculate that significant crystallographic variant selection is occurring during diffusional transformation of Ti-6Al-4V, showing that the Burger's OR does not happen with equal probability for all variants. This study found that when two adjacent $\beta$ grains share a common orientation (low misorientation) the variants produced from the $\beta \to \alpha$ transition are also going to be nearly the same, i.e. the alpha variants within both prior beta grain boundaries will be nearly the same.
+	\item Qazi et al. \cite{Qazi2003} is a hard article to critique because it starts with the assumption that $\alpha'$ martensite exists and forms upon quenching from the $\beta$ phase field. It looks at martensite decomposition as a function of hydrogen content, aging time, and aging temperature. The results for 0$\%$ H are not that useful or promising.
+	\item Stapleton et al. \cite{Stapleton2008} ran an EPSC model to compare to diffraction-measured lattice strains. They looked at slip and critical resolved shear stress in basal, pyramidal, and prismatic slip systems. Not a ton of information relevant to my thesis.
+	\item The article by A. Safdar et al. \cite{Safdar2012} involves considerable conjecture and provides little new information to the discourse. It discusses phase transformation mechanisms in EBM. The article is mostly citations of other's work and conjecture about how it applies to microstructure formation in EBM.
+	\item Farabi et al. \cite{Farabi2018} has some good information but you're a little distracted right now. At the very least you should reference Figure 9 in this article when discussing the slip/shear pathways for the martensitic transformation
+	\item M. Ali et al \cite{Ali2020} wrote an article about the texture effect of the $\beta$ phase after cyclic heat treatments above the $\beta$ transus. Not sure that there is a lot here relevant to my research.
+	\item Wang et al \cite{Wang2019} just reports some things they observed for WAAM Ti-6Al-4V...not really a ton of `research' in this article.
+	\item Katzarov, Malinov, and Sha \cite{Katzarov2002} present an interesting model for the diffusion of V during $\beta \to \alpha$ transitions in Ti-6Al-4V. They point out some facts that I haven't seen elsewehere; Figure 1 is particularly useful, it provides concentrations of Al and Ti in the various phases as a function of temperature. It also points out that the major driving force of the $\beta \to \alpha$ transition is the diffusion of V, not the diffusion of Al. The Al concentration is roughly the same for the $\beta$ and $\alpha$ phases. They only look at cooling rates up to $40^\circ$C/s unfortunately. Their model predicts and equilibrium V concentration near 13\% for the final $\beta$ phase.
+	\item Banerjee and Williams \cite{Banerjee2013} provide a fairly comprehensive review article on the materials science of Titanium alloys. They describe the process of martensite formation in $\beta$-stabilized Ti as being 1) Bain transformation, 2) shear into the hcp structure; and 3) slip/glide of a plane so that all atoms are sitting in the correct site. But how do they know this?? I still don't understand what evidence exists to support these claims. The article they cite is another article by Banerjee on the topic; I would like to see other authors being cited.
+	\item Yang et al \cite{Yang2016} provide a good argument FOR the existence of the martensitic phase transformation in Ti-6Al-4V. They show some TEM micrographs which they claim have evidence of twinning, a sure sign (right?) of the martensitic phase transformation. They do not do compositional analysis. Figure 7 shows the phase transformation pathway for SLM and is a good resource to cite.
+	\item Krakhmalev et al. \cite{Krakhmalev2016} did not see any $\beta$ phase in their TEM investigation of additively manufactured Ti-6A-4V. They did observe twinning of $\alpha$ grains however. An interesting counterpoint to our hypothesis.
+	\item Murr et al. \cite{Murr2009} compares microstructures of cast, wrought, EBM, and SLM Ti-6Al-4V biomedical implants. Claims to see martensite based on optical metallography and TEM but does not go far enough to perform compositional analysis
+	\item Compositional analysis! \cite{Matsumoto2011} Matsumoto et al. found a V content in acicular HCP of around 4.4 percent while equiaxed grains had a V enrichment of around 2.1 percent. The Al content is the same between the two.
+	\item Sun et al. \cite{Sun2019} discuss the microstructure of SLM Ti-6Al-4V. Using the language of Ahmed and Rack they identify primary, secondary, tertiary, and quartic $\alpha'$ phases. Their language is loose and they discuss precipitation of the secondary, etc., $\alpha'$ on the grain boundary of primary $\alpha'$. However, a martensitic phase cannot `precipitate' because that implies nucleation and growth which invalidates the assumption that the phase formed through a martensitic transformation
+	
+\end{itemize}

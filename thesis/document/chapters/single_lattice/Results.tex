@@ -1,0 +1,74 @@
+%~~~~~~~~~~~
+\subsection{Results}
+\subsubsection{Stress and Strain Measurements with HEXRD}
+The strain in the sample at 50$\mu$m of crosshead displacement can be seen in Figure \ref{50um_principal_strains}. The strains are shown in three different coordinate systems: the laboratory coordinate system, the strut coordinate system, and the principal coordinate system. The laboratory coordinate system is the $(x,y,z)$ coordinate system shown in Figure \ref{expsetup}. The strut coordinate system are the strains oriented along (parallel to) the strut direction. The principal coordinate system is the $\epsilon_{11}$ strains calculated from Equation \ref{strainmodel} or the principal tensile strains. Figure \ref{50um_principal_strains}c also has arrows showing the orientation of the principal strain direction $\psi$ relative to the $x$ axis in the laboratory coordinate frame. Some tensile strains can be seen building up in the transverse members in all coordinate frames, with a very slight compressive strain building up in the 45$^\circ$ members. The principal strain direction in the transverse struts is mostly down the strut direction with some slightly off-axis behavior. The principal strain direction in the $45^\circ$ members is more complex. The principal strain direction is typically either down the strut direction or $90^\circ$ to it. 
+
+By comparison, the distribution of stress and strain across the sample at peak elastic load, before fracture occurred, can be seen in Figure \ref{200um_principal_strains}. 
+
+In every reference frame the horizontal members are dominated by tensile strains which is to be expected from struts that are transverse to the load and therefore should be in pure stretch. However, the struts sitting at 45$^\circ$ to the loading axis demonstrate a noticeable anisotropy in the distribution of load, particularly in Figure \ref{200um_principal_strains}a. In particular, the central node shows a fairly high compressive strain in the strut to its left, while the same strain is missing from the struts to the right. In the struts to the right there is a buildup of tensile strains near the center of the strut, which is likewise missing from the mirroring strut on the left side of the sample.
+
+Figure \ref{200um_principal_strains}c shows the $\epsilon_{11}$ strain as well as the orientation of $\epsilon_{11}$ relative to $0^\circ$ in the laboratory coordinate system. For the transverse struts the orientation of the strain is entirely down the strut direction, with a few locations slightly off-axis. This is to be expected for a member in stretch. 
+
+For the $45^\circ$ members, however, the principal tensile direction changes from location to location. On the right half of the sample the tensile strains are primarily in the strut direction, while for the left side of the sample they vary from being in the strut direction, to being $90^\circ$ rotated off the strut, to being another orientation entirely.
+
+
+The two horizontal struts demonstrated near identical behavior during loading. The samples gain a positive tensile stress as they stretch and then, eventually, both return to a near-zero stress state, followed by a negative stress and a reduction in strain.
+
+The stress in the sample, shown in Figure \ref{200um_stress}, presented unexpected results. The stress was calculated using Equation \ref{sigma} from the principal stresses in Figure \ref{200um_principal_strains}c. Figure \ref{200um_stress}a and \ref{200um_stress}b show $\sigma_{11}$ and $\sigma_{22}$ respectively. In many locations in the sample the character of the stress is the same for both $\sigma_{11}$ and $\sigma_{22}$ which was not expected. Further analysis of the fit revealed that the tr($\epsilon^\ell$) term of Equation \ref{sigma} dominated over the $\epsilon_{ii}$ terms, causing the larger magnitude strain to dominate the stress behavior. 
+
+
+\begin{figure*}
+	\includegraphics[width=1\linewidth]{/Users/njohnson/git/thesis/document/chapters/single_lattice/figures/50um_principal_strains}
+	\caption{The principal strains and orientation of the principal coordinate system at a macroscopic displacement of 50um on the sample.}
+	\label{50um_principal_strains}
+\end{figure*}
+
+\begin{figure*}
+	\includegraphics[width=1\linewidth]{/Users/njohnson/git/thesis/document/chapters/single_lattice/figures/200um_principal_strains}
+	\caption{The principal strains and orientation of the principal coordinate system at a macroscopic displacement of 200um on the sample.}
+	\label{200um_principal_strains}
+\end{figure*}
+
+\begin{figure*}
+	\includegraphics[width=1\linewidth]{/Users/njohnson/git/thesis/document/chapters/single_lattice/figures/200um_stress}
+	\caption{Principal stress in the sample with a) showing the $\sigma_{11}$ stress and b) showing the $\sigma_{22}$ stress.}
+	\label{200um_stress}
+\end{figure*}
+
+
+\subsubsection{FEA Model Without and With Residual Stresses}
+\begin{figure*}
+	\includegraphics[width=1\linewidth]{/Users/njohnson/git/thesis/document/chapters/single_lattice/figures/fea_no_stress}
+	\caption{Results of the FEA simulation tested using only the material geometry and standard material properties for Ti-5553.}
+	\label{fea_no_stress}
+\end{figure*}
+
+\begin{figure*}
+	\includegraphics[width=1\linewidth]{/Users/njohnson/git/thesis/document/chapters/single_lattice/figures/fea_with_stress}
+	\caption{Results of the FEA simulation using the material geometry, the standard material properties for Ti-5553, and a gradient of residual stress applied across the sample in the build direction.}
+	\label{fea_with_stress}
+\end{figure*}
+
+A finite element model of the sample geometry was run to compare the distribution of stresses and strains with the diffraction information. First, the model was run on just the sample geometry as shown in Figure \ref{fea_no_stress}. The plots in Figure \ref{fea_no_stress} are in the $(x,y,z)$ coordinate system as with Figures \ref{50um_principal_strains}a and \ref{200um_principal_strains}a. The behavior of the sample is as predicted relative to the loading direction. The transverse struts exhibit a high tensile stress because their loading direction is directly down the strut, outwards.
+
+The 45$^\circ$ struts exhibit more complex strain states. In the $x$-direction they have a small compressive strain as the nodes are bulging outward in the $x$-direction and pulling the struts with them. In the $y$-direction, the loading direction, a larger compressive strain can be observed. The topmost and bottommost nodes are experiencing a small tensile strain however.
+
+Of note, the FEA model on only the geometry did not reproduce the same anisotropy in distribution of strains as that observed for the diffraction data. 
+
+Because residual stresses were observed in the diffraction data it was hypothesized that they played a role in the anisotropy of the load distribution. As such, the FEA model was re-run with a gradient of residual stress applied in the build direction.
+
+The FEA model with residual stress qualitatively agrees with the diffraction results as shown in Figure \ref{fea_with_stress}. The transverse struts are still in a pure stretch mode and exhibit a high tensile strain. The 45$^\circ$ struts, however, now exhibit a more complex strain distribution. Struts on the left side of the figure show a small tensile strain and a relatively high compressive strain near the central node. The left side of this figure corresponds to build locations nearest the build substrate. On the right side, however, the behavior is not mirrored. Instead, a mix of compressive and tensile strains build up. It is important to notice that the location of the compressive and tensile strains on the left and right sides of the sample match the same locations on the diffraction results.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{The Presence of Secondary Phases}
+\begin{figure*}
+	\includegraphics[width=1\linewidth]{/Users/njohnson/git/thesis/document/chapters/single_lattice/figures/secondary_phases}
+	\caption{A secondary phase was observed present in the samples. Diffraction spots indicative of the secondary phase can be observed in a) and b). A logarithmic intensity plot of an integrated diffraction pattern demonstrates the presence of unexpected peaks, highlighted with red arrows in c). The same plot can be seen in linear intensity in d).}
+	\label{secondary_phases}
+\end{figure*}
+
+An unexpected secondary phase was observed at some locations in the samples. Examples of diffraction peaks from the secondary phase can be observed in Figure \ref{secondary_phases}a and b. The presence of these peaks were primarily observed in the bulk regions of the samples such as at the nodes or in the top and bottom solid sections that mated with the compression platens of the load frame. It is possible that the phase was also present in the strut sections of the sample but there were too few grains for observable peaks to be found. Integrated patterns of the diffraction images in Figure \ref{secondary_phases}.c) reveal low-intensity, broad peaks that are indicative of a small grain size.
+
+Several hypotheses were put forward for the structure of the secondary phase including HCP $\alpha$ titanium, hexagonal martensitic $\omega$ titanium, as well as precipitate phases of Titanium and one of the alloying elements. However, a literature review revealed that a face-centered orthorhombic titanium phase has been observed for Ti-5553 when it undergoes the same heat treatment as used in this study. Zheng et al. performed a TEM study on wrought Ti-5553 and discovered numerous secondary phases, including the secondary phase dubbed $O''$ \cite{Zheng2016}. Zheng solved the structure and found it to be face-centered orthorhombic.
+
+Several phases were fit to fully integrated diffraction patterns to determine the structure of the secondary phase. The phases fit included the $\alpha$, $\omega$ and $O''$ phases. The best fit obtained was using only the $O''$ with the starting lattice parameters reported by Zheng et al., with a final weighted residual of 9\%. The lattice parameters were refined and found to be $a = 3.277\AA$, $b = 4.564 \AA$, and $c = 13.903 \AA$. 

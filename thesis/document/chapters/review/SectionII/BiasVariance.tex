@@ -1,0 +1,58 @@
+\subsection{The Bias-Variance Tradeoff and Model Validation}\label{bvar}
+
+
+\begin{figure*}
+	\includegraphics[width=0.75\linewidth]{/Users/njohnson/git/thesis/document/chapters/review/Images/Fig3_bias_variance_tradeoff.png}
+	\caption{Illustrations of high bias and high variance models. A toy dataset was generated from the polynomial $y=5+0.1x+0.1x^2+0.1x^3+0.002x^4+ \text{Random Noise}$. The fits in a) and b) are both parameterizations of a model. Each model (line) in both fits has approximately the same error but does not accurately capture the behavior of the data due to poor model assumptions; in this case, fitting a first order polynomial to a dataset generated from a fourth order polynomial. This is an example of high bias models. A twentieth order polynomial was fit to a subset of the full dataset in c), shown in blue. While the model has very good predictive error for the training dataset it will not extrapolate well to the data in the testing set; this is overfitting or high variance. A third order polynomial was fit to the data in d) demonstrating a good balance between bias and variance. The model accurately captures trends in the data while not overfitting the training dataset.}
+	\label{biasvariance}
+\end{figure*}
+
+Now that basic methods of machine learning and associated error metrics have been defined we proceed to introduce how machine learning models are fit and validated. The following discussion focuses on finding parameters to fit a machine learning algorithm, how those parameters are validated, and common obstacles that arise in validating the model.
+
+The cost function\footnote{Also sometimes called the loss function or reward function depending on if the objective is to minimize or maximize the value \cite{CostFunction}.} $C({\bf x}; \boldsymbol{\theta})$, is the metric that quantifies the cost of a particular model parameterization. That is, for every input dataset $\mathbf{x}$ there is an associated set of parameters $\boldsymbol{\theta}$ for the machine learning model that best fit $\mathbf{x}$ to their associated outputs $\mathbf{y}$. The training step is concerned with finding the model parameterization that minimizes or maximizes the cost, depending on the application. There are many different choices for cost function and each machine learning algorithm will use its own specific methodology. Perhaps the best known loss function is the squared loss, given in Equation \ref{leastsquares}. 
+
+The loss function is used to minimize a \textit{parameterization} of a machine learning algorithm. For example, a least squares regression algorithm is parameterized by the weighting constants $\beta_i$,
+\begin{equation}
+	\hat y = \beta_0 + \beta_1 x + \beta_2 x^2 + \ldots + \beta_n x^n.
+	\label{beta}
+\end{equation}
+The model parameters are the weights $\beta_i$ that are fit to the linear regression. The goal of training a machine learning algorithm is to find model parameters that minimize the loss function. If the values of $\beta_i$ are optimally chosen then the value of $\mathbf{X}\beta-\mathbf{Y}$ in Eqn. \ref{leastsquares} should be minimized. The actual method of performing this optimization can take on many forms and is discussed in-depth elsewhere. The scikit-learn package, part of the Python scipy library, provides many methods for optimization of cost functions\cite{ScipyOptimization}. Gradient descent is a common method for performing cost function optimization\cite{GradientDescent2017}. An article by Brochu et al. discusses optimization of cost functions using Bayesian optimization, an important topic in modern statistics \cite{Brochu2010}.
+
+Certain machine learning methods -- such as neural networks, decision trees, and ridge regression -- also have model \textit{hyperparameters}. These parameters define aspects of the model itself, not aspects of a specific parameterization of the relationships between $\mathbf{x}$ and $\mathbf{y}$. For linear regression of a polynomial function to a dataset the weights $\beta_i$ are model parameters and the order of the polynomial is a model hyperparameter. Hyperparameters will be discussed more in-depth later as specific machine learning algorithms are introduced in Section III.
+
+All machine learning models follow a basic training and validation process:
+\begin{enumerate}
+    \item Divide data into training, test, and validation data: $\{{\bf X}, {\bf y}\} \to \left\{ \{{\bf X}, {\bf y}\}_{\rm train}, \{{\bf X}, {\bf y}\}_{\rm test}, \{{\bf X}, {\bf y}\}_{\rm validate}\}  \right\}$.
+    \item Estimate the model parameters, $\hat{\boldsymbol{\theta}}$, using $\{{\bf X}, {\bf y}\}_{\rm train}$ using an appropriate cost function. 
+        \item Adjust the model hyperparameters using $\{{\bf X}, {\bf y}\}_{\rm test}$ based on the accuracy of the best fit parameterization of $\boldsymbol{\theta}$.
+    \item Validate the best parameterization and check against over- or under-fitting by evaluating the model on the validation set $\{ {\bf X}, {\bf y}\}_{\rm validate}$.
+\end{enumerate}
+These steps are repeated until the model performance, as measured by the model error estimate, converges.
+
+As the complexity of the model increases -- such as the complexity of a polynomial in a linear regression problem --  so does the tendency of that model to overfit to the training data and generalize poorly to unseen inputs, leading to an increase in the out-of-sample error. This balance between the ability of the model to represent the inherent complexity between the input and output spaces (i.e., reduce the \emph{model bias}) while minimizing the out-of-sample error (i.e., reduce the \emph{model variance}) is the basis for the \emph{bias-variance tradeoff} that is central to all machine learning models. Visual examples of overfitting, underfitting, and proper fitting can be seen in Figure \ref{biasvariance}. The goal in validating a machine learning model is to find a balance between overfitting the training dataset and underfitting the testing dataset, as shown in Figure \ref{tvtrmse}. While the RMSE shows a decrease in the training dataset as model complexity increases, the RMSE of the testing dataset increases significantly.
+
+Overfitting and selection bias can be sussed out through use of \textit{cross validation}. Cross validation is the process of training machine learning models on subsets of the training set and evaluating with the remaining data to see how sensitive the model performance is to the choice of different inputs. Cross validation is often referred to as $k$-fold cross validation because the machine learning model is trained on $k$ different subsets. 
+
+\begin{figure}
+	\includegraphics[width=1\linewidth]{/Users/njohnson/git/thesis/document/chapters/review/Images/Fig4_train_vs_test_rmse.png}
+	\caption{The calculated root mean squared error for six different models fit to the dataset shown in Figure \ref{biasvariance}. The training data continues to decrease as the models become more complex, demonstrating overfitting. However, when the model is evaluated against a test dataset the RMSE increases significantly with more complex models.}
+	\label{tvtrmse}
+\end{figure}
+
+In $k$-fold cross validation the training data set is randomly split into $k$ different groups or \textit{folds}. The machine learning model is trained on $k-1$ of the folds and tested on the $k^{\text{th}}$ fold. For each training and testing set the fit model parameters and associated error should be kept in order to assess how each parametrization of the model performs. 
+
+Randomizing, training, and validating on multiple subsets of the data elucidates the model's ability to perform on new datasets. If a model is suffering from overfitting, or high variance, then it will have very low predictive error on the training set but perform poorly on the testing set. If the model is suffering from high bias then it may demonstrate similar performance metrics between fitting of each $k^{\text{th}}$ set but has high prediction error in general. High bias often results from improper assumptions in the machine learning algorithm or a poor choice of model hyperparameters. Cross validation reveals these behaviors in machine learning models by providing error metrics for models trained on many different subsets. Necessary changes to the model hyperparamters, or even changes in machine learning modeling used, can be discovered from cross-validation.
+
+One specific case of cross validation where $k=n$ is called \textit{leave one out} cross validation. In this method the models are trained on all data points except one, then tested on the remaining data point. Leave one out cross validation is especially useful for assessing the impact on outliers of the model performance. 
+
+Another method of cross validation called leave-one-cluster-out (LOCO) cross validation was introduced by Meredig et al. \cite{Meredig2018} for materials science applications. LOCO CV was introduced to highlight problems in the distribution of data in materials datasets. Often, datasets from materials science are limited around specific clusters of material compositions or properties. An example for AM is that most datasets generated focus around weldable alloys like 300 series steels, superalloys, and titanium alloys. As a result the prediction performance of machine learning algorithms may be biased toward these clusters of materials. LOCO CV uses a nearest-neighbor clustering approach -- akin to the example given in Section \ref{unsupervised} -- to evaluate the impact of clustering of material types on prediction performance.
+
+The above methods are for the validation of individual machine learning models. In many cases it is worthwhile to train several different machine learning models on the same problem and assess the best model. As is shown in Table \ref{ML}, several different machine learning algorithms can often be applied to the same task. Because each algorithm has different assumptions, one type of ML model may perform better on a dataset than others. Thus, it is worthwhile to use tools that can compare the performance of different ML models for the same application.
+
+%Figure \ref{ROC} shows a receiver operating characteristic (ROC) curve for several different machine learning algorithms trained on the same dataset. An ROC is used to classify how often a machine learning algorithm makes the correct classification based on its \textit{true positive rate} and \textit{false positive rate}. For a binary classification problem (an output belongs to class A or class B), a classification algorithm can make four types of classifications 
+%
+%\begin{figure}
+%	\includegraphics[width=1\linewidth]{Images/Liu_ROC}
+%	\caption{}
+%	\label{ROC}
+%\end{figure}

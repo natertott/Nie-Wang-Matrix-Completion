@@ -1,0 +1,125 @@
+\chapter{In Situ High Energy X-ray Diffraction of Cold Metal Transfer Welded SS308L}
+
+
+\begin{itemize}
+	\item Experimental goals
+	\item Experimental setup
+	\item Liquid phase fraction measurement
+	\item Temperature measurement
+	\item Results
+	\item Discussion
+\end{itemize}
+
+\begin{figure}
+	\includegraphics[width=1\linewidth]{/Users/njohnson/git/thesis/document/chapters/ssweldbead/Images/weldsetup1}
+	\caption{}
+	\label{weldsetup1}
+\end{figure}
+
+\subsection{Experimental Goals}
+The original goal of this investigation was to measure temperature based on lattice parameters in rapidly solidifying stainless steel 308L weld beads. A picture of one such weld bead can be seen in Figure \ref{weldsetup1}. 
+
+\subsection{Experimental Setup}
+The welder setup can be seen in Figure \ref{weldsetup1}. Single beads of stainless steel 308L were deposited onto a stainless steel 304L water cooled substrate. Weld deposits were made using a Fr\"onius Cold Metal Transfer welder. Each weld deposit was approximately 2.5mm in width and 2.5mm in height. 
+
+X-ray diffraction experiments were performed at the 1ID beamline of the Advanced Photon Source, Argonne National Laboratory. A 71 keV X-ray beam was used. As samples were being deposited the X-ray beam was shone on the liquid sample. Data was collected through deposition and until the beads were fully solidified. Data was collected using a dual-detector setup. One detector was and ASI Lynx detector \cite{LynX} with a refresh rate of 200 Hz and a small azimuthal coverage in the diffraction cone. The other detector was a GE detector with a refresh rate of 10 Hz and an azimuthal coverage of around 180 degrees. 
+
+After deposition weld beads were cut from the substrate and EBSD microscopy was performed. An example EBSD image can be seen in Figure \ref{SS_EBSD_weldbead}. \textbf{write up grain size and orientation information}.
+
+Data was analyzed using the General Structure Analysis Software II (GSASII) \cite{GSASII}. Data was fully integrated on both detectors in order to provide maximal intensity and coverage for analysis. The first 1000 images of the ASI detector were analyzed while the full dataset for the GE detector, 120 images, were analyzed. The first 1000 images of the ASI were analyzed because data was repetitious after that point and the number of images taken was too large to be analyzed in a reasonable amount of time. 
+
+The background function of the data needed to be fit in order to analyze the X-ray scattering through the liquid phase. The amorphous phase scattering can be described by the theory of Guinier explained in Section \cite{Guinier1994}. A Gaussian function was fit to the background to capture the dynamics of the amorphous phase. 
+
+Rietveld refinement was used to fit the lattice parameters and intensity of the two phases of the SS308L, the ferrite ($\delta$) and austenite ($\gamma$) phases. The phase fraction of the liquid, ferrite, and austenite phases was fit by using
+\begin{equation}
+	f_{p} = \frac{p}{\delta_i + \gamma_i + A*B_i}
+	\label{ferritefrac}
+\end{equation}
+where $f_{p}$ is the scale factor of the phase being calculated, $\delta_i$ is the intensity of the ferrite phase at time $i$, $\gamma_i$ is the intensity of the austenite phase at time $i$, and $B_i$ is the intensity of the Gaussian function fit to the background at time $i$. The prefactor $A$ is a multiplier to scale the background function to the same magnitude as the intensity of the phases. 
+
+Temperature measurements were made by fitting the lattice parameter expansion during cooling to the thermal expansion of SS308L as reported by Touloukian et al. \cite{Touloukian1975}. The fit is given by
+\begin{equation}
+	\frac{\delta \ell}{\ell_0} = -0.358 + (9.472\times10^{-4})T + (1.031\times10^{-6})T^2 - (2.978\times10^{-10})T^3
+	\label{touloukian}
+\end{equation}
+
+\begin{itemize}
+	\item to write up:
+	\item integration of the images
+	\item fitting of the background function
+	\item rietveld refinement
+	\item what was calculated
+	\item calculation of the liquid phase fraction
+	\item measurement of temperature from lattice parameter
+\end{itemize}
+
+\subsubsection{Fitting of Background Function}
+Signal acquisition began with the deposition of molten (liquid) stainless steel onto a stainless steel or titanium substrate, depending on the sample. The monochromatic X-ray beam was trained on the location of deposition as manufacturing began resulting in X-ray scattering through the initially liquid material. Scattering of X-rays in a liquid follows the same physics as scattering of materials in an ideal gas. Guinier describes this phenomenon in his book \textit{Scattering of X-rays in Crystals, Imperfect Crystals, and Amorphous Materials} \cite{Guinier1994}. 
+
+An example of the signal observed when X-rays were scattered through the molten liquid can be seen in \ref{solidification_steps}. An amorphous ring of diffracted light with a wide spread in the $2\theta$ direction is observed. The integrated diffraction histogram can likewise been seen in \ref{solidification_steps}. The intensity and full width at half maximum (FWHM) are described by a pair correlation function of the liquid. The distribution of scattered intensity from the liquid can be fit using a pseudo-Voigt function. 
+
+The background function was fit for every time step of the acquired data and used to estimate the amount of liquid that was present in the weld. The liquid phase fraction was fit using Equation \ref{ferritefrac}.
+
+\begin{figure}
+	\includegraphics[width=1\linewidth]{/Users/njohnson/git/thesis/document/chapters/ssweldbead/Images/weld_setup}
+	\caption{Setup of the weld rig, a single weld bead, and the water cooled substrate.}
+	\label{weld_setup}
+\end{figure}
+
+\begin{figure}
+	\includegraphics[width=1\linewidth]{/Users/njohnson/git/thesis/document/chapters/ssweldbead/Images/SS_solidification_steps}
+	\caption{Observed diffraction patterns during solidification of a stainless steel weld bead. Diffuse scattering through the liquid melt is observed first, followed by coarse, spotty grains that arise when the high temperature phase forms. After a while many grains start to nucleate and grow in the weld leading to a powder-like pattern observed in the last panel. Integrated diffraction histograms can be seen below each image.}
+	\label{solidification_steps}
+\end{figure}
+
+
+\subsubsection{Detectors Used}
+Two detectors were used in this experiment. An ASI Lynx detector with a pixel size of 78$\mu$m and detector size of \textbf{look up detector size}. The refresh rate of the ASI detector was 200 Hz, giving an acquisition resolution of $0.005$s per time step. The azimuthal coverage of the Debye ring for the ASI detector was approximately 15$^\circ$ \textbf{double check that value}.
+
+A General Electric $\alpha$-Si detector was also used. It has a pixel size of $200\mu$m and a detector size of $2048 \times 2048$ pixels. The refresh rate of the GE detector was 10 Hz, significantly slower than the ASI detector and likely unable to fully capture the dynamics of the solidification process of SS and TI-6Al-4V. However, the Debye ring azimuthal coverage of the detector is 180$^\circ$ giving much better signal coverage and therefore grain statistics. 
+
+\subsubsection{Rietveld Refinement}
+Rietveld refinement was performed using the General Structure Analysis Software II (GSASII). Images were integrated along the full Debye ring represented by the detector. The reason for full integration was to achieve good enough grain statistics for accurate fitting of phase fractions. For the case of the GE detector this was a decent assumption. The spottiness of the data on the ASI detector means that trusting phase fraction measurements from these images is dubious at best. 
+
+Data was fit using a full suite of parameters in GSASII. First the background function and background amorphous scattering was fit for each time step. Once the background function was adequately fit then the ferrite and austenite phases were introduced for fitting. The scale factors and microstrain for each phase were the first parameters to be fit. The strain on the lattice was particularly important to fit because peak shift occurred as the sample cooled and the lattice contracted. Equally important was fitting the $U_\text{iso}$ parameter, or the Debye-Waller factor. This parameter, described in Section \ref{DebyeWaller}, accounts for loss of intensity in the peaks as a function of temperature. For all samples fit the Debye Waller factor was not found to be particularly important for accurate fitting of the intensities but was important to fit as a sanity check. 
+
+After the above parameters were fit then the strain broadening was allowed to vary. Peak broadening can occur for a number of reasons in the sample but was most likely associated with the development of dislocations in the lattice during cooling and contraction.
+
+In some cases texture models were fit to the diffraction histograms to account for anisotropy in peak intensity. However, these texture fits had very little physical meaning because data was only acquired from a single $\omega$ direction and therefore cannot account for texture variations within the sample. \textbf{Does that make any sense?}
+
+\subsection{Results}
+\begin{figure}
+	\includegraphics[width=1\linewidth]{/Users/njohnson/git/thesis/document/chapters/ssweldbead/Images/raw_scale_factors}
+	\caption{Raw scale factors for the austenite and ferrite phases of SS308L as it is solidifying.}
+	\label{raw_scale_factors}
+\end{figure}
+
+\begin{figure}
+	\includegraphics[width=1\linewidth]{/Users/njohnson/git/thesis/document/chapters/ssweldbead/Images/converted_liq_phase_fraction}
+	\caption{Scale factors of the austenite and ferrite phase, together with the background function peak intensity, scaled using Equation \ref{ferritefrac} to compute phase fractions during solidification.}
+	\label{SS_phase_fractions}
+\end{figure}
+
+\begin{figure}
+	\includegraphics[width=1\linewidth]{/Users/njohnson/git/thesis/document/chapters/ssweldbead/Images/raw_SS_strain}
+	\caption{Raw strain values measured for the ferrite and austenite phases during cooling.}
+	\label{raw_SS_strain}
+\end{figure}
+
+\begin{figure}
+	\includegraphics[width=1\linewidth]{/Users/njohnson/git/thesis/document/chapters/ssweldbead/Images/converted_SS_temp}
+	\caption{Lattice strains converted into temperatures using Equation \ref{temperature}, calculated from the strains shown in Figure \ref{raw_SS_strain}.}
+	\label{converted_SS_temp}
+\end{figure}
+
+%%%%%%%%%%%%%
+\paragraph{Microstructure}
+The microstructure of an example SS weld bead can be seen in Figure \ref{SS_EBSD_weldbead}. The microstructure is quite heterogeneous both in terms of grain size and orientation. The grain size near the bottom of the weld is on the order of single microns and has a wide distribution of grain orientations. The grain statistics obtained in this region for diffraction are likely high and therefore HEXRD phase fraction characterization is more trustworthy. There is a transition around $0.4$mm in height where the grain size changes and the morphology becomes less equiaxed and more lamellar. Furthermore there is less of a wide distribution of grain orientations in this region. The phase fraction calculations here are less trustworthy because fewer grains would diffract and there are fewer orientations likely to be in the diffraction condition.
+
+\begin{figure}
+\begin{center}
+	\includegraphics[width=0.5\linewidth]{/Users/njohnson/git/thesis/document/chapters/ssweldbead/Images/SS_EBSD_weldbead}
+	\caption{Electron backscatter diffraction image of a weld bead. Notice the variable grain sizes from top to bottom of the bead.}
+	\label{SS_EBSD_weldbead}
+\end{center}
+\end{figure}

@@ -1,0 +1,50 @@
+%~~~~~~~~~~~~~
+\section{Discussion}
+
+\begin{figure*}
+	\includegraphics[width=1\linewidth]{figures/fractography.png}
+	\caption{Fractography of the first failure site on a horizontal strut. The strut shown is transverse to the loading direction of the sample. Analysis of the fracture site shows a typical cup-and-cone failure. It does not appear that fracture initiated on a failure site such as an unmelted particle particle or a void.}
+	\label{fractography}
+\end{figure*}
+
+\begin{figure*}
+	\includegraphics[width=1\linewidth]{figures/annotated_fractography}
+	\caption{Higher magnitude image of the first failure site, a fracture which occurred in pure stretch. Both macroscopic dimpling can be observed, as well as fracture sites where microvoid coalescence led to cleavage.}
+	\label{annofrac}
+\end{figure*}
+
+\subsection{Anisotropy in Stress Distribution Due to Residual Stress}
+The anisotropy in mechanical response across the sample indicates that the build process impacts the mechanical properties of the material, as well as the geometry. In an ideal scenario, strain would be symmetrically distributed across members of like orientation and distance from the loading surface. The left-right anisotropy in the sample matches the build direction of the printing process. The (001) texture in the build direction, shown in Figure \ref{texture} also indicates build anisotropy. Orientation dependence of grain structures relative to the build direction has been widely reported for laser powder bed fusion additively manufactured materials \cite{Hayes2017,Keist2020, Todaro2020}.
+
+The anisotropy in load distribution is also evident in Figure \ref{200um_principal_strains}c. The transverse struts both show load being concentrated down the strut direction. On the top left hand side of the figure eight, the strains are oriented either down axis or at 90$^\circ$ relative to strut. On the upper right hand side, the struts are almost entirely oriented down the strut. The bottom left hand side and right hand side show even more complicated loading directions; in some cases the load is distributed neither down the strut nor perpendicular to it. 
+
+This anisotropy in the loading directions and distributions of loads likely played a role in the failure locations and order of failure of the sample. The transverse struts build up the most strain the fastest and thus failed first, in plastic yielding as explained in a previous section. Further testing is required to associate the build direction -- as shown in Figure \ref{build_direction} -- with the magnitude and direction of anisotropy in strain distribution. 
+
+Because the samples were loaded quasi-statically and because diffraction characterization can only measure elastic behavior, it was not possible to measure the yield strength from diffraction. However, the DFA provides a prediction of the plastic yield load as
+\begin{equation}
+	P_Y = \pi a^2\sigma_Y
+	\label{yield}
+\end{equation}
+where $a$ is the radius of the strut (250$\mu$m in this case) and $\sigma_Y$ is the yield strength of the material. Schwab et al. found a yield strength of 0.8 GPa, therefore the plastic yield load of the octet truss should be around 50 kN, a full two orders of magnitude higher than the load at which the sample fractured. 
+
+The elastic buckling stress can be calculated as
+\begin{equation}
+	\sigma_Y = \frac{k^2\pi^2E_s^2}{12}\left(\frac{t}{\ell}\right)^2
+	\label{bucklingstress}
+\end{equation}
+where $t$ is the strut thickness, $\ell$ is the strut length, $E_s$ is the Young's modulus of the solid, and $k$ is a constant based on if the strut ends are pin-jointed or fixed. In this case the struts are fixed and $k=2$ \cite{Dong2015}. The elastic buckling stress for these parts is 2.69 GPa, which is considerably higher than any stress measured for the samples, as shown in Figure \ref{200um_stress}. Therefore the samples are most likely to fail in a pure stretch mode, which was the case for this sample.
+
+\subsection{Failure Occurring in Pure Stretch}
+Digital image correlation partially reveals the deformation behavior of the structure at the surface level. The displacements shown in Figure \ref{e22} indicate that the majority of the surface displacements were concentrated in the $y$ direction at first. Around $180um$s displacement of the middle nodes begins to occur in the $\epsilon_{11}$ direction. 
+
+It is clear from comparing magnitudes in Figures \ref{e11} and \ref{e22} that the majority of the load was concentrated in the loading direction, despite microstructural texture and the anisotropy of residual stresses in the sample. This gives good reason to believe that the horizontal struts through the middle node would be experiencing a purely stretch dominated behavior, as predicted by the DFA model. The outward bending of the horizontal nodes shown at $180\mu$m, $230 \mu$m, and $330\mu$m further demonstrates this because if the nodes are moving outward they are stretching the horizontal members in addition. 
+
+Fracture occurred before buckling in the sample. The Deshpande-Fleck-Ashby model \cite{Deshpande2001} predicts for a perfect material that plastic failure in stretch should occur first, followed by elastic buckling. The first failure to occur in this sample was fracture in a stretch-dominated strut, followed by a second fracture in the other stretch-dominated strut, followed by elastic buckling at the uppermost nodes. The buckling behavior can be seen in the last frames of Figures \ref{e11} and \ref{e22}.
+
+Fractography of the first fracture site, shown in Figure \ref{fractography} reveals that the first fracture occurred due to plastic yielding, as shown in Figure \ref{annofrac}. The fracture site exhibits several different features which are labeled in Figure \ref{annofrac}. The non-circular, reduced cross section shown in Figure \ref{annofrac} is a likely reason why this site failed first as opposed to other locations in the strut. The reduced cross section likely caused a buildup of stress; this is in agreement with the strain behavior shown for the horizontal struts in Figure \ref{200um_principal_strains}. Dimpling can be observed in the regions labeled `ductile' while striations on other facets indicate a different kind of failure mode. However, high magnification fractography revealed that even on flat surfaces with slip plane striations microvoids can be seen. 
+
+The microvoid behavior is in agreement with the pre- and post-mortem CT scans that are shown in Figure \ref{voids}. It is likely that at the flat surfaces in Figure \ref{annofrac} voids existed in the material before compression and grew to larger sizes during loading. This coalescence of voids ultimately led to failure under plastic yield. 
+
+\subsection{Microstructural Evolution}
+Microstructure is perhaps a major component missing from homogenization schemes of lattice materials and the investigation herein reveals that the additive process has a pronounced effect on the microstructure. The void behavior in the samples is particularly concerning as the density of the sample changed from $99.95\%$ in the as heat-treated condition to $99.61\%$ in the deformed condition. Based on the size of pores seen in Figure \ref{microstructure} it is likely that pores existed below the voxel threshold of the XCT software and grew in size during compression. While it is unlikely that this had an effect on the mechanical properties in this studies is likely going to play a role in fatigue-limited applications like biomedical implants.
+

@@ -1,0 +1,22 @@
+\subsection{Comparison Across Machine Learning Approaches}\label{comparison}
+The validation of a single machine learning model can be addressed by the methods presented in Sections \ref{errormetrics} \& \ref{bvar}. Finding the best possible parameterization of an individual model does not guarantee that a researcher has found the best possible solution to their specific problem. It is generally good practice to evaluate several machine learning approaches to a problem and choose the best approach across all algorithms that may be reasonably expected to perform.. Table \ref{ML} shows that many different algorithms can be used for the same types of problems. Different algorithms may have vastly different performance even for the same problem or dataset.
+
+For example, Principal Component Analysis (PCA) and kernel ridge regression (KRR) can both be used as regression tools; PCA relies on the assumption of linearity between inputs and outputs while KRR does not. Often, a researcher might not know the if the relationship being studied is linear or not and therefore should try both options to see which produces a better result.
+
+In general, researchers can follow a few steps to determine which model is best for their additive manufacturing problem:
+\begin{itemize}
+	\item Evaluate if there are statical correlations in the data of interest 
+	\item Pre-process and featurize data for use with a machine learning algorithm
+	\item Tune the model parameterization and hyperparameterization through error analysis and cross validation
+	\item Compare error metrics across several algorithms and select one algorithm as the best performer
+\end{itemize}
+
+Regression models can be validated against each other using the error metrics in Section \ref{errormetrics}. It is important to use multiple error metrics for comparison because different machine learning algorithms handle outliers and statistical correlations differently. For classification problems, a graph called a receiver operating characteristic (ROC) curve has been developed to compare the classification success of different algorithms. An example ROC curve can be seen in Figure \ref{ROC}. The ROC curve compares the true positive and false positive classification rates for a binary classifier, a group of problems whose solution can take one of two outcomes. To ensure that Type I error (false positive) accurately reflects the performance of the model, the less common outcome should always be taken as the True condition, and the more common outcome as the False condition. (Footnote. Although restricted to binomial classification, the ROC curve may be extended to multinomial classification by recursion. That is, A or not A; and if not A, then B or not B; and if not B, then C or not C; etc. where A, B, C, etc. are all potential outcomes in order of increasing frequency.)More information on ROC curves can be found at Google's developers page \cite{GoogleROC}.
+
+Tools to compare across machine learning algorithms are invaluable and should be considered as a mandatory part of any machine learning approach. It is often the case that evaluating many machine learning algorithms against each other will lead to better overall performance because the best approach can be chosen from many. The ML packages listed in the next section all contain tools for comparing machine learning algorithm performance.
+
+\begin{figure}
+	\includegraphics[width=1\linewidth]{/Users/njohnson/git/thesis/document/chapters/review/Images/Fig5_Liu_ROC}
+	\caption{An example receiver operating characteristic curve from the work of Liu et al. \cite{Liu2020}. The goal of the study was to class material properties based on additive manufacturing machine inputs. The classes were regimes of material quality like ``high density" or ``low density." The dataset was built by mining data from literature on additively manufactured metals. The area under the curve (AUC) shows the integrated area under each algorithm's ROC curve; a perfect classifier has AUC$=1$. In the example shown, Na\"ive Bayes significantly outperforms the other two algorithms and thus is the best choice of machine learning approach for this problem.}
+	\label{ROC}
+\end{figure}

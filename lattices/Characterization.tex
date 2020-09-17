@@ -1,0 +1,176 @@
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\section{Characterization Techniques}
+
+\begin{figure}[b]
+	\includegraphics[width=1\linewidth]{figures/build_direction}
+	\caption{The orientation of the part on the build substrate relative to the build direction and recoater blade direction.}
+	\label{build_direction}
+\end{figure}
+
+\subsection{Printing Parameters and Heat Treatment}
+Samples were printed on an SLM Solutions SLM 280 printer. Two different sets of scan parameters were used for the bulk and strut portions of the part. For the strut portion, a scan speed of 800 mm/s was used with a laser power of 100W and a hatch spacing of 0.12 mm. For the bulk portion of the sample, a scan speed of 725 mm/s was used with a laser power of 175W and a hatch spacing of 0.12 mm. The bulk portion also had a skin layer applied with a laser scan speed of 525 mm/s and a laser power of 100W. 
+
+The samples were subjected to ultrasonic cleaning after manufacture, then heat treated at 300$^\circ$C for 1 hour (within 16-17$^\circ$C per minute) in vacuum (10$^{-5}$ mbar) while on the build substrate. After 1hr samples were cooled in an Argon atmosphere to 90$^\circ$C.
+
+The orientation of the part on the build substrate can be seen in Figure \ref{build_direction}. It is important to note the orientation of truss members relative to the build and heat flow directions. Some of the trusses are oriented flat on the substrate and should experience even heating and cooling cycles during building. Other members are extended at a 45$^\circ$ angle in the build direction. These extended members will experience many heating and cooling cycles during the build process. This behavior is known to cause residual stress buildup in the sample \cite{Ganeriwala2019}.
+
+\begin{figure}[b]
+	\includegraphics[width=1\linewidth]{figures/crosshead_displacement}
+	\caption{Load frame crosshead displacement and associated measured force. Each drop in force corresponds to a fracture or buckling in the sample. Diffraction data was collected through 380$\mu$m of displacement.}
+	\label{loaddisp}
+\end{figure}
+
+
+%~
+\subsection{High Energy X-ray Diffraction}
+\subsubsection{Experimental Setup}
+\begin{figure*}[t]
+	\includegraphics[width=1\linewidth]{figures/exp_setup.png}
+	\caption{The orientation of the part in the laboratory coordinate frame relative to the X-ray beam and the detector.}
+	\label{expsetup}
+\end{figure*}
+
+%
+\begin{figure}
+	\includegraphics[width=1\linewidth]{figures/grayscale_microstructure}
+	\caption{SEM micrograph of the microstructure of a bulk piece of additively manufactured Ti-5553. Several small pores are highlighted by red circles.}
+	\label{microstructure}
+\end{figure}
+%~
+
+Samples were loaded in a custom load frame developed by the Advanced Photon Source and collaborators \cite{Loadframe}. Samples were loaded quasi-statically in increments of $25 \mu$m through elastic loading. Once buckling and fracture occurred samples were loaded quasi-statically until further buckling and fracture occurred. The load frame crosshead displacement and measured force can be seen in Figure \ref{loaddisp}.
+
+High-energy x-ray diffraction experiments were conducted at the 1-ID beamline of the Advanced Photon Source, Argonne National Laboratory. A diagram of the experimental setup used can be seen in Figure \ref{expsetup}. A 71.6 keV beam was used for transmission X-ray diffraction. All data was collected on a Dexela detector with a 78$\mu$m resolution and pixel dimensions of 3888 $\times$ 3072 pixels. Samples were exposed for $0.1$s at each location. The beam was scanned along struts in steps of roughly 40 $\mu$m. The size of the beam relative to a strut can be seen in the upper right hand corner of Figure \ref{expsetup}.%Note: that's 75 images per strut (150 for the transverse struts) with a strut length of 3.5mm
+
+The microstructure of the sample can be seen in Figure \ref{microstructure}, demonstrating a fairly homogenous distribution of grains whose sizes range from tens of microns to around $75\mu$m in diameter. This gives reason to suggest that good grain statistics were observed in the diffraction pattern as the beam was being scanned along a fairly large number of grains at once.
+
+Due to sample deformation during loading the movement of the struts had to be tracked to ensure that scans were taken on the strut. Each node location was tracked and recorded using computed tomography after each load step. The coordinates of the nodes were then given to an algorithm that computed the straight-line path from node to node. This output of this algorithm was then used to perform fly scanning across the struts.
+
+\subsubsection{Explanation of Plots}
+\begin{figure}
+	\includegraphics[width=1\linewidth]{figures/location_explanation}
+	\caption{Locations on the sample that were measured and a corresponding 2D plot of measurements locations. This type of plot will be used throughout the paper.}
+	\label{location_explanation}
+\end{figure}
+Due to the complicated geometry of the sample being studied, in combination with the 3-dimensional nature of the measurements made, it is necessary to explain how plots of data have been constructed. Figure \ref{location_explanation} shows the locations measured using high energy X-ray diffraction colored in red, yellow, and green. For the sake of display, the measurements at these locations were projected onto 2-dimensional plots. An example of one such plot is also shown in Figure \ref{location_explanation}b. It is important to note that the two horizontal lines shown in Figure \ref{location_explanation}b are not one continuous strut, but rather two struts that sit perpendicular to one another.
+
+Certain locations on the sample contained multiple struts that overlapped each other in the beam direction. If the beam hit multiple struts at a time then it became impossible to differentiate the signals of each, causing significant beam broadening and uncertainty in diffraction peak location. To overcome this, data was discarded for locations that featured multiple diffracting struts at once. The locations where data was discarded are shown as black sections on Figure \ref{location_explanation}.
+
+%~
+\subsubsection{Stress and Strain Calculations}
+Each diffraction image was binned into 24 bins consisting of 15$^\circ$ of the full diffraction ring around the coordinate $\eta$, which is the angle between $y$ and $x$ in Figure \ref{expsetup}. After binning, the bins were integrated to produce a diffraction histogram for each angle.
+
+The individual $\eta$ direction histograms were integrated and refined with Rietveld Refinement using GSAS \cite{GSAS} and the SMARTSware routine \cite{Smartsware2004}. This refinement produced a lattice parameter for each eta direction and load step $a_{\eta}^{\ell}$ where $\eta = 0^\circ, 15^\circ,...345^\circ$ is the integration direction and $\ell = 0 \mu\text{m}, 25\mu\text{m}, 50 \mu\text{m}, ... , 380 \mu\text{m}$ is the crosshead displacement in compression at each load step.
+
+The choice of datum used was the averaged lattice parameter at zero load, or
+\begin{equation}
+	\bar a^0 = \frac{1}{24}\sum_\eta a_{\eta}^{0}.
+	\label{datum}
+\end{equation}
+The choice of datum is important and has several effects on the results. Most importantly, if there is a residual stress on the sample then taking the averaged lattice parameter at zero load will remove distortion of the lattice parameter in certain $\eta$ orientations that would otherwise exist. 
+
+Once the datum was found then a strain at each load step $\ell$ and orientation $\eta$ was computed as
+\begin{equation}
+	\epsilon_\eta^\ell = \frac{\bar a^0 - a_\eta^\ell}{\bar a^0}.
+	\label{strain}
+\end{equation}
+
+One important aspect of this investigation was to find the value and orientation of \textit{principal strains} in the sample. The maximum tensile $\epsilon_{11}$ and compressive $\epsilon_{22}$ strains give information about where the maximum strains are building up on the sample while the orientation of the principal strain coordinate system $\psi$ give information about whether the strains are along the struts or at an off-axis angle. This can reveal if the AM microstructure of the sample is having an impact on the loading behavior of the sample. The principal strains were fit using the model of I.C. Noyan and and J.B. Cohen \cite{Noyan1987}, which has been used in similar investigations \cite{Brown2019}, given by
+\begin{equation}
+	\epsilon_{\eta}^{\ell} = \epsilon_{11}^{\ell}\sin^2{\left( \eta + \psi\right)} + \epsilon_{22}^{\ell}\cos^2{\left(\eta+\psi\right)}
+	\label{strainmodel}
+\end{equation}
+where $\psi$ is the orientation, in degrees, of the principal coordinate system relative to $\eta = 0^\circ$ in the test coordinate system.
+
+\begin{figure*}[t]
+	\includegraphics[width=01\linewidth]{figures/voids.png}
+	\caption{Voids in the sample after heat treatment and after compression through multiple strut failures.}
+	\label{voids}
+\end{figure*}
+
+The full model of Noyan and Cohen includes shear terms and a third strain component $\epsilon_{33}$ but in the current experiment only two strain components could be measured at a single time. In order to calculate a stress, however, assumptions about the third strain component had to be made. Calculation of stress is desirable because it allows measurement of mechanical values like yield strength, ultimate tensile strength, shear modulus, and more. These measured values can then be compared to the values predicted by the DFA model.
+
+The third strain component was set as equal to either the $\epsilon_{11}$ or $\epsilon_{22}$ strain depending on the location of the strain on the sample. In the horizontal struts it is assumed that the primary tensile direction $\epsilon_{11}$ is along the strut direction; for horizontal members this is along the $x$ direction in the laboratory coordinate system; for other members, this is $45^\circ$ away from the $x$ axis toward the $y$ axis. Therefore, by Poisson's ratio, the other two strains should be compressive. The opposite was assumed for all remaining struts: the third strain component $\epsilon_{33}$ was set equal to the primary tensile strains.
+
+In order to compute stress in the sample it was first necessary to compute certain material constants including the elastic modulus $E$ and Poisson's ratio $\nu$. A sample of known dimensions was cut from bulk Ti-5553 that had been manufactured using the same print parameters as the octet truss sample. The sample was loaded through the elastic region in compression and the material constants were found. A Young's modulus of $E_s = 107.02$ GPa and Poisson's ratio of $\nu = 0.34$ were measured. This is slightly higher than the values found by other investigations, which normally fell in the range of $\sim$ 90-100 GPa \cite{Clement2010}, although these measurements were found for alloys which underwent slightly different heat treatments and were measured using more traditional mechanical characterization.
+
+The effective modulus of the lattice $E_L$ is computed as
+\begin{equation}
+	E_L = E_s \frac{\rho}{9}
+	\label{effmod}
+\end{equation}
+where $E_s$ is the Young's modulus of the base material and $\rho$ is the density of the solid as calculated from the DFA model. In this case samples of $20\%$ density were manufactured making the effective modulus of the sample $E_L = 2.38$ GPa.
+
+Once the material constants were computed from the bulk sample, the stress was calculated using
+\begin{equation}
+	\sigma_{ii}^\ell = \frac{E_s}{1+\nu}\epsilon_{ii}^\ell + \frac{\nu E_s}{(1+\nu)(1-2\nu)}\text{tr}\left(\mathbf{\epsilon^\ell}\right)
+	\label{sigma}
+\end{equation}
+where $\text{tr}\left(\mathbf{\epsilon}\right)$ is the trace of the strain tensor computed from Eqn. \ref{strainmodel}. 
+
+%~
+\subsection{Finite Element Modeling}
+Ansys Mechanical 2020 was used to conduct a FEA simulation to predict the residual stress within the unit cell resulting from the SLM process. The model used was a 1-way coupled non-linear thermal-structural analysis, using a layer-wise approximation of the SLM process. The mesh for this simulation used 0.15mm size quadratic hexahedral elements constrained to a cartesian grid aligned with the build direction of the part (commonly known as a voxel mesh). Each layer of elements (representing multiple physical powder layers) were activated at the melting temperature of Ti-5553 and allowed to cool, thereby inducing residual stress within the component. The layer-wise approximation of the SLM build process sacrifices the detail of local anisotropy due to the laser scan path, but allows for full temperature-dependent non-linear material models to be used whilst running on a multi-core workstation computer.
+
+Two compression simulations were constructed using the same geometry, but utilising a finer, conformal hexahedral mesh. Whilst the geometry was shared between the SLM and compression simulations, measurement paths were defined within the body in order to extract strain results in locations and coordinate systems identical to those measured on the physical test specimen.
+
+The elemental stress results from the SLM simulation were imported and interpolated to initialise one of the compression simulations, in order to validate the hypothesis that residual stress plays a role in the anisotropy of the load distribution within the sample. Strain results from both compression simulations were exported and visualised within MATLAB to perform a qualitative comparison between simulations with and without residual stress applied.
+
+
+\begin{figure}[b]
+	\begin{subfigure}{1\linewidth}
+		\includegraphics[width=1\linewidth]{figures/001PF_Ti5553}
+		\caption{Pole figure of the (001) plane normal in a bulk (node) part of the specimen.}
+		\label{P3}
+	\end{subfigure}
+	%
+	\begin{subfigure}{1\linewidth}
+		\includegraphics[width=1\linewidth]{figures/P3_001PF_Ti5553}
+		\caption{Pole figure of the (001) plane normal along the strut direction for one of the horizontal (transverse) struts passing through the center node of the sample.}
+		\label{strut}
+	\end{subfigure}
+	\caption{Texture at various locations in the sample.}
+	\label{texture}
+\end{figure}
+
+
+
+\begin{figure*}
+	\includegraphics[width=1\linewidth]{figures/DIC_e11}
+	\caption{The $\epsilon_{11}$ principal strains on the surface of the sample calculated from digital image correlation. The load frame crosshead displacement is shown for each image.}
+	\label{e11}
+\end{figure*}
+\begin{figure*}
+	\includegraphics[width=1\linewidth]{figures/DIC_e22}
+	\caption{The $\epsilon_{22}$ principal strains on the surface of the sample calculated from digital image correlation. The load frame crosshead displacement is shown for each image.}
+	\label{e22}
+\end{figure*}
+
+%~
+\subsection{Ex Situ Characterization}
+Characterization of the sample was performed both pre- and post-mortem to identify the impact of additive manufacturing on the microstructure and to observe changes in that microstructure, respectively. A wide suite of ex situ characterization techniques was used.
+
+
+\subsubsection{X-ray Computed Tomography}
+
+
+X-ray computed tomography was performed on a Zeiss Xradia 510. The isotropic voxel width was 7$\mu$m. The smallest detectable defect size was 16 voxels.
+
+The pre-mortem and post-mortem samples can be seen in Figure \ref{voids}. Large voids existed in bulk regions of the sample such as in the nodes or in the build substrate. The void size decreased significantly in the struts. After compression, however, many more large voids nucleated within the sample. There are two possible reasons for the appearance of these voids. Either a) the voids were already present but under the voxel threshold for the detection algorithm; they grew during compression due to dislocation coalescence or b) compression of the sample caused delamination of the additive layers, leading to void nucleation.
+
+An example microstructure from one sample can be seen in Figure \ref{microstructure}, featuring several pores that are smaller than the minimum detectable voxel size used by the XCT software. This gives good reason to suspect that the voids were already present in the material and grew in size during loading.
+
+
+\subsubsection{Texture Mapping}
+The heat transfer through a bulk piece of Ti-5553 and a thin lattice strut, oriented at 45$^\circ$ relative to the build substrate, may be different. Due to the geometry of the samples it was not possible to rotate the struts to obtain multiple diffraction patterns at different orientations. Therefore texture maps were obtained using a single diffraction image. 
+
+Texture was fit using spherical harmonic functions in GSAS II. No assumptions about texture symmetry were made. Once the spherical harmonic coefficients were fit, the data was exported from GSASII and imported into the MTEX software for Matlab. MTEX was used to generate an orientation distribution function, which can be seen in Figure \ref{texture}. Texture maps were taken for both a strut in the sample as well as through a bulk piece of the sample. The bulk exhibits a weak fiber texture in the build direction, shown in Figure \ref{P3}, which is in agreement with previously characterized textures for additively manufactured Ti-5553 \cite{Schwab2016}. Likewise, the strut also showed a weak fiber texture, Figure \ref{strut}, though the texture is concentrated into several poles instead of being dispersed like the texture of Figure \ref{P3}.
+
+
+%~
+\subsubsection{Digital Image Correlation}
+Digital image correlation was performed on samples using Correlated Solution's VIC 2D software. Samples were lit during compression using a white light source; no surface modifications, such as speckling, were used. The software computed the 2D deformation using a subcell size of 23 pixels. The crosshead displacement can be seen, in $\mu$m, listed at the top of each load step image in Figures \ref{e11} and \ref{e22}.
+
+The magnitude of the $\epsilon_{22}$ strains are higher than the $\epsilon_{11}$ strains which is to be expected because the $\epsilon_{22}$ strains are in the compression direction. The majority of the $\epsilon_{11}$ strains are in the nodes of the sample. As the transverse struts begin to stretch they push the central nodes outwards causing a significant buildup of strain. Equal magnitude strains can also be seen in the nodes and horizontal members in Figure \ref{e11}. By comparison, the $\epsilon_{22}$ strains build up mostly in the vertical members near the central nodes. These members are in the direction of the load and therefore receive the highest magnitude strains.
+
+The biggest takeaway from the DIC analysis is that the 45$^\circ$ members experience a complex mix of strains. Neither the $\epsilon_{11}$ nor the $\epsilon_{22}$ completely capture the behavior of these struts. Both tensile and compressive strains can be observed. This motivates the use of multiple coordinate systems for exploring the behavior of these complex stress states, as discussed in following sections.

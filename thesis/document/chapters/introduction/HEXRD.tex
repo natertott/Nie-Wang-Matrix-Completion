@@ -1,0 +1,390 @@
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{High Energy X-ray Diffraction Characterization Techniques}
+Information to cover for the methods section:
+\begin{itemize}
+	\item Basics of X-ray diffraction \begin{itemize}
+		\item Bragg's Law
+		\item The extension of Bragg's law to 3DXRD
+		\item Sources of intensity in HEXRD \begin{itemize}
+			\item The polarization factor
+			\item The Lorentz Factor
+			\item Thomson Scattering
+			\item Compton Scattering
+			\item Texture
+			\item Debye-Waller Factor
+			\item Structure factor
+			\item Multiplicity factor
+			\item Absorption factor \end{itemize}
+		\end{itemize}
+	\item Texture in additively manufactured materials
+	\item Crystallite size effect
+	\item Residual stress
+	\item Solidification dynamics \begin{itemize}
+		\item Scattering through amorphous materials
+		\item Observation of phase changes during solidification
+		\item X-rays as a probe to measure temperature, cooling rate
+		\item Quantification of liquid phase fraction \end{itemize}
+	\item Measurement of stress and strain \begin{itemize}
+		\item Noyan's model
+		\item Limitations of Noyan's model 
+		\item DFA model and its relevance to HEXRD measurements
+		\end{itemize}
+\end{itemize}
+
+\subsection{Detector Setups and Definition of Laboratory, Detector, and Sample Coordinate Frames}\label{detector_setup}
+\begin{figure}
+	\includegraphics[width=1\linewidth]{/Users/njohnson/git/thesis/document/chapters/introduction/introduction_images/coordinate_systems}
+	\caption{The general setup of a synchrotron X-ray experimental hall. Coordinate systems for the laboratory, sample, and detector are shown.}
+	\label{coordinate_systems}
+\end{figure}
+The general setup of a laboratory experimental hutch at a synchrotron X-ray facility can be seen in \ref{coordinate_systems}. This setup applies to synchrotrons at the Advanced Photon Source (APS) and the Cornell High Energy Synchrotron Source (CHESS), the facilities where data for this thesis was collected.
+
+
+\subsection{Bragg's Law in 2D and 3D Crystals}
+\textbf{Write up, with figures, the derivation of Bragg's Law in a crystal.}
+
+
+\subsection{X-ray Intensities}
+All the sources of X-ray intensity from a diffracted crystal.
+
+\paragraph{Absorption of X-rays by a Material}
+Intensity is the flux of energy through a unit surface normal of the average ray of the beam per second. It is typically measured in cgs units. Define $\mu$ to be the coefficient of X-ray absorption. Consider a beam with intensity $I$ incident perpendicular to a sheet of material with mass-to-area ratio $d\rho$. Then the transmitted intensity is 
+\eqn
+	I + dI,\,dI<0
+\equ
+for all $dI\sim I,d\rho$. Let $dI = -\mu I d\rho$. Then
+\eqn
+\frac{dI}{I} = -\mu d\rho.
+\equ
+Integrate both sides to find
+\eqn
+	\frac{I}{I_0} = \exp{[-\mu\rho]}.
+\equ
+Define density to be $p = \rho/x$ where $x$ is the thickness of the plate. Then
+\eqn
+	\frac{I}{I_0} = \exp{[-\mu px]}.
+	\label{intensity}
+\equ
+
+\paragraph{The Polarization Factor}
+The following was originally derived by JJ Thomson. A re-treatment is discussed here based largely on the derivation presented in Cullity \cite{Cullity}. Scattering by a single electron occurs in part due to the randomly oscillating electromagnetic field of the electron. The electromagnetic field has two components: an electric component $\mathbf{E_y}$ and a magnetic component $\mathbf{E_z}$ that are perpendicular to each other. The intensity of the full electromagnetic wave is given by the sum of the squared amplitude of each wave component
+\begin{equation}
+	\mathbf{E}^2 = \mathbf{E_y} ^2 + \mathbf{E_z}^2
+	\label{electromagneticintensity}
+\end{equation}
+where $\mathbf{E}$ is the squared amplitude of the total wave vector, or the intensity. The spatial relationship of $\mathbf{E_y}$ and $\mathbf{E_z}$ can be seen in Figure \ref{polarization_factor}.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.5\linewidth]{/Users/njohnson/git/thesis/document/chapters/introduction/introduction_images/polarization_factor}
+	\caption{The oscillating electric field of an electron at point $O$.}
+	\label{polarization_factor}
+\end{figure}
+
+Consider an electron at location $O$ in \ref{polarization_factor} with electric and magnetic wave components oscillating in the $yz$ plane, perpendicular to each other on the $y$ and $z$ axis, respectively. For an incident X-ray traveling along $xO$ consider the reflected X-ray intensity at location $P$ in the $xz$ plane. Thomson derived that the scattered intensity $I$ of the X-ray at a distance $r$ from an electron with mass $m$ and charge $e$ would be
+\begin{equation}
+	I = I_O \left(\frac{\mu_O}{4\pi}\right) \left(\frac{e^4}{m^2r^2}\right)\sin^2\alpha
+	\label{reflected_intensity}
+\end{equation}
+where $I_O$ is the intensity of the incident beam, $\mu_O$ is the permittivity of free space, and $\alpha$ is the direction of the acceleration of the electron. \ref{reflected_intensity} can be simplified by condensing the constant terms into $K$, given by
+\begin{equation}
+	I = I_O \frac{K}{r^2}\sin^2\alpha.
+	\label{condensed_reflected_intensity}
+\end{equation}
+
+In general, the amplitude of the electric and magnetic components of $\mathbf{E}$ will be equal since the direction of their oscillation is random. Therefore,
+\begin{equation}
+	E_y^2 = E_z^2 = \frac{1}{2}E^2
+\end{equation}
+and because the intensity of the reflected X-ray is dependent upon the magnitude of the oscillation of the electron's wavefunction 
+\begin{equation}
+	I_{Oy} = I_{Oz} = \frac{1}{2}I_O.
+	\label{electron_intensity}
+\end{equation}
+The incident X-ray will accelerate the electron at an angle of $\pi/2$ in the $yOp$ direction and thus the contribution to the reflected intensity will be
+\begin{equation}
+	I_{y0p} = I_O \frac{K}{r^2}.
+	\label{intensity_yOp}
+\end{equation}
+Similarly, the electron will be accelerated in the $zOp$ direction at an angle of $\pi/2 - 2\theta$ and the reflected intensity will be
+\begin{equation}
+	\begin{split}
+		I_{zOp} &= I_O \frac{K}{r^2}\sin^2\left({\pi/2 - 2\theta}\right) \\
+		& = I_O \frac{K}{r^2}\cos^22\theta.
+	\end{split}
+	\label{intensity_zOp}
+\end{equation}
+Putting together \ref{electron_intensity} with \ref{intensity_yOp} \& \ref{intensity_zOp} the reflected intensity at a distance $r$ will be
+\begin{equation}
+	\begin{split}
+		I_p &= I_y + I_z \\
+		& = I_O\frac{K}{r^2} + I_O\frac{K}{r^2}\cos^22\theta \\
+		& = I_O \frac{K}{r^2}\left(\frac{1 + \cos^22\theta}{2}\right). \\
+	\end{split}
+	\label{polarization}
+\end{equation}
+The above term is called the Thomson equation or the polarization factor and accounts for intensity loss due to interaction of incident X-rays with electrons in the unit cell.
+
+\paragraph{Scattering by an Atom}
+The scattering intensity of X-rays incident on an atom can be described as the collective behavior of the scattering of all electrons bound to the atom. \ref{reflected_intensity} describes the scattering by one atom. The scattering  intensity by many atoms is the ratio of the intensity of the X-rays scattering by the atom to the intensity scattered by one electron or
+\begin{equation}
+	f = \frac{I_{\text{atom}}}{I_{\text{electron}}}
+	\label{form_factor}
+\end{equation}
+which is sometimes called the \textit{form factor} because the scattered intensity is related to the shape of the electron cloud around the atom. When electrons scatter X-rays in the forward direction, or $\alpha = 0$ in \ref{reflected_intensity} the scattered X-rays are in phase and interfere constructively. However, when electrons scatter X-rays at any other angle there will be some amount of interference. The interference is strongest in the back-scattering condition. Thus, the scattered intensity of an atom is the combination of all scattering events that occur in all directions.
+
+\paragraph{The Debye-Waller Factor}
+The Debye-Waller factor describes how the intensity of diffracted X-ray beams decreases with increasing thermal motion of atoms in a crystal \cite{Cullity}. For an atom with mean displacement $\bar u$ the Debye-Waller factor predicts that X-ray intensity decreases with
+\eqn
+	f = f_0 \exp{\left[-2M\right]}
+	\label{debyewaller}
+\equ
+where $f_0$ is the scattering intensity of the atom and $M$ is given by
+\eqn
+	M = 8\pi\bar u^2 \left(\frac{\sin\theta}{\lambda}\right). 
+	\label{uiso}
+\equ
+The term $\bar u$ is also sometimes referred to as $U_{\text{iso}}$ because it accounts for isotropic movement of atoms about their location on the crystal lattice.
+
+The $U_{\text{iso}}$ becomes very important when studying materials at temperature because the analysis of X-ray diffraction data often involves interpretation of peak intensities, which are lessened at heightened temperature. In particular, for a material that is transforming through a liquid-solid-solid phase transformation, characterizing the phase fractions -- which are calculated from relative peak intensities of each phase -- can be disrupted by the decrease in X-ray intensity due to temperature effects. 
+
+$U_{\text{iso}}$ was fit for every X-ray diffraction study which examined materials at high temperatures and was found to be negligible in comparison to other factors impacting peak intensity, namely the phase transformation which was observed. 
+
+\paragraph{The Full Intensity of a Diffracted Beam}
+By combining all of the preceding factors for X-ray intensity, the full intensity of a diffracted beam can be described by
+\begin{equation}
+	I_{hkl} = \left(\frac{I_0A}{32\pi r}\right) 
+	\left[ 
+	\left(	\frac{\mu_o}{4\pi}	\right)
+	\frac{e^4}{m^2}
+	\right] 
+	\left( 	\frac{1}{v^2}	\right) 
+	\left[ 
+	|F(hkl)|^2p
+	\left( 	\frac{1+\cos^22\theta}{\sin^2\theta\cos\theta}	\right)
+	\right] 
+	\left(	 \frac{e^{-2M}}{2\mu}	\right)
+	\label{full_intensity}
+\end{equation}
+which is composed of the following terms:
+\begin{itemize}
+	\item $I_0$ -- the intensity of the incident beam
+	\item $A$ -- the cross-sectional area of the illuminated beam
+	\item $r$ -- the radius from the diffracted volume to the camera/detector
+	\item $\mu_0$ -- the permittivity of free space
+	\item $e$ -- the charge of an electron
+	\item $m$ -- the electron mass
+	\item $v$ -- the unit cell volume
+	\item $|F(hkl)|$ -- the structure factor
+	\item $p$ -- the multiplicity factor for plane $(hkl)$
+	\item $\theta$ -- the Bragg angle
+	\item $M$ -- the Debye-Waller factor
+	\item $\mu$ -- the linear absorption coefficient of the material
+\end{itemize}
+The above equation combines all intensity correction factors that have been discussed in this section. Starting from \ref{full_intensity} one can begin to derive the calculation of phase fractions in a material, a topic which will be important to this thesis.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Calculation of Phase Fractions}
+The accurate calculation of phase fractions in a material is dependent upon several key assumptions. In particular, it is assumed that
+\begin{itemize}
+	\item The orientation of grains in the sample is random;
+	\item The diffracted specimen can be regarded as a flat plate with infinite thickness relative to the size of the beam;
+	\item Diffraction conditions are met at all angles $\theta$ in the material.
+\end{itemize}
+If the above conditions are not met then the following derivation is dubious. This derivation is based on the treatment provided by Cullity in Chapter 12 of \textit{Elements of X-ray Diffraction} \cite{Cullity}. 
+
+The intensity diffracted by an individual phase in solution with other phases is dependent on the concentration $c$ of that phase in the solution. The concentration in solution for a phase $\alpha$ can be calculated as 
+\begin{equation}
+	c_\alpha = \frac{w_\alpha \rho_m}{\rho_\alpha}
+	\label{concentration}
+\end{equation}
+where $w_\alpha$ is the weight fraction of $\alpha$ in the mixture, $\rho_m$ is the density of the mixture and $\rho_\alpha$ is the density $\alpha$. The intensity diffracted by $\alpha$ is directly related to the concentration of $\alpha$ in the mixture. Setting all factors constant for a given temperature in \ref{full_intensity}, the diffracted intensity of phase $\alpha$ is
+\begin{equation}
+	I_\alpha = \frac{K_2 R_\alpha c_\alpha}{\mu_m}
+	\label{intensity_alpha}
+\end{equation}
+where $\mu_m$ is the linear absorption coefficient of the mixture, $K_1$ is a constant, and $R$ is dependent upon $\theta, (hkl)$. The relationship between $I_\alpha$ and $c_\alpha$ is generally nonlinear because $\mu_m$ will change as the concentration of phases changes in the material. 
+
+We will discuss one possible method to calculate phase fraction referred to as the \textit{direct comparison method}. In this case the phase fraction will be calculated from the relationship of intensities diffracted by each phase in the material. There are other methods possible, such as comparing intensities to a known reference standard or doping the material with a known pure material.
+
+Similar to \ref{intensity_alpha} the intensity of another phase $\beta$ becomes
+\begin{equation}
+	I_\beta = \frac{K_2R_\beta c_\beta}{\mu_m}.
+	\label{intensity_beta}
+\end{equation}
+Division of \ref{intensity_alpha} and \ref{intensity_beta} yields
+\begin{equation}
+	\frac{I_\alpha}{I_\beta} = \frac{R_\alpha c_\alpha}{R_\beta c_\beta}.
+	\label{divided_intensity}
+\end{equation}
+If the structure factor and lattice parameters of each phase are known then $R$ can be solved for and \ref{divided_intensity} reduces to a function of concentration and intensity only. By introducing a third equation
+\begin{equation}
+	c_\alpha + c_\beta = 1
+	\label{phase_unity}
+\end{equation}
+the problem becomes a full-rank system of linear equations and the concentration can be solved for from measurements of $I$. 
+
+When calculating phase fractions it is important to use the integrated intensity $\int I dI$ instead of the absolute intensity $|I|$. Broadening of peaks will impact the value of $|I|$ but will not impact the value of $\int I dI$. It is also important to consider the effects of preferred orientation of grains on the results. Preferred orientation will reduce the peak intensity of certain peaks based on the orientation of grains. This can be overcome by rotating the sample during measurement and collecting diffraction images at every rotation. Then, the images at every rotation angle can be summed to wash out the effect of preferred orientation.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Scattering Through Amorphous Materials}
+Guinier et al. provide a comprehensive model for the scattering of X-rays through amorphous materials \cite{Guinier1994}. Amorphous materials in general -- but specific to this discussion, liquids -- can be described as a monatomic gas scattering X-rays. The pair correlation of the material determines the scattering specifics of the amorphous material.
+
+As shown in \ref{amorphous_scatter} amorphous scattering displays a characteristic length in $d$-spacing at which intensity is maximized. In some cases, two or more peaks can be observed such as in 308L stainless steel \textbf{get an image of the two peaks in SS}. 
+
+The density of liquid scattering X-rays can be determined if the pair correlation function of the material is known. Unfortunately,, the pair correlation function is difficult to determine experimentally and has to be modeled.
+
+\begin{figure}
+	\includegraphics[width=1\linewidth]{/Users/njohnson/git/thesis/document/chapters/introduction/introduction_images/amorphous_scatter.png}
+	\caption{Scattered intensity of liquid Ti-6Al-4V}
+	\label{amorphous_scatter}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Measurement of Stress and Strain}\label{diffraction_stress_strain}
+High energy X-ray diffraction can be used for the measurement of elastic strains in materials. Strain is measured as
+\begin{equation}
+	\epsilon = \frac{a_i - a_0}{a_0}
+	\label{diffraction_strain}
+\end{equation}
+where $\epsilon$ is the strain on the crystal, $a_i$ is the lattice parameter at a given load step, and $a_0$ is the reference lattice parameter. Choices of $a_0$ are many and varied and depend on both the application being studied and the desired outcome for measurement. A common choice of $a_0$ is the lattice parameter in an unstressed material, though the definition of `unstressed' in a material is not always clear. For some cases it may make sense to compare to a stress annealed sample. In the case of materials being loaded the lattice parameter in the unloaded state may be used. 
+
+Equation \ref{diffraction_strain} is useful in the case of an isotropic material with no directional dependence on lattice parameter. For rapidly solidified materials with directional cooling there is often an orientation dependence in lattice parameter. In this case, it may make sense to use an orientation-dependent measurement of strain
+\begin{equation}
+	\epsilon_{\eta,\omega,i} = \frac{a_{\eta,\omega,i} - a_{\eta,\omega,0}}{a_{\eta,\omega,0}}
+	\label{directional_strain}
+\end{equation}
+where $\eta$ and $\omega$ are defined in Section \ref{detector_setup}. 
+
+The determination of orientation dependent strains can be related to a strain tensor using the theory of elasticity. The strain tensor is given by
+\begin{equation}
+	\begin{split}
+	\epsilon_{\eta,\omega} &  = \epsilon_{xx}\cos^2\omega\sin^2(\eta) + \epsilon_{yy}\cos^2(\eta) + \epsilon_{zz}\sin^2\omega\sin^2(\eta) \\
+	& + \epsilon_{xz}\sin2\omega\sin^2(\eta) + \epsilon_{yz}\sin\omega\sin(2\eta) + \epsilon_{xy}\cos\omega\sin(2\eta).
+	\label{diffraction_strain_tensor}
+	\end{split}
+\end{equation}
+Equation \ref{diffraction_strain_tensor} requires the measurement of $\epsilon$ at multiple values of $\eta$ and $\omega$. For a measurement at a fixed rotation $\omega$ only two components of $(x,y,z)$ can be measured at a time. Therefore, the sample must be rotated in $\omega$ to determine the third strain component. However, for any meaningful measurement of strain the same grains must be sampled at all $\omega$ rotations. Methods such as the strain slit method can be used to ensure that the same volume is illuminated during measurement at all rotations \cite{Strantza2018}.
+
+Equation \ref{diffraction_strain_tensor} can be re-written in terms of principal strains $\epsilon_1, \epsilon_2$ by
+\begin{equation}
+	\epsilon_{\eta} = \epsilon_1 \sin^2(\eta + \psi) + \epsilon_2\cos^2(\eta + \psi)
+	\label{diffraction_principal_strains}
+\end{equation}
+where $\psi$ is the orientation of the principal coordinate system.
+
+\begin{figure}
+	\includegraphics{/Users/njohnson/git/thesis/document/chapters/introduction/introduction_images/principal_strain_diagram.png}
+	\caption{An exaggerated diagram of the distortion of a diffraction ring due to stress applied to a sample. The principal coordinate direction $\psi$ is shown relative to $\eta = 0$ in the detector coordinate system. The principal strains $\epsilon_{11}$ \& $\epsilon_{22}$ are the primary compressive and tensile strains, respectively.}
+	\label{principal_strain_diagram}
+\end{figure}
+
+Figure \ref{principal_strain_diagram} demonstrates how principal strains develop in a sample under load. Under assumptions of isotropy the diffraction ring will deform into an ellipse. The minor axis of the ellipse corresponds to $\epsilon_1$ and the major axis corresponds to $\epsilon_2$ and $\psi$ is the orientation of the minor axis relative to $\eta =0$ on the detector. When $a_{\eta}$ is plotted as a function of $\eta$ it appears as a sinusoidal function where the maximum amplitude of the wave is $\epsilon_1$, the minimum amplitude is $\epsilon_2$ and the phase of the wave is $\psi$. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Preferred Orientation of Samples}
+Additive manufacturing, or rapid solidification specifically, is known to cause preferred orientation of crystals in the sample. Preferred orientation is most often observed with the close packed direction of the alloy oriented in the direction of maximum heat flow during solidification \textbf{Find a citation}. Table \ref{orientation_directions} outlines the close packed direction of each phase studied in this thesis.
+
+\begin{table}\caption{Close packed directions for the crystal structure of each phase studied in this thesis. The close packed direction is often found to be oriented in the direction of maximum heat flow during solidification for additively manufactured alloys.}
+	\label{orientation_directions}
+	\begin{center}
+		\begin{tabular}{c|ccccc} \hline
+		Phase & $\alpha$ Ti-6Al-4V & $\beta$ Ti-6Al-4V & $\beta$ Ti-5553 & $\delta$ SS 308L & $\gamma$ SS 308L \\
+		Crystal Structure & HCP & BCC & BCC & FCC & BCC \\
+		Close Packed Direction & [0001] & [100] & [100] & [111] & [100] \\
+		\end{tabular}
+	\end{center}
+\end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%
+\subsection{X-ray Diffraction as a Probe for Measurement of Temperature}
+When the coefficient of thermal expansion is known in a material it can be possible to measure temperature of the material from the $d$ spacing of the crystal lattice.
+
+As a material is heated the $d$ spacing of the crystal increases due to increased thermal energy. The amount of $d$ spacing change can be quantified using strain. Strain $\epsilon$ is measured in the material by taking the lattice parameter $a_i$ at temperature $i$ and normalizing it to a reference parameter $a_0$ through
+\begin{equation}
+	\epsilon_i = \frac{a_i - a_0}{a_0}.
+	\label{crystal_strain}
+\end{equation}
+The determination of $a_0$ is not straightforward and several different values can be used. In general, it must be assumed that temperature is the only source of strain for temperature to be measured in a physically meaningful way. 
+
+In the case of an isotropic material experiencing even cooling in all directions the lattice parameter at room temperature can be used. For this case the strain is related to temperature by
+\begin{equation}
+	\epsilon = \alpha \Delta T
+	\label{isotropic_temperature}
+\end{equation}
+where $\alpha$ is the coefficient of thermal expansion of the material. Equation \ref{isotropic_temperature} is analogous to Hooke's law, where the only stress on the material is a hydrostatic stress due to temperature. The value of $\alpha$ is sometimes considered to be a single scalar value although this assumption falls apart at high temperatures. Instead, a fit of the strain as a function of temperature must be used. For the case of a polynomial
+\begin{equation}
+	\epsilon = \alpha_0 + \alpha_1 T + \alpha_2 T^2 + \ldots + \alpha_n T^n
+	\label{polynomial_temperature}
+\end{equation}
+For example, Touloukian \cite{Touloukian1975} provides a measurement of the strain on SS 308L as a function of temperature, given by
+\begin{equation}	
+	\epsilon = -0.358 -2.978\times10^{-10}T^3 + 1.031\times10^{-6}T^2 +  9.472\times10^{-4} T 
+	\label{SS_temperature}
+\end{equation}
+The measured strain can be fit to temperature by finding the polynomial roots of Equation \ref{SS_temperature} and solving for $T$. 
+
+The use of $a_0$ at room temperature can be misleading if certain assumptions are not met. First of all, fits such as Equation \ref{SS_temperature} are made for stress-annealed macroscopic samples of SS 308L. Therefore, if the sample being measured has residual stresses present at room temperature the datum may cause an offset in the measured temperature. Furthermore it is assumed that the development of stress during heating or cooling is only due to temperature. This assumption can readily fall apart for several types of materials. In particular dual phase alloys that have significantly crystal structures or lattice parameters between the phases can cause interfacial stresses to develop at grain boundaries. These stresses need to be isolated and quantified before physically meaningful temperatures can be measured. 
+
+Equation \ref{isotropic_temperature} also assumes even cooling in all directions. That is, it assumes that all heat transfer modes -- conduction, convection, radiation -- are occurring evenly in all directions. For most weld and additive manufacturing samples this is a poor assumption. Welds are often deposited on a water cooled substrate that acts as a heat sink for the sample. Therefore directional cooling occurs and the isotropy assumption is invalidated. In this case it may make sense to measure a direction-dependent strain
+\begin{equation}
+	\epsilon_{\eta,\omega,i} = \frac{a_{\eta,\omega,i} - a_{\eta,\omega,0}}{a_{\eta,\omega,0}}
+	\label{directional_strain}
+\end{equation}
+where $\eta$ and $\omega$ are defined in Section \ref{detector_setup}. The orientation dependent strains can be fit to principal strains as described in Section \ref{diffraction_stress_strain}. Once the orientation of the principal tensile and compressive directions $\psi$ are found temperature fits can possibly be used. In general, for a material being heated it may make sense to use the tensile strains and for a material being cooled the compressive strains can be used.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Diffraction Information Specific to $\alpha + \beta$ Ti alloys and SS 308L}
+Ti-6Al-4V has two stable phases at room temperature. The first phase, called $\alpha$ phase in the literature, is a hexagonal close packed structure with a basis of 2 and a space group of P6$_3$/mmc. In traditionally manufactured (cast and wrought) Ti-6Al-4V the $\alpha$ phase is present in weight percents between $90-94\%$. The other phase, termed the $\beta$ phase is a body centered cubic structure with a space group of Im$\bar3$m.
+
+Stainless Steel 316L is an austenitic, two-phase stainless steel alloy. Its primary phases are referred to as austenite $\gamma$ and ferrite $\delta$. The austenite phase is a face centered cubic phase with space group Fm$\bar3$m. The ferrite phase is a body centered cubic phase with space group Im$\bar3$m.
+
+Ti-5Mo-5V-5Hf-3Cr (Ti-5553) is a single phase titanium alloy with a crystal symmetry of body centered cubic and a space group of Im$\bar3$m. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Refinement Parameters in GSAS and GSASII}
+Topics to cover:
+\begin{itemize}
+	\item models laid out in the GSAS handbook
+	\item Image integration
+	\item Calibration
+	\item The refinement parameters used \begin{itemize}
+		\item Lattice parameter
+		\item Broadening
+		\item Preferred orientation
+		\item Phase fractions
+		\end{itemize}
+	\item Automated image processing
+	\item Automated refinement (?)
+\end{itemize}
+
+\paragraph{Image Integration}
+The type of image integration used depended largely on the desired outcome for refinement. There were two primary outcomes pursued in this thesis: the measurement of stress and strain and the calculation of phase diagrams.
+
+The integration of images is dependent upon good detector calibration. All calibrations were performed by using CeO$_2$, a common standard with a known crystal structure. Diffraction images of CeO$_2$ were taken at a fixed position $z$ in the laboratory coordinate frame, with the distance from the sample to the detector being known roughly. GSASII was used to perform image calibration. The known wavelength $\lambda$ of the beam and the rough sample-to-detector distance are input into GSASII along with a guess as to the image center. Then, refinement of the image is performed until a simulated pattern of CeO$_2$ matches well with the observed pattern on the image. The image refinement process refines the sample-to-detector distance, the image center position, as well as the tilt and rotation of the detector relative to the sample. A new CeO$_2$ calibration image is taken for every new sample that has been moved in the laboratory $(x,y,z)$ coordinate frame.
+
+Once image calibration is performed adequately, integration of diffraction images for the sample of interest can be performed.
+
+For the measurement of stress and strain data needs to be `binned' into slices of $\eta$ so that the expansion and contraction of the diffracted cone can be observed. An example of one such image binning is shown in \ref{image_integration}. For all studies herein the images were binned into 24 bins of 15$^\circ$ each. The range of integration in the $2\theta$ direction depended on the size of the image, the crystal structure, and the type of detector used. Once images were integrated into slices of $\eta$ Equation \ref{diffraction_principal_strains} was used to determine the major and minor axes of the diffracted ellipse, and thus the principal strain directions.
+
+\begin{figure}
+	\includegraphics[width=1\linewidth]{/Users/njohnson/git/thesis/document/chapters/introduction/introduction_images/image_integration}
+	\caption{A diffraction image taken on a Dexela detector showing the diffracted rings and the bounds of the integration. The image was binned into 15$^\circ$ increments, shown as the `slices' between dashed lines.}
+	\label{image_integration}
+\end{figure}
+
+Phase analysis of diffraction images requires good grain statistics for each diffracted ring, sometimes referred to as a `powder diffraction' condition. The determination of phase fractions follows from Equations \ref{divided_intensity} and \ref{phase_unity} and thus requires good measurement of the diffracted intensity of each phase. Thus, full integration in both $\eta$ and $2\theta$ is required. After integration, Rietveld Refinement was used to measure the diffracted intensity of each phase and calculation was performed by GSASII. 
+
+\paragraph{Refinement Parameters}
+Refinement was primarily performed using the General Structure Analysis Software (GSAS) II. The Rietveld refinement parameters chosen have a major impact on the success and results of the refinement and should be discussed.
+
+The first parameter refined was the lattice parameter of the crystal unit cell. GSASII allows independent movement of the unit cell lattice parameters through the parameters $D_{ii}$ where $ii$ is an entry in the unit cell metric tensor. For a cubic material only one parameter $D_{11}$ is refined, while for HCP materials two parameters $D_{11}$ and $D_{33}$ are refined. 
+
+Once the lattice parameters were reasonably fit the next step was to refine the peak broadening. The sources of peak broadening are many and varied and broadening is often present in rapidly solidified materials due to the nature of rapidly solidified crystals. Some sources of broadening include crystallite size effects, dislocations, and mosaicity in the crystal. Dislocations are often present in a high density in rapidly solidified materials. Crystallite size effect was a major factor Ti-6Al-4V because the $\beta$ crystals were often on the order of nanometers. There is a separate parameter for crystallite size broadening in GSASII from general peak broadening. Both were refined when necessary.
+
+When images were binned into increments there was often intensity differences in the histograms due to preferred orientation in the samples. When the data was being analyzed for stress and strain an individual preferred orientation model was fit to each histogram. Doing so allowed for the peak intensities of each histogram to vary independently and provide better fits of the integrated intensity. 
+
+Spherical harmonic functions were used to fit the intensity changes due to preferred orientation. 
+
+
+

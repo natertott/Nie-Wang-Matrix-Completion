@@ -1,0 +1,75 @@
+\subsubsection{Design of Experiments}
+Design of Experiments (DOX) is the design of task(s) aimed at performing parametric analysis \cite{Dox2014}. Parametric analysis, broadly defined, is a method of mapping independent variables to corresponding dependent parameters. In materials science and engineering, process-property relationships are typically assessed using parametric analysis. Machine learning can reduce the number of experiments (i.e., tasks) needed to perform parametric analyses sufficient to characterize process-property relationships. Approaches such as \textit{sequential learning} model relationships in parametric studies to discover regions of the parameter space that produce the most information about process-property relationships. 
+
+ In additive manufacturing research, process parameters such as laser energy, speed, build direction, composition, and layer height are varied to study their impact on material properties. Examples include relating build geometry to microstructure or surface roughness \cite{Antonysamy2013, Strano2013}, temperature history to microstructure \cite{Bontha2009, Nie2014}, substrate temperature to residual stress development \cite{Chen2016, Brice2018}, or even entire manufacturing processes to microstructure \cite{Baufeld2011}. Other commonly performed parametric analyses in AM relate heat source parameters to part temperature history \cite{Bontha2006, Li2014}, microstructure \cite{Cherry2015, Jia2014}, mechanical properties \cite{Delgado2012, Khorasani2018}, and residual stresses \cite{Wu2014, Denlinger2015}.
+
+\textit{Information} in AM research is any observation of process-structure-property relationships. For example, observing that a set of laser parameters results in an equiaxed microstructure can be considered information because the researcher has gained an idea of the structure to expect from set processing conditions. Therefore, \textit{information gain} is any experiment that reveals a previously unobserved process-structure-property relationship. Rigorous mathematical definitions of information and information gain have been defined, typically referencing back to Shannon's original formulation of information theory \cite{Shannon1948}.
+
+Both engineering and scientific investigations of AM utilize parametric analysis. In science, tasks designed for information gain are performed until parametric analysis results in a theory or model for a process-structure-property relationship. In engineering, tasks designed for information gain are performed until an optimality criterion is met, such as maximum strength or minimum porosity. Both disciplines vary independent parameters and measure dependent responses until enough information about the underlying phenomenon is known to complete the parametric analysis with some predetermined level of certainty, variance, and/or precision. 
+
+Traditional DOX approaches maximize information gain from performing tasks by subdividing the design space \textit{a priori} to maximize the likelihood of information gain from task to task. In these approaches, all pre-determined tasks are performed before parametric analysis is attempted. In machine learning DOX approaches, parametric analysis is performed after each individual task, and the next task to perform is determined based upon a statistical metric of the parametric analysis - as such, the likelihood of information gain incrementally improves as each task is carried out, and usually only a fraction (20 - 60\%) of the number of tasks need to be performed to reach the established success criterion for the parametric analysis relative to the traditional DOX approaches \cite{Wigley2016, Ling2017a}.
+
+For ML-based DOX, the first step is still to identify process-structure-property parameters of interest and to classify them as either inputs or outputs relative to the desired relationship that is to be determined, as is done in traditional DOX. As more parameters are added, the size of the design space grows. Once the scope of the design space has been defined, the next step is to generate an initial dataset (i.e., initial information). The first tasks can be designed with traditional DOX methods -- often, an approach as simple as selecting an initial uniform sample from the design space. In addition to generating an initial dataset, a \textit{response function} must be defined to interpret the relationship between the inputs and outputs. One example is a regression model of the process parameters (inputs) and material properties (outputs). A \textit{random forest} algorithm trains many regression algorithms, each on a subset of the experimental data. 
+
+Random forest algorithms are ensembles of a type of simple regression algorithm called a classification and regression tree or a decision trees. Decision trees can be used for both classification and regression. Consider a design space that an engineer wishes to explore represented as a matrix, such as \newline
+
+\begin{center}
+\begin{tabular}{c|c|c|c} 
+	Feature 1 & Feature 2 & Feature 3 & Property 1 \\ \hline
+	$x_{1,1}$ & $x_{1,2}$ & $x_{1,3}$ & $y_{1}$ \\
+	$\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ \\
+	$x_{n,1}$ & $x_{n,2}$ & $x_{n,3}$ & $y_{n}$ \\
+\end{tabular}
+\end{center}
+where $x_{1,1}$ is the first parameter setting for feature 1, $x_{1,2}$ is the first parameter setting for feature 2, and $y_1$ is the first property measurement for the associated position in the design space, out of $n$ total measurements. This design space could be represented as a matrix by
+\begin{equation}
+	\mathbf{B} = \begin{bmatrix}
+		x_{1,1} & x_{1,2} & x_{1,3} & y_{1} \\
+		\vdots & \vdots & \vdots & \vdots \\
+		x_{n,1} & x_{n,2} & x_{n,3} & y_{n} \\
+	\label{Bmatrix}
+	\end{bmatrix}
+\end{equation}
+The rows of $\mathbf{B}$ represent different observations in the design space and the columns of $\mathbf{B}$ are different parameters or properties. The goal of parametric analysis is to map different values of $x$ to a property $y$. 
+
+Decision trees begin by taking a samples from the design space -- rows in $\mathbf{B}$ -- and computing a split in one of the features (columns) that best classifies the data point. Consider a set of three experiments that has feature-property $\left(x,y\right)$ pairings of $\left(0.1, 0\right)$, $\left(0.2,0\right)$ and $\left(0.3,1\right)$. The decision tree computes every possible partitioning of $x$ and computes a misclassification error called the Gini impurity, defined as 
+\begin{equation}
+	I_G(x) = \sum_i^J p_i\left(1-p_i\right)
+\label{gini}
+\end{equation}
+where $p_i$ is the percentage of samples classified into class $i$ for each split out of $J$ classes. For our fictional example, $J = 2$.  Consider a split along the value $x = 0.1$ where values less than or equal to $0.1$ are predicted to have $y=0$ and values of $x$ greater than $0.1$ are predicted to have $y=1$. The Gini impurity can be calculated for each side of the split. For the case of $x\leq0.1$, all the samples provided (only one sample, in this case) have an associated $y$ value of $0$. Therefore, the Gini impurity would be 
+\begin{equation}
+	\begin{split}
+	I_G\left(x \leq 0.1\right) & = \frac{1}{1}\left(\frac{1}{1} - 1\right) + \frac{0}{1}\left(\frac{0}{1} - 1\right) \\
+		& = 0.
+	\end{split}
+\end{equation}
+The value $0$ is the lower bound for the Gini impurity, thus this split produces perfect classification for values sorted into $x \leq 0.1$. However, the Gini impurity for the remaining values becomes 
+\begin{equation}
+	\begin{split}
+		I_G\left(x > 0.1\right) & = \frac{1}{2}\left(\frac{1}{2} - 1\right) + \frac{1}{2}\left(\frac{1}{2} - 1\right) \\
+		& = 0.5.
+	\end{split}
+\end{equation}
+This higher value of the Gini impurity indicates that splitting feature $x$ along the value $0.1$ produces an imperfect classification. If the split was chosen along $0.2$ instead, the Gini impurity for both sides would be $0$, a perfect classification. The Gini impurity can be extended to an arbitrary number of classes, allowing decisions trees to behave as regression algorithms as well as classification tools.
+
+Decision trees compute every possible partition for each feature in the dataset such that the misclassification error, as defined by the Gini impurity, is minimized. However, decision trees are highly prone to overfitting. Random forests overcome this overfitting problem by training many different decision trees, each on a subset of the total dataset. A random sampling, with replacement, of design space coordinates (rows of $\mathbf{B}$) are chosen, known as bootstrap aggregating, or bagging, and a decision tree is trained. Alternatively, or in addition to bagging, jackknifing selects a subset of features (columns of B) to prevent overfitting to specific features..
+
+Training many different decision trees in this way allows a user to calculate uncertainty metrics for each prediction. The method of calculating uncertainty depends on how the random forest is being applied \cite{Ling2017a}. Once the random forest has been trained on the initial dataset, new points in the design space are given to the algorithm and the expected result is predicted. 
+
+The predictions made for new points in the design space can be characterized by several different response functions. A study by Ling et al. employed three response functions: the maximum likelihood of improvement (MLI), maximum expected improvement (MEI), and maximum uncertainty. Each response function has its own benefits. The MEI selects the best experiment for maximizing (or minimizing) a target value. The MU, as the name implies, selects the experiment with the highest uncertainty in predicted result. The MLI chooses the experiment most likely to have a higher (or lower) target value compared to the best previously observed value.
+
+Often, parametric analysis is concerned with either exploring relationships in the design space or optimizing on a property (either minimizing or maximizing the property). The random forest can be trained on $m$ many subsets of the $n$ rows of $\mathbf{B}$. Then, new points in the design space are chosen and their associated property $y_{n+1}$ is predicted. If the goal is to maximize a property, then the next experiment to run can be chosen by the MEI or MLI. If the goal is to explore the design space then it is useful to choose the design space coordinate based on the MU.
+
+Ling et al. trained a random forest to maximize the fatigue life of steel as a function of composition (among other test cases presented in the article) \cite{Ling2017}. The features used in Ling's study included composition as a function of nine different alloying elements $\left(\text{C, Si, Mn, P, S, Ni, Cr, Cu, Mo}\right)$ as well as thirteen different processing steps such as heat treatment temperature. The total dataset used had 437 tests of steel fatigue as a function of the features. The random forest algorithm was used to choose experiments to run balancing maximum predicted fatigue life with uncertainty in the prediction. Ling's random forest approach found the composition and processing combination with the best fatigue life in fewer than 50 experiments out of the 437 possible options when using the MLI. The sequential learning workflow used by Ling, as well as the performance of differently trained random forest algorithms and response functions is shown in Fig. \ref{RFopt}.
+
+
+%\begin{figure}
+%	\centering
+%	\subfloat[\label{LingAlgorithm}]\includegraphics[width=1\linewidth]{Images/Fig7a_LingAlgorithm}		
+%	\subfloat[\label{RandomForestOpt}]\includegraphics[width=1\linewidth]{Images/Fig7b_RandomForestOpt}
+%	\caption{Application of a random forest algorithm to find optimal material candidates for four different datasets: magnetocaloric materials, superconducting materials, thermoelectrics, and steels. A random forest algorithm was used with four different response functions: maximum likelihood of improvement (MLI), maximum expected improvement (MEI), maximum uncertainty (MU), and the COMBO Bayesian optimization approach \cite{Ling2017, Ueno2016}. The algorithm in \ref{LingAlgorithm} was used to speed up the experimental design process. In every case, the optimal material for the application in the dataset was found more quickly through sequential learning than through random guessing. The random forest approach was compared against COMBO, another sequential learning tool. The figure in \ref{RandomForestOpt} demonstrates how much more quickly the random forest algorithm was able to find an optimized state than random sampling of experiments to perform.}
+%	\label{RFopt}
+%\end{figure}
+
+Random forests have been applied successfully to a range of applications in materials science. They have been used to discover new thermoelectric materials~\cite{Gaultois2016}. They have also been used to model material properties such as thermal conductivity in half-Heusler semiconductors ~\cite{Carrete2014} and to break down fields for dielectrics~\cite{Kim2016}.  A review article detailing many optimization algorithms for design of experiments can be found in Shan et al\cite{Shan2010}. Adoption of machine-learning assisted design of experiments algorithms can rapidly increase the rate at which the relationship between AM process parameters and material properties are understood. 

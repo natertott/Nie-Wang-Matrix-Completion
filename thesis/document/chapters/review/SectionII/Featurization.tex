@@ -1,0 +1,62 @@
+\subsection{The Featurization and Curation of AM Data}\label{feat}
+
+Featurization involves extracting information from a data set such that a machine learning algorithm can interpret relationships between features themselves or between features and desired processing outcomes like mechanical strength, surface roughness, shape, etc. The preprocessing step of featurizing data is crucial for successful implementation of machine learning algorithms. Improper featurization of data can impact prediction and classification errors \cite{Murdock2020}. 
+
+Scalar data are possibly the easiest to work with because they are features themselves; scalar values are also often referred to as \textit{descriptors} in this context. Therefore, they do not necessarily require featurization but rather curation and organization for use with ML. In many cases, scientific and engineering studies of AM map scalar data related to machine parameters -- like those in Table \ref{table:design_space} -- to scalar measurements of material properties, like strength, modulus, surface roughness, density, etc. 
+
+It is important that machine learning models are trained on datasets with a certain volume of data collected i.e. datasets with statistical variability -- in some cases this could be individual measurements of machine parameters and material properties distributed across the design space. In other cases, having repeated measurements at the same place in the design space can reveal variability in the manufacturing process. Scalar data can be featurized by conducting simple statistical tests to understand relationships that are already present in the dataset. Statistical information such as
+\begin{itemize}
+	\item Mean, median, and mode
+	\item Standard deviation 
+	\item The presence of outliers
+	\item Correlation coefficients between parameters
+	\item Type of distribution (Gaussian, Lorentzian, Weibull, etc.)
+\end{itemize}
+are fairly straightforward to assess. Understanding the basic statistical nature of the machine learning algorithms can prevent problems in the application of ML to AM. For example, heavily correlated inputs in a dataset impact the results of machine learning models. In the worst case scenario, having correlated inputs degrades the predictive capability of the algorithm being implemented; in the best case, it has no effect on model performance but slows down modeling and computation time by adding unnecessary computations  \cite{Li2018}. 
+
+The type of distribution that best describes the data may guide the underlying assumptions that some machine learning models make. For example, as further discussed in Section III, Gaussian Process Regression assumes that a Gaussian distribution best describes the statistical variance of the data being modeled \cite{Ripley1981, Schabenberger2004}.
+
+The removal of statistically correlated inputs (if necessary) combined with determining the statistical nature of the dataset is the curation of data.
+
+Once it is determined that the data are properly featurized and curated, the next step is data organization. Collections of scalar values can be represented by several different mathematical tools before use with machine learning. Matrices are used in machine learning to represent multiple observations, typically stored in rows, of a set of features (columns), for example,
+\begin{equation}
+	\mathbf{X} = \begin{bmatrix} x_{1,1} & x_{1,2} & \hdots & x_{1,m} \\
+						x_{2,1} & x_{2,2} & \hdots & x_{2,m} \\
+						\vdots & \vdots & \vdots & \vdots \\
+						x_{n,1} & x_{n,2} & \hdots & x_{n,m} \\
+				\end{bmatrix}
+	\label{matrix}
+\end{equation}
+where the columns of $\mathbf{X}$ represent the different features, out of $m$, and there have been $n$ repeated measurements of each. In some machine learning uses, the investigator wants to learn trends within the dataset. When varying dozens of parameters at a time, which is often the case in additive manufacturing, trends across multiple print parameters are not always obvious. In this case, a dataset of observations can be formatted into a matrix like in Eqn. \ref{matrix}. This is referred to as \textit{unlabeled} data. In other cases, the experimenter wants a predictive tool that allows them to ask: \textit{if} I print at \textit{these specific conditions}, what will be the result? In these cases, it is better to store the print parameters in a format like Eqn. \ref{matrix}, but have the resulting properties stored in a separate vector object, like
+\begin{equation}
+	\mathbf{Y} = \begin{bmatrix} y_{1} \\
+				y_{2} \\
+				\vdots \\
+				y_{n} \\
+				\end{bmatrix}.
+			\label{outputs}
+\end{equation}
+In this case, the data has been separated into inputs and outputs. This is referred to as \textit{labeled} data.
+
+A time series signal can be represented as a list of scalar values that are correlated in the time dimension. Indeed, it is possible to represent collections of time series signals using the mathematical form in Eqn. \ref{matrix}, where each column is a time step and each row is a different measurement. For some applications, this data processing approach will result in unnecessary data being used for modeling. For example, if looking for indications of defect formation, much of the collected data can be ignored. It can be reasonably assumed that defect formation occurs when certain signals change from an expected mean value, like a rapid rise in temperature or energy density of the laser. In these cases, it is better to search for indications of these changes away from the expected mean value instead of using the entire signal.
+
+Featurization in this case is searching for aspects of the series that are correlated with a desired process outcome. For a time series signal, useful features include the signal maximum, minimum, locations with sharp changes in curvature, sudden changes in absolute value, and more. For other series data, such as diffraction histograms or spectral data, other features need to be considered. For diffraction histograms values like peak position, peak breadth, peak intensity, etc., are useful. Values measured in between peaks (i.e. the background noise) can likely be ignored. One of the major benefits of featurizing series data is removing unnecessary values -- indeed, the field of compressive sensing is focused around removing redundant information from series signals \cite{Candes2008}. This type of featurization is useful for formatting extracted scalar values into matrix and vector objects like Eqns. \ref{matrix} \& \ref{outputs}. Once features have been extracted from the series signal they can be represented as a collection of scalars. From there, the collection of features should be treated to the same statistical litmus tests described above for scalar values. It is worth noting that some machine learning algorithms use entire series for inputs and featurize them as part of the algorithm \cite{Long2007, Long2009, Kusne2015a}.
+
+Featurization of images is an active area of research in computer vision, a sub field of machine learning. Images are characterized by a spatial correlation in intensity: discrete changes in intensity dividing regions/domains of comparable, or slowly varying, intensity. Images are also most often represented as matrices of spatially-correlated intensity. The image processing algorithms discussed elsewhere in this review rely on a matrix representation of images. There are many toolboxes available, both free and commercial, which can pre-process images for use in machine learning algorithms; for example, the MATLAB Computer Vision Toolbox and the C++/Python OpenCV libraries.
+
+Featurization of images occurs in a wide variety of ways and will be discussed in-depth in Section III. However, it is worthwhile here to discuss \textit{filters}, one of the most common ways of extracting features from an image. A filter is a mathematical operation applied to a region of an image that changes or enhances that image. Filters can be used to remove noise or distortion from an image, blur the image, sharpen edges, and more. 
+
+Filtering an image is computing the product of a matrix $\mathbf{w}$ with a matrix $\mathbf{f}(x,y)$. The function $\mathbf{f}$ is the pixel value of an image $I$ at location $(x,y)$. The filter is applied as the product
+\begin{equation}
+		\mathbf{g}(x,y) = \sum_{s = -m}^m \sum_{t=-n}^n \mathbf{w}(s,t) \mathbf{f}(x+s,y+t)
+	\label{filter}
+\end{equation}
+where $\mathbf{g}(x,y)$ is the matrix resulting from the operation \footnote{The product between $\mathbf{w}$ and $\mathbf{f}$ is not valid in all locations due to mismatches in indices at the border of the image. There are special cases defined where either the weight matrix or the image needs to be modified; Szeliski \cite{Szeliski2011} and MATLAB's documentation \cite{MATLABPad} provide more information.}. The product in Eqn. \ref{filter} is a \textit{convolution} of $\mathbf{w}$ and $\mathbf{f}$. In certain cases a correlation operation is applied instead. More information on these operations can be found in the work of Szeliski et al. \cite{Szeliski2011}, or any online open resource discussing image filtering.
+
+The product of filtering is another image $\mathbf{g}(x,y)$ that has been modified or enhanced to reveal aspects of the original image. The application of filters can identify edges, reveal bright spots, reduce noise, blur, and do more to an image. The filtered matrix $\mathbf{g}$ can also be used sn input for a machine learning application, like regression. Some machine learning applications like convolutional neural networks (CNNs) actually learn filters $\mathbf{w}$ themselves that maximize prediction accuracy in regression applications. 
+
+While filters are perhaps the most common featurization tool for images, other featurization methods exist. N-point correlation functions have found extensive use in extracting features from materials microstructure data \cite{Fullwood2008}. 
+
+Many machine learning algorithms can operate directly on machine inputs and processing outputs; however, it can be equally useful to measure the relationship between data points instead of the values of the data points themselves, i.e. using the covariance. The covariance is measured between two data points $\kappa (\mathbf{x},\mathbf{x}')$, instead of being a property of a single data point. The function $\kappa(\cdot,\cdot)$ is called a kernel function. The covariance between data points encodes cross-correlated information within the design space. Kernel functions can be used to assess the similarity of design space coordinates or to transform the feature space--for example, from a linear to a logarithmic space, or from a continuous to a logistic space--to better suit the underlying physics of the feature--target relationship \cite{KernelMethod}. Ways of calculating covariance are many and varied and will be defined explicitly throughout this review as they are used.
+
+Once data has been pre-processed and featurized it can be used in a machine learning algorithm, but first it is collected it is important to consider some of the underlying assumptions of machine learning and ensure that the dataset being used meets those assumptions.

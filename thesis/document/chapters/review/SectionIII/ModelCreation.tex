@@ -1,0 +1,66 @@
+\subsubsection{Machine Learning to Create Models of Additive Manufacturing Processes}
+Another problem, equally important to solving models, is the creation of models for additive manufacturing problems. Scientists cannot engineer the additive manufacturing process without an understanding of how process parameters (inputs) impact material properties and performance (outputs). The generation of models in AM is a difficult task due to the large amount of physics that can be incorporated.
+
+Many traditional material models from science and engineering have been applied to additive manufacturing, including thermal history models of heat transfer through the part \cite{Michaleris2014}, residual stress build up during manufacturing \cite{Pal2014, Ding2011}, and thermal signatures such as cooling rate and temperature gradient \cite{Li2014, Raghavan2016}. King et al. provide a review of the physics of AM modeling \cite{King2015a}. 
+
+Phenomenon that are difficult to study experimentally, such as flow within the melt pool, are best studied through modeling approaches. Though expensive, full-physics modeling is often necessary to understand how physics at different scales interact to impact the AM process. If the computational expense of a simulation is too high then performing simulations at all relevant manufacturing conditions can be infeasible. While it is useful for optimization and visualization, reduced order models are unlikely to capture the full dynamics of solidification in AM. 
+
+Within the context of the literature reviewed herein, a \textit{surrogate model} is a regression model that estimates the results of high-cost simulations. Surrogate models are regressed on the inputs and results of previously run simulations. Then, the surrogate model interpolates simulation results at new coordinates in the design space. Surrogate models preclude the need for running computationally expensive simulations for every possible manufacturing condition. Formulating surrogates can be as simple as performing linear regression between simulation inputs and results, but are often more complex. The accuracy of a surrogate model is dependent upon how many previous simulations have been run and at how many different points in the design space.
+
+Tapia et al. built a surrogate model for laser powder bed fusion of 316L stainless steel. They were concerned with predicting the melt pool depth of single-track prints solely from the laser power, velocity, and spot size \cite{Tapia2017}. The dataset used to build the surrogate was computationally derived, based on previous simulation methods used by the same research team \cite{King2014}. In particular, they used the results from a computationally expensive but high-accuracy melt pool flow model of Khairallah et al. \cite{Khairallah2016}. They ran powder bed simulations at various laser powers, velocities, and spot sizes, and the model told them the depth of the melt pool, amongst other information. The datasets provided enough information for a surrogate model to be trained to predict simulation results.
+
+%\begin{figure*}
+%	\centering
+%	\begin{subfigure}{1\textwidth}
+%		\includegraphics[width=1\linewidth]{Images/Fig11ab_TapiaInputData}
+%		\label{InputData}
+%	\end{subfigure}
+%	%
+%	\begin{subfigure}{1\textwidth}
+%		\includegraphics[width=1\linewidth]{Images/Fig11cd_TapiaResponseSurface}
+%		\label{ResponseSurface}
+%	\end{subfigure}
+%	\caption{Input data, response surface $y(\mathbf{x})$, and error $\epsilon(\mathbf{x})$ of Tapia's study in predicting melt pool depth for laser powder bed fusion \cite{Tapia2017}. a-b) The input data used to train a Gaussian Process Regression model for predicting melt pool shape and depth. They started with a sparse sampling of the design space to build the model. c-d) The Gaussian process model predictions for melt pool depth as a function of two input parameters $y(\mathbf{x})$ (left) and the associated prediction errors $\epsilon(\mathbf{x})$.}
+%	\label{GPMs}
+%\end{figure*}
+
+To build their surrogate model, Tapia used a machine learning algorithm known as a Gaussian process model (GPM). A common model assumption in Gaussian process modeling is
+\begin{equation}
+	z(\mathbf{x}) = y(\mathbf{x}) + \epsilon(\mathbf{x})
+	\label{model}
+\end{equation}
+where $y(\mathbf{x})$ is the approximation (surrogate) of the simulation process, $\epsilon(\mathbf{x})$ is a stochastic, randomly distributed noise in measurement, and $z(\mathbf{x})$ is the value given by a simulation. The primary goal in GPMs is to find model parameters for the mean process $y(\mathbf{x})$ and a covariance function $\kappa(\mathbf{x},\mathbf{x}')$, which is a function of similar form to Eqn. \ref{gausskernel}. Fitting a Gaussian process model often begins with assuming a model function for covariance, fitting the model parameters such as $\sigma$ to the observed values $z(\mathbf{x})$, then using those model parameters to predict simulation results $y(\mathbf{x})$ at other locations in the design space. 
+
+Tapia used Bayesian statistics to develop a probabilistic model that predicted melt pool depth from simulation inputs. They were able to successfully predict the outcomes of both high-fidelity simulations and experimental measurements solely by analyzing trends in previously obtained results. In particular, they were able to accurately predict the melt pool depth at a value that had never been observed before, either computationally or experimentally. For future investigations, predictions by the surrogate model can be relied upon instead of running a simulation or experiment. Regression models such as this provide engineers with faster routes toward optimized manufacturing states by predicting manufacturing at a wide range in the design space based on only a few initial experiments.
+
+Gaussian Process Models provide robust uncertainty metrics on the predictions they make. Uncertainty estimation is important in materials informatics because it enables scientists to know how confident their models are in predictions in various regions of parameter space. Some machine learning models do not have straightforward ways of assessing model error \cite{Bessa2017}. 
+
+Another benefit of GPM is that it aids in inverse design and design space visualization. GPMs can explicitly identify regions of the design space that will maximize or minimize a value. In the case of Tapia et al. response surfaces were created from the GPM that visualized the depth of melt pools as a function of laser power and speed. Doing so allows engineers to identify regions of the design space that provide specific material responses, an important tool in optimization for additive.
+
+%Another approach to full scale models in AM is building high-fidelity models from an ensemble of low-fidelity models. Current integrated computational models link phenomena across spatiotemporal scales by running many single-physics models and passing the results from model to model, then comparing with experimental results. An example is the model of Martukanitz et al. that considered the thermal, mechanical, and material response of Ti-6Al-4V alloys manufactured with powder bed processes \cite{Martukanitz2014}. Martukanitz's model uses the finite element method to model the thermal and mechanical response based on classical continuum heat transfer equations. At the same time, the Calculation of Phase Diagrams (CALPHAD) method modeled the thermodynamics and mass transfer for each chemical species, while Diffusion-Controlled phase Transformations (DICTRA) is used to model phase formation. As noted by Martukanitz, this approach becomes computationally infeasible as the number of deposition layers increases.
+
+%{\color{red} Consider cutting this entire next section, or seriously re-working it.} 
+%
+%Even a \textit{single} modeling method -- just FEA, phase field, CALPHAD, etc -- becomes computationally expensive for thousands of layers of material deposition. Based on this scaling, accurately modeling the physics of a full build seems prohibitive, at least without a major leap in computing power. A machine learning method known as \textit{committee voting} or \textit{ensemble modeling} may provide a workaround. These methods rely on sampling many individual models to predict the behavior of a larger class of physics.
+%
+%In traditional ensemble modeling approaches, many different regression models are trained to model a relationship $y = f(\mathbf{x})$, as in regression trees. For a given input $\mathbf{x_1}$ all regression models are assessed and various outputs predicted, $f_1(\mathbf{x}), f_2(\mathbf{x}), ..., f_n(\mathbf{x})$, etc. Each model $f_i(\mathbf{x})$ is a different type of machine learning regression model. Different types of regression approaches are robust for different trends in data sets. The individual regression models could be a random forest, support vector machine, neural network, or any of the type of regression models discussed herein. A linear combination of these models can have a higher prediction accuracy than any individual model.
+
+%In AM, the same concept can be extended to datasets sampled from different physical models, instead of an ensemble of different regression models. Each model $f_i(\mathbf{x}_j)$ can be trained on the inputs and outputs of the $j$th AM simulation. These data sets for additive may be the inputs and solutions of a solidification or heat transfer model, for example, or experimentally obtained relationships.
+%
+%Ensemble modeling can be used in AM to solve multiobjective optimization problems, such as optimizing the heat transfer through a build and the grain growth simultaneously. The simulations to include could be thermomechanical models of heat transfer, phase field models of grain growth, finite element models of laser absorption, and so forth. The final ensemble model would take the form
+%\begin{equation}
+%	\mathbf{y}(\mathbf{x}) = \sum_{i=1}^N w_i f_i(\mathbf{x})
+%	\label{ensemble}
+%\end{equation}
+%where $\mathbf{y}$ is a response vector of properties to optimize, $f_i(\mathbf{x})$ is a single simulation of the process out of $N$, and $w_i$ are weights associated with each simulation. The vector $\mathbf{y}$ would contain many parameters such as temperature $T(t)$, temperature gradient $\nabla T$, solidification velocity $\nu(t)$, and many more phenomenon to monitor from simulations. 
+%
+%In the AM case, where information from models may overlap, this type of approach can screen out noise from simulations or experiments to gauge a more fundamental relationship. The uncertainties associated with a model can be weighted by the experimentally observed data points. Furthermore, predictions can be made across many different physical models, resulting in a predictive method for holistic analysis of the final properties. This method does not provide a picture of how the physics in each simulation interact or disagree. However, it can be used to simultaneously optimize the results of many different simulations and point toward desirable manufacturing conditions. A review of multiobjective optimization functions can be found at \cite{Jin2008}.
+%
+%Meredig et al. applied this method to the prediction of ABC ternary compounds, where A, B, and C each represent an element \cite{Meredig2014}. The space of all combinations of A, B, and C elements is large and would require many, many simulations. Instead of running high-throughput DFT for all possibilities they ran calculations for AB, AC, and BC compounds to generate a database of information. Then, regression trees were trained from the inputs of each binary alloy simulation to predict formation energy. Finally, an ensemble model was trained of the form
+%\begin{equation}
+%	E(\text{ABC}) = w_{\text{AB}} f(\mathbf{x}_{\text{AB}}) + w_{\text{AC}} f(\mathbf{x}_{\text{AC}}) + w_{\text{BC}} f(\mathbf{x}_{\text{BC}})
+%	\label{dftensemble}
+%\end{equation}
+%where $E()$ is the formation energy, $w_\text{AB}$ is the weight for a regression model of AB alloys, $f(\mathbf{x}_{\text{AB}})$ is the regression predicting formation energies for AB alloys, and so on. In the end, Meredig's model was able to predict $4,500$ new, stable ternary materials.
+
+Machine learning is not only limited to ex situ experimental investigations or modeling approaches. Ideally, machine learning can be used to solve multiobjective optimization functions where multiple aspects of the AM process are optimized at once -- energy density, melt pool shape, heat transfer, grain growth, and the list continues. Models can be created that solve this multiobjective optimization problem and present to the engineer what an optimal manufacturing process looks like. Actually \textit{creating} that optimal process will require tight control of the manufacturing process. Machine learning models trained on correlations between build parameters, the dynamic response of the system, and the final part properties can be combined with real-time computer vision to simultaneously observe, characterize, and control many different aspects of the manufacturing process.

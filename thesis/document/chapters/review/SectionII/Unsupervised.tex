@@ -1,0 +1,65 @@
+\subsection{Unsupervised Machine Learning}\label{unsupervised}
+
+Unsupervised machine learning algorithms are used to identify similarities or draw conclusions from unlabeled data by relying on the similarity hypothesis. Unsupervised approaches are useful for visualizing or finding trends in high dimensional data sets, screening out irrelevant modeling inputs, or finding manufacturing conditions that produce similar material properties. 
+
+Consider an experiment that varies three different manufacturing inputs $x_1, x_2, x_3$ and measures a single material property $y$. A distance metric can be defined between data points in the design space. For example, data can be collected at two points $\mathbf{a} = (x_{1}, x_{2}, x_{3})$ and $\mathbf{b} = (x_{1} + \delta, x_{2}, x_{3})$. The $\ell _2$ norm of $\mathbf{a}-\mathbf{b}$ yields
+
+\eqn
+|| \mathbf{a} - \mathbf{b}||_2 = \delta.
+\equ
+
+The value and magnitude of $\delta$ gives an inclination about how similar $\mathbf{a}$ and $\mathbf{b}$ are.
+If $\delta$ is close to zero, then a researcher can say that $\mathbf{a}$ and $\mathbf{b}$ are similar.
+As $\delta$ becomes larger a researcher can say $\mathbf{a}$ and $\mathbf{b}$ become more dissimilar.
+The concept of `similar' manufacturing conditions may be easy to assess by an experimentalist when tuning only a few parameters at a time.
+When taking into consideration tens or hundreds of design criteria, sometimes with correlated inputs, elucidating similar manufacturing conditions becomes difficult.
+This vector distance approach is a simple, yet effective first glance at similarity in a design space and is generalizable to $n$ many design criteria.
+
+Let us say that $\delta$ is small and that $\mathbf{a}$ and $\mathbf{b}$ are similar manufacturing conditions.
+Now, consider a third point in the design space $\mathbf{c} = (x_{1} + \delta, x_2 + \delta, x_3)$ that has not yet been measured.
+Since $\mathbf{c}$ was manufactured at similar conditions to $\mathbf{a}$, as measured by $||\mathbf{c} - \mathbf{a}||_2 = \sqrt{2}\delta$, then we may say that $\mathbf{a}$, $\mathbf{b}$, and $\mathbf{c}$ are all similar to each other. If the similarity hypothesis is correct then manufacturing with conditions $\mathbf{a}$, $\mathbf{b}$ and $\mathbf{c}$ should yield similar measurements of $y$.
+
+To better understand why unsupervised learning is desirable for AM R\&D consider a research project with initial manufacturing inputs $\mathbf{a}$, $\mathbf{b}$, $\mathbf{c}$, $\mathbf{d}$, etc., and associated property measurements that have been tested. Measuring the remainder of all possible design space coordinates to map the process-structure-property-performance relationship quickly becomes prohibitive. Instead, researchers can use similarity metrics to determine whether or not a future test is worth running. Comparing the manufacturing inputs through vector distance gives a rough idea of the possible outcome before spending time and resources on running a test. If the intent is exploring design spaces then manufacturing at conditions \textit{furthest away} from previously observed points may be the answer. If looking for local maxima of quality, an operator would want to manufacture at conditions \textit{nearest to} the conditions currently known to have high quality.
+
+Another common application of unsupervised learning is finding clusters in data sets that produce useful partitions of material behavior. Using vector distances as metrics of similarities can produce results that are analogous to creating process maps \cite{Beuth2001}, which is further discussed in Section \ref{viz}. 
+
+%{\color{blue} \textbf{We might need to move tSNE -- and its associated process map figure -- to this section for the sake of continuity and grouping like/similar ideas together.}}
+
+
+The following demonstration of unsupervised learning is based on $k$-means clustering, a commonly used unsupervised machine learning clustering algorithm.
+
+A researcher has acquired the datasets in Eqn. \ref{matrix} and wants to partition $x_j \in \mathbf{X}$ into groupings of print parameters that produce similar results.
+However, there are several values of $x_j \in \mathbf{X}$ that lie between two extremes and the cutoff for `similar conditions' is not obvious.
+Similarity metrics can be used to find demarcations in the dataset that indicate regions of similarity.
+To begin, the data set is partitioned randomly into two groups, $\mathbf{X}_1$ and $\mathbf{X}_2$.
+The centroids $m_1$, $m_2$ (or centers of mass, in engineering) of each grouping can be calculated as
+
+\eqn
+	\begin{split}
+		m_1 & = \frac{1}{|\mathbf{X}_1|} \sum_{x_j \in \mathbf{X}_1} x_j \\
+		m_2 & = \frac{1}{|\mathbf{X}_2|} \sum_{x_j \in \mathbf{X}_2} x_j. \\
+		\label{moment}
+	\end{split}
+\equ
+where $\left|\mathbf{X}\right|$ is the mean value of a grouping.
+The measurements were randomly partitioned at first; the goal is to re-partition each set so that similar measurements are in the same set.
+To do this, we can re-assign each set by
+
+\eqn
+	\begin{split}
+		\mathbf{X}_1 & = \{x_i : ||x_i - m_1||_2 \leq ||x_i - m_2||_2 \} \\
+		\mathbf{X}_2 & = \{x_j : ||x_j - m_2||_2 \leq ||x_j - m_1||_2 \}. \\
+	\end{split}
+	\label{reassign}
+\equ
+
+The re-assignment in Eqn. \ref{reassign} can be interpreted physically: if a measurement initially assigned to set $\mathbf{X}_1$ is closer in distance to the centroid of $\mathbf{X}_2$ then it is \textit{more similar} to the other set.
+Thus, it is re-assigned.
+Measuring the similarity of each data point to the mean of the groupings re-classifies these outliers into groupings that are more reflective of the position in the high dimensional design space, giving manufacturing designers insight into how design parameters are distributed in that space.
+
+Once re-assignment is complete the centroids in Eqn. \ref{moment} can be re-calculated and updated.
+Then, data points are re-assigned once more based on how similar they are to the centroid of each partition.
+If the input settings $(x_1, x_2, x_3)$ are partitioned along with their corresponding measurements, then we have lists of input settings that are likely to give good/bad quality parts.
+Further analysis can also be conducted, such as analyzing which regimes of inputs lead to good or bad quality - this is precisely what process maps represent.
+The difference in this case is that $n$ many manufacturing conditions can be related to a quality metric simultaneously, with little to no human inspection or intervention.
+Additionally, a researcher can dig further and analyze \textit{why} groups of input settings result in given quality for a material property.

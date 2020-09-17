@@ -1,0 +1,31 @@
+\subsubsection{Machine Learning for Visualizing Trends in the Design Space}\label{viz}
+
+Visualizing relationships across high dimensional spaces helps researchers develop an intuitive understanding of data relationships that exist, an intuition that helps guide data preprocessing, feature engineering, model selection, and model training. However, visualizing an $n$-dimensional distribution is difficult. Process maps are commonly employed in AM to visualize 2D slices of the $n$-dimensional AM design space \cite{Beuth2001}. The Ashby plot is a well known generalization of process maps in materials science. Ashby plots show material properties as functions of two design coordinates, such as plotting mechanical strength of various alloys as a function of density and cost to produce. The process maps in welding and AM are more specific versions of Ashby plots. Process maps chart the possible values of machine inputs and identify regions of the design space with similar properties. A commonly employed process map in AM of Ti-6Al-4V describes grain morphology as a function of solidification velocity $R$ and temperature gradient $G$ \cite{DeHoff2015}. Extending process maps to $n$ many process variables would require ${n \choose 2}$ plots. Defining and examining metrics of similarity in an $n$ dimensional space can reveal trends in a human interpretable way without relying on multiple 2D process maps. 
+
+%\begin{figure*}
+%	\centering
+%	\begin{subfigure}{0.49\textwidth}
+%		\includegraphics[width=1\linewidth]{Images/Fig10a_ProcessMap}
+%		\caption{}
+%		\label{ProcessMap}
+%	\end{subfigure}
+%	%
+%	\begin{subfigure}{0.49\textwidth}
+%		\includegraphics[width=0.75\linewidth]{Images/Fig10b_tSNE}
+%		\caption{}
+%		\label{tSNE}
+%	\end{subfigure}
+%	\caption{Comparison of a traditional process map and tSNE plot. \ref{ProcessMap}) A process map for predicting microstructure characteristics based on absorbed power and deposition velocity in electron beam wire feed additive manufacturing. Image reproduced from Gocket et al\cite{Gockel2014}. \ref{tSNE}) A tSNE plot from Ling's study showing clusters of samples with similar fatigue strengths\cite{Ling2017a}. While process maps can be useful for predicting manufacturing outcomes they are limited by only showing the behavior of two process parameters at a time. The tSNE algorithm can cluster data based on many manufacturing inputs simultaneously and then display that information in a 2D plot, allowing engineers to study how processing parameters lead to good or bad material properties.}
+%	\label{ProcessMaptSNE}
+%\end{figure*}
+
+$t$-distributed Stochastic Neighborhood Embedding (tSNE) is a visualization technique that measures distances in a high dimensional space and then projects data points onto a two dimensional plot. The similarity of all data points in the design space with each other is used to fit a distribution of similarities. The tSNE algorithm begins by fitting a probability distribution to all $\mathbf{x}$'s contained in a dataset. Relationships in $n$ dimensional space are assessed through a \textit{kernel function} $\kappa(\mathbf{x},\mathbf{x'})$ that measures similarity between points in the design space. A commonly employed kernel is the Gaussian kernel
+\eqn
+	\kappa(\mathbf{x},\mathbf{x'}) = \frac{1}{\sqrt{2\pi\sigma^2}}\exp{\left[- \frac{\mathbf{x} - \mathbf{x'}}{2\sigma^2}\right]}
+	\label{gausskernel}
+\equ 
+where $\sigma$ is a user-specified or fit standard deviation in the distribution of points in the design space. This kernel function assesses distance in the $n$ dimensional space and assigns a similarity value between $\left[0, 1/\sqrt{2\pi\sigma^2}\right]$. 
+
+ After the $n$ dimensional dataset is fit, then a 2 dimensional coordinate $\mathbf{x}^*$ is assigned to each $\mathbf{x}$. The reason for choosing a 2 dimensional coordinate is so that the final result can be visualized on a 2D plot. The tSNE algorithm fits a probability distribution to the $n$ dimensional data set first, then assigns values to each $\mathbf{x}^*$ such that they have the same probability as the associated high-dimensional $\mathbf{x}$. Once the probability distributions have been assigned, the $\mathbf{x}^*$ values can be visualized on a 2D plot to investigate trends.
+
+The benefit of tSNE is that points that are close together in the $n$ dimensional space appear close together on the 2 dimensional plot. This gives AM modelers an idea of how machine inputs and material behavior are distributed in the $n$ dimensional space through a 2 dimensional visualization. Traditional process maps provide similar input/output relationships but are limited in the amount of processing parameters they can interpret at once. A comparison of process maps and tSNE is shown in Figure \ref{ProcessMaptSNE}.

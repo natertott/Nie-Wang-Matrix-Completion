@@ -1,0 +1,42 @@
+\subsection{Data Sources}
+
+
+\renewcommand{\arraystretch}{1.25}
+\begin{landscape}
+\begin{longtable}{p{2.75cm}p{2.75cm}p{2.75cm}p{2.75cm}p{2.75cm}p{2.75cm}}
+		\caption{Types and sources of data common in materials science and, specifically, additive manufacturing. The entries under each vary from a source of data -- like a characterization technique -- to the data itself -- like a single measured scalar value. \label{sources}} \\ 		
+		%\endfirsthead  %\hline
+		Scalar & Time Series & Spectral & Images & Categorical & Spatial \\ \hline 
+		
+		\endhead%
+\hline
+
+		\raggedright Ultimate tensile strength & Stress-strain curve  & X-ray diffraction & TEM & Composition & 3D Model and Slicing Path (e.g. STL file)\\
+		Hardness & Temperature Gradient  & \raggedright X-ray Photospectroscopy  & SEM & Quality & Scan path \\
+		
+		Toughness & Pyrometry &  \raggedright X-ray Dispersive Spectroscopy & Optical Metallography  & Crystal structure &  Part Orientation in Build Chamber\\
+		
+		Fracture Strength &Thermography   & & \raggedright X-ray Computed Tomography & \raggedright Melt Pool Morphology & Crystallographic Texture\\
+		Density & \raggedright Differential Thermogravimetric Analysis & & High Energy Diffraction Microscopy& & \\
+		
+		Solidification Velocity & Differential Scanning Calorimetry & & & &\\
+		Cooling rate & Chemorheology& & & &\\
+		Solidus/Liquidus Temperature & Magnetometry& & & &\\
+		\raggedright Enthalpy of Formation/Melting & & & & &\\ 
+		Pore size &  & & & & \\
+		Fatigue Properties & & & & &\\ \hline
+\end{longtable}
+\end{landscape}
+		
+	
+
+
+Data, as a materials scientist normally thinks about the term, encompasses a vast range of sources and formats. Some of the most common sources of data used by materials scientists for AM can be seen in Table \ref{sources}. 
+
+The most obvious data that materials scientists interact with are scalar values like modulus, ultimate tensile strength, laser scan speed, laser energy, layer height, etc. Distributions of scalars are also used such as grain size distribution or particle size distribution of AM feedstock. Many materials scientists interact with series data that can be subdivided into several more categories. Times series data can include a temperature measurement from a thermocouple during an AM build. Other series data include X-ray diffraction histograms or X-ray fluorescence spectra. 
+
+Data can also take non-quantitative forms, often referred to as categorical data. These can include crystallographic structure, grain morphology, or the shape of an AM part. In many cases, these categorizations can be converted into quantitative data by measuring a feature such as the major and minor axis length of a grain. More difficult to quantify categorical data in AM includes melt pool morphology and track solidification defects like ``balling" or ``lack of fusion/delamination."
+
+Images are some of the most commonly obtained data sources in materials science and are taken from a wide range of techniques. Light optical microscopy, scanning electron microscopy, and transmission electron microscopy images are all collected to study material structure. Materials processing images may include computed tomography radiographs and/or 3D reconstruction of a melt pool and thermal measurements using two-color pyrometry. Images can be treated as a data point on their own, but they are often analyzed to extract other data such as measuring grain size from light optical microscopy or categorizing crystal structure from a transmission diffraction pattern. 
+
+Data can also be esoteric, depending upon the problems within AM that are being addressed. For example, a vector field of particle flow from a computational fluid dynamics simulation can be considered data. The orientation distribution function of the material's texture can also be considered data. The 3D model and slicing path used to generate an AM part can be considered data. Limitations on what constitutes ``data'' in a materials science problem are not worth defining. Rather, it is more important to consider how data can be featurized for use with an ML algorithm, as this ability determines whether or not data are amenable to use for machine learning approaches.

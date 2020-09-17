@@ -1,0 +1,90 @@
+\subsubsection{Alloy Design and Feedstock Selection}
+\begin{figure*}
+	\includegraphics[width=1\linewidth]{/Users/njohnson/git/thesis/document/chapters/review/Images/Fig6_AlloyDesign}
+	\caption{An illustration of the alloy design process using a genetic algorithm. First, a target property $P_\text{target}$ and an evaluation method $f(\mathbf{X})$ for the alloy $\mathbf{X}$ are chosen. The evaluation method is most often a material modeling approach that can predict material properties based on composition. Then, a population of starting compositions are made. The model is run for each composition and an associated material property is measured. The predicted values are compared against the target value. If no material matches the target, then the genetic algorithm begins. The closest-matching compositions are selected to create a child generation. Crossover and mutation occurs for those compositions that were selected. In this way, a new population of compositions are created that are similar to the best-performing compositions from the previous generation. Model assessment and the genetic algorithm are then run again until a composition is found that meets the target property value.}
+	\label{fig:GA}
+\end{figure*}
+Choice of alloy impacts the physics of AM from start to finish, ranging from the interactions of energy sources with material feedstocks to the performances of the final parts. For example: the reflected vs. absorbed intensity of lasers on powder beds is determined by the powder's composition \cite{Boley2016, Trapp2017}; the density of feedstock, both intra- and inter-granular density, plays a role in final part density \cite{Bi2013}; conduction modes in the melt are partially determined by the thermal properties of the alloy \cite{Martin2017}; and different alloys exhibit different solidification kinetics, which can lead to drastically different microstructures after manufacture \cite{Collins2016}. Problems in the additive process can also be linked to composition such as vaporization of constituent elements due to rapid thermal fluxes, impacting the stoichiometry of melt pools and, ultimately, quality \cite{Brice2018}. These can be different for different feedstock types (e.g., wire vs. powder), even for the same alloy choice. Wysocki et al. discuss the differences between different additive manufacturing processes for titanium alloys: electron beam, laser based, powder, wire, etc\cite{Wysocki2017}. Some studies have also investigated the impact of feedstock properties like particle size distribution and morphology on process quality \cite{Slotwinski2014, Strondl2015, Trapp2017}, although the direct impacts have not been fully resolved.
+
+
+As such, alloys developed for traditional metals manufacturing techniques such as casting, rolling, extrusion, etc. sometimes need to be altered to improve AM processing. In the best cases, alloys developed for AM may outperform traditionally manufactured alloys. For example, unique strengthening mechanisms can result from AM processing \cite{Brice2018, Wang2017, Martin2017, Gallmeyer2019}. Designing alloys for AM -- either altering the chemistries of known alloys or discovering new alloys -- requires considering the implications of the physical properties of alloys with AM processing. An understanding of what trend in a physical property is ``better" or ``worse" for AM processing is still an open area of research. Hence, while information about the physical properties of different alloys has been collated into databases that are compatible with design for AM, models and optimization targets for mining those databases to extract candidate alloys for AM are still being developed and verified. 
+
+Existing databases contain alloy properties ranging from the reflectivity to the mechanical properties. The International Crystal Structure Database (ICSD) contains the crystal structures of millions of compositions. The Linus Pauling files contains a range of material information, from atomic properties like radius and electron valency to crystallographic level information \cite{Villars1998}. More modern databases such as AFLOWLib \cite{Curtarolo2012a} and the Materials Project \cite{Jain2013} allow users to interactively search across different types of alloy information. Searching through large databases of information to find optimal compositions for manufacturing is actually one of the earliest materials informatics problems ever addressed. Methods exist to perform these searches in a fast, automated way. These methods are referred to as data mining, a data-driven materials design approach.
+
+Data mining has been demonstrated to be useful for AM alloy development. Martin et al. used such an approach to modify the chemistry of aluminum alloys to make them process better during LPBF\cite{Martin2017}. The first step in a data-driven design process is to identify which alloy properties are important to the desired application. Laser powder bed fusion of Al alloys had been plagued by sparse nucleation of grains. The result was that large grains formed during AM together with large intergranular stresses, the combination of which resulted in hot-cracking. To overcome this problem, Martin searched for candidate grain inoculant compounds that could form through chemical reactions during LPBF. Searching for grain-refining nanoparticles has improved solidification properties\cite{Neuchterlein2016}. For example, silicon and carbon could react to form SiC particles that would force more homogeneously, densely packed grain nucleation throughout the material. However, if such compounds had lattices that were dissimilar to those of the aluminum alloy, large stresses could form at the interface of the inoculants and the alloy matrix, still leading to cracking. Hence, they searched not only for potential inoculants, but more specifically for inoculants with crystallographic lattice parameters that closely matched those of the base aluminum alloy. Martin's study employed a search algorithm to search through 4,500 different possible nucleants and identify those with the closest-matching parameters. Ultimately, hydrogen-stabilized Zr was found to be the best candidate.
+
+The same database mining process employed by Martin -- identify the target properties, then search for the closest match -- can be extended to many AM problems as well. Database mining was first introduced in materials science to predict stable compositions, or estimate material properties from composition. Database mining has been successfully implemented to predict stable crystal structures \cite{Franceschetti1999, Fischer2006, Oganov2006} and predict material properties as a function of composition \cite{Ikeda1997, Gopakumar2018, Wu2018, Kirklin2013, Setyawan2011}. Some specially designed search algorithms have also been designed for improved speed in automated searches \cite{Wolf2000}. Successes have been found in designing Heusler compounds using high throughput search methods \cite{Roy2012}. Several reviews exist detailing early high-throughput searches for compositions with ideal properties\cite{Gilmer1998, Koinuma2004}. The same search algorithms employed in these studies can be extended to AM cases.
+
+A limitation of database mining is that searches are limited to previously measured and/or calculated properties. Generally, information about the vast space of \textit{all possible} materials is unknown. Traditional materials science and engineering approaches would turn to explicitly calculating or measuring the unknown points of interest, one at a time. Searching through compositions may be accessible for manufacturing processes like thin-film deposition where the composition can be adjusted continuously and with several species at once using well established methods. A combinatorial study of compositional changes for AM feedstock is hindered by the difficulty and expense of producing feedstock.
+
+For example, consider the cost of combinatorially alloying Ti with alloying elements $\{\text{Al}, \text{V}, \text{Zr}, \text{Cr}, \text{Hf}\}$ and then testing printability. Explicitly creating all possible combinations of $\{\text{Ti},\text{Al}, \text{V}, \text{Zr}, \text{Cr}, \text{Hf}\}$ is feasible if using a coarse set of level choices for additions of alloying elements, but undesirable. There are 15,503 alloy combinations if alloying in steps of $1$ wt. \% up to $15$\% total alloying elements from the choices above.
+
+However, using machine learning methods, the process of combinatorial exploration to find an optimal composition can be achieved without explicitly modeling each combination. For example, \textit{genetic algorithms} (GA) can be used to augment many physics-based models. Genetic algorithms have been one of the most-used data driven approaches in materials science over the past few decades \cite{Morris1996, Ho1998, Wolf2000, Johannesson2002, Stucke2003, Hart2005, Oganov2006}. The principle of genetic algorithms is to evaluate the \textit{fitness} of a population of candidate alloys against a \textit{fitness function}. The fitness function $f(\cdot)$ is a method of evaluating how well a candidate alloy meets a criteria. Often in materials science the fitness function is evaluated by running models that can measure a material property based on composition. Examples include identifying stable crystal structure of a composition using DFT\cite{Franceschetti1999, Oganov2006} and evaluating thermomechanical properties of an alloy using ThermoCalc \cite{Xu2008}. Some additive-specific models include the model of Tan, which predicts dendrite arm spacing from composition \cite{Tan2011}. The calculation of thermodynamic properties relevant to AM -- such as vaporization temperature, coefficient of thermal expansion, solidus and liquidus temperatures -- using the CALculation of PHAse Diagrams (CALPHAD) method \cite{Andersson2002} can also be a fitness function.  For the sake of alloy design a model must be able to predict a materials properties based on composition. In reality, however, models must also consider additional physics related to the composition, such as crystal structure, thermodynamic properties, interatomic potentials, and more.
+
+In using a GA for alloy design, a desired target property value must be identified. This value $P_\text{target}$ is then formulated as a function of composition and process variables. Additionally, a method of measuring the property value as a function of composition and process variables $\mathbf{X}$ is needed; the models proposed previously (ThermoCalc, DFT, etc.) can serve as the evaluation step $f(\mathbf{X})$. The goal is to find a material whose measured property closest matches the desired target property, or
+
+\begin{equation}
+	\text{min} || f(\mathbf{X}) - P_\text{target} ||.
+	\label{GAopt}
+\end{equation}
+As a thought experiment, consider various amounts of $\{\text{Al}, \text{V}, \text{Zr}, \text{Cr}, \text{Hf}\}$ alloyed into Ti. These are the \textit{genes} of the genetic algorithm. This is similar to a study completed by Li et al\cite{Li2017}. Once a fitness function has been identified, the next step in a genetic algorithm is to represent candidate alloys as a \textit{chromosome}. 
+
+We can represent a chromosome as \\
+
+% You must have an empty line between text and the start of a table for some reason -- this is definitely going to be a problem later
+\begin{table}[h!]
+\begin{tabular}{cccccc}
+	$\mathbf{X}$ & $=$ & [$\chi_1$, & $\chi_2$, & $\ldots$, & $\chi_n$] \\
+\end{tabular}
+\end{table}
+\noindent 
+where $\chi_1$ is the species and weight percent of the first element (titanium, in this example), $\chi_2$ is the species and weight percent of the second element, up to $n$ elements. For example, Ti-6Al-4V would be represented as \\
+
+\begin{table}[h!]
+\begin{tabular}{ccc}
+	 [0.9 Ti,  & 0.06 Al, & 0.04 V ] \\
+\end{tabular}
+\end{table}
+\noindent
+The goal is to find the alloy with optimal dendrite arm spacing. First, a population of candidate chromosomes needs to be generated, either randomly or by design. Two examples from a starting population may be \\
+
+\begin{table}[h!]
+\begin{tabular}{ccccc}
+	Alloy 1 & $=$ & [0.9 Ti, & 0.05 Al, & 0.05 V ] \\
+	Alloy 2 & $=$ & [0.9 Ti, & 0.1 Zr] & \\
+\end{tabular}
+\end{table}
+\noindent
+The chromosomes produced from this initial population will serve as inputs to the fitness function. 
+
+Genetic algorithms select chromosomes out of the current population -- called the parent generation --  to proceed to another generation of model assessment -- called the child generation. Selection consists of keeping the best performing compositions, say the top $10\%$, and discarding the rest, as determined by Eqn. \ref{GAopt}. Genetic algorithms find optimal locations in the design space by relying on the similarity hypothesis. If one alloy is in the top $10\%$ of chromosomes then it is possible that a similar alloy will also be high performing -- it may even perform better. Once selection is done, the next step is to search the space near the best performing alloys from the parent generation.
+
+Genetic algorithms generate similar compositions from those selected in the parent generation by making alterations to genes. One operation is \textit{mutation}, whereby genes are changed. For example, we could mutate alloy 1 by changing the composition:\\
+
+\begin{table}[h!]
+\begin{center}
+\begin{tabular}{c|ccccc}
+	\textbf{Parent Generation:} & Alloy 1 & $=$ & [0.9 Ti, & {\color{red}0.05} Al, & {\color{red}0.05} V ] \\ \hline
+	\textbf{Child Generation:} & Alloy 1 & $=$ & [0.9 Ti, & {\color{blue}0.02} Al, & {\color{blue}0.08} V  ]  \\ 
+\end{tabular}
+\end{center}
+\end{table}
+\noindent where in the child generation the amount of V was increased, while the amount of Al was decreased. Another operation that may be performed is \textit{crossover} where genes are added or interchanged. For example, one crossover operation may look like
+
+\begin{table}[h!]
+\begin{center}
+\begin{tabular}{c|ccccc}
+	\textbf{Parent Generation:} & Alloy 1 & $=$ & [0.9 Ti, & 0.05 Al, & 0.05 {\color{red} V} ]  \\
+						 & Alloy 2 & $=$ & [0.9 Ti, & 0.1 {\color{blue} Zr}] &              \\ \hline					 
+	 \textbf{Child Generation:} & Alloy 1 & $=$ & [0.9 Ti, & 0.05 Al, & 0.05 {\color{blue} Zr} ]  \\
+						& Alloy 2 & $=$ & [0.9 Ti, & 0.1 {\color{red} V}] &              \\ 
+\end{tabular}
+\end{center}
+\end{table}
+\noindent where in the second generation V and Zr have been interchanged.
+
+Selection, mutation, and crossover followed by model assessment and further selection, mutation, and crossover continues until the design criteria is met. A schematic of the GA process can be seen in Figure \ref{fig:GA}. 
+
+Genetic algorithms have been applied to alloy design for low and high temperature structural materials \cite{Ikeda1997, Kulkarni2004}, ultra high strength steels \cite{Xu2008}, specific electronic band gaps \cite{Dudiy2006}, minimum defect structures \cite{Anijdan2006}, exploring stable ternary or higher alloys alloys \cite{Hautier2010, Johannesson2002}, and more. Chakraborti et al. wrote a review on the application of GA's to alloy design through the early 2000s\cite{Chakraborti2004}.
+
+In addition to genetic algorithms, other machine learning algorithms have also been applied to classify and optimize alloy compositions. Anijdan used a combined genetic algorithm--neural network method to find Al-Si compositions of minimum porosity \cite{Anijdan2006}. Liu et al. applied partial least squares to data mining of structure-property relationships across compositions \cite{Liu2006}. Decision trees, which are discussed in the next section, have been implemented for a number of different alloy optimizations, such as predicting ferromagnetism \cite{Landrum2003} and the stability of Heusler compounds \cite{Oliynyk2016}. In the search for new alloys, a wide range of machine learning algorithms can be implemented to guide the entire experimental design process so that an optimized property is found as quickly as possible. In the next section, we focus on using ML in design of experiments.

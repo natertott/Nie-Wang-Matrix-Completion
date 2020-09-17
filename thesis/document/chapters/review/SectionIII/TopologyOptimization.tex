@@ -1,0 +1,58 @@
+
+\subsubsection{Topology Optimization and Generative Design} \label{sec:topology optimization}
+
+\begin{figure}
+	\includegraphics[width=1\linewidth]{/Users/njohnson/git/thesis/document/chapters/review/Images/Fig8_topopt1}
+	\caption{Examples of filters that are applied to CAD meshes to change the geometry of the part \cite{Zegard2016}. The filters can be applied to remove material for weight reduction or add material to prevent part warpage during manufacturing.}
+	\label{topfilter}
+\end{figure}
+
+Alloy design and process design are based upon process-structure-property relationships of materials, independent of part geometries. These optimizations reduce manufacturing costs and times and help attain targeted properties. Analogous optimization approaches can be applied to design the geometry-material-performance relationships of AM parts. Such approaches are called \textit{topology optimization} methods. For structural materials and their parts, a common goal is to optimize the geometry to maximize the load bearing capacity, stiffness, or lifetime while minimizing the mass of the part. The ability to manufacture the unique, complex geometries determined by topology optimization algorithms for (nearly) the same cost as simple geometries designed for subtractive manufacturing processes is one of the greatest promises and appeals of additive manufacturing.  One of the frontiers in research driven by AM processing, in which materials and part topologies are simultaneously manufactured, is to integrate alloy processing optimization with topology optimization to create concurrent optimization methods. Thus, part performance  becomes integral to the material manufacturing optimization process in AM. Hence, we proceed to introduce topology optimization to the materials researcher while also discussing potential uses for machine learning to advance topology optimization.
+
+Topology optimization can be applied for several optimization objectives, including compliance minimization, stress constraint or natural frequency maximization. Manufacturing constraints such as overhangs and support structures found in AM have also been added to the optimization process and improve the applicability of the result \cite{Sigmund2013,Gaynor2016,Langelaar2016, Langelaar2017,Liu2018}. Support structure optimization that minimizes the amount of material used in supports has also been researched \cite{Huang2009, Vanek2014, Dumas2014}. Other additive specific algorithms have been designed for optimizing density of parts \cite{Zegard2016}. By determining the ideal material layout, the final design can maximize performance for a given weight, minimize weight for an objective function, or reduce manufacturing costs by reducing the material used. However, TO is a local optimization method. Global design optimization usually requires statistical analysis of many TO simulations. 
+
+ML can help reduce the computational time necessary for a TO analysis. This approach allows for faster convergence to a TO result, as well as produces multiple designs efficiently for a researcher to better explore the possible design options. The process of producing many outputs for a given set of conditions is known as generative design.
+
+One approach is to change the topology of a region of a part by applying local filters to CAD models; mathematically, these filters are the same ones shown in Eqn. \ref{filter}.  A physical representation of a filter matrix in 2D and 3D can be seen in Figure \ref{topfilter}. Topology optimization proceeds by generating a CAD model of an AM part and modeling its performance, such as testing performance under mechanical load through an FEA simulation. Filters are applied to the CAD mesh that selectively remove material from the part. Then, the mechanical performance of the new part is modeled, followed by further material removal. This process proceeds until either a minimum weight/volume condition is met or the mechanical performance of the part is degraded.
+
+%\begin{figure*}
+%	\centering
+%	\begin{subfigure}[t]{1\textwidth}
+%		\includegraphics[width=6in]{Images/Fig9a_Banga.jpg}
+%		\caption{}
+%		\label{topopt1}
+%	\end{subfigure}
+%	%
+%	~
+%	\centering
+%	\begin{subfigure}[t]{1\textwidth}
+%		\includegraphics[width=6in]{Images/Fig9b_Creswell}
+%		\caption{}
+%		\label{topopt2}
+%	\end{subfigure}
+%	%
+%	~
+%	\centering
+%	\begin{subfigure}[t]{1\textwidth}
+%		\includegraphics[width=6in]{Images/Fig9c_OhCombined}
+%		\caption{}
+%		\label{topopt3}
+%	\end{subfigure}
+%	\caption{The architectures for convolutional neural networks (CNN) and generative adversarial networks (GAN) are visually described. \ref{topopt1} The network architecture of the CNN used in Banga et al. with the voxel and gradient input data \cite{Banga2018}. The dimensions are described as Height x Length x Width with channels below their respective layer. \ref{topopt2} The models and data used for training a generator and a discriminator in a GAN \cite{Creswell2018}. \ref{topopt3} Examples of Generated designs produced from GAN network in Oh et al. for the design problem shown \cite{Oh2019}. Image in \ref{topopt1} taken from \cite{Banga2018}; image in \ref{topopt2} taken from \cite{Creswell2018}; image in \ref{topopt3} taken from \cite{Oh2019}.}
+%	\label{topopt}
+%\end{figure*}
+
+These filters, filters that identify which material to remove, can be learned by a type of machine learning algorithm called a convolutional neural network (CNN). Convolutional neural networks have been found to be well-suited for data containing multiple arrays, especially for image recognition tasks \cite{Lecun2015}. The input is separated into different channels, such as RGB for three channels of a color image input, and manipulated through different stages of the network, called layers. Commonly used layers in these networks include convolutional, pooling, and fully connected. Convolutional layers are divided into varying feature maps that abstract the input to smaller, localized regions for analysis. Pooling layers clusters the outputs from the previous layer and outputs either the maximum or average value from the cluster, reducing the dimensionality of the problem. Fully connected layers connect the outputs from the previous layer with the inputs of the next.
+
+Using a convolutional neural network, Cang et al. and Banga et al. present similar approaches to produce “one-shot” tools for two- and three-dimensional TO, respectively \cite{Cang2019,Banga2018}. One-shot tools produce an optimized structure directly from a starting topology, as opposed to iterative tools that require multiple passes of the algorithm to reach an optimized state. The inputs of the CNN were aspects of the initial part geometry and expected loading conditions. Features given to the model included the force experienced by the part, fixed boundary conditions, minimum mass and density values, and the locations of mass in the part. Their training and validation databases a dataset of optimized topologies generated via traditional TO. The goal of the CNN was to predict an optimized geometry for a starting structure in one pass through the model using knowledge of the loading conditions and part geometry. The results from both works show similar accuracy between the “one-shot” result and the ground truth found from traditional non-ML methods. Such methods greatly reduce the computational time, allowing for greater design exploration before finalizing the result. The architecture for the CNN used in Banga et al. can be found in Figure \ref{topopt1}.
+
+An extension of the convolutional neural network is the generative adversarial network (GAN). The methodology for GANs involves two neural networks in competition with each other: a generator and a discriminator. The generator attempts to create data similar to that of an existing database. The discriminator has access to the database and discerns which data samples are from the database and which are from the generator \cite{Creswell2018}. The goal of the generator is to generate data that the discriminator cannot accurately classify into database or generated datasets. As the discriminator improves at discriminating between artificially generated data and user-provided data, the generator learns to produce better and better artificially generated data. The ultimate goal is a generator network that learns to produce high-quality optimizations of an input topology. A flow diagram of a GAN from Crewswell et al. can be found in Figure \ref{topopt2}. Further information about the applications of GANs, including image synthesis and superresolution, can be found in Crewswell et al. \cite{Creswell2018}.
+
+
+Yu et al. uses a combined CNN-GAN to perform a superresolution for TO, upscaling a coarse mesh result to a higher resolution without the added computational time to directly compute the high resolution result \cite{Yu2019}. First, a CNN was trained to predict low-resolution optimal geometries based on provided boundary conditions. The CNN used information such as minimum mass fraction, location of applied load, and fixed boundary conditions to predict the best topology at a low resolution. Then, a GAN was trained with random sampling of low and high resolution TO results as inputs and ground truth database, respectively. The GAN was trained to generate high resolution topologies from low resolution inputs. The low resolution output of the CNN was given to the generator; the generator then produced a high resolution topology from the given low resolution input \cite{Yu2019}. The results showed very high agreement between the generated structures and a set of training structures generated using an open source code \cite{Andreassen2011}. The result from this combined network was within 3\% of the expected ground truth pixel values and produced it in 0.06\% of the time compared with traditional TO \cite{Yu2019}.
+
+For generative design, genetic algorithms and GANs are well suited as both architectures are designed to produce multiple optimal designs. Lohan et al. and Zimmerman et al. use the genetic algorithm to effectively search for optimal solutions for heat transfer and fluid optimization \cite{Lohan2016,Zimmermann2018}. Using the genetic algorithm, high performing designs were iterated upon in subsequent steps, producing multiple optimal designs for the researcher to choose. As an example of a GAN used in generative design, Oh uses data mining to collect wheel examples to train a GAN and generate unique designs \cite{Oh2019}. The network generates a random set of input variables to influence a topology optimization stage of the network. Through training, the generator network attempts to produce new designs similar to the examples collected through data mining. The discriminator network is then trained using the sampled outputs from the generator network and the data mined examples to determine which are generated and are from data mining. Through many training iterations, the generator network produces designs indistinguishable from the database. Examples of the generated designs from this network are shown in Figure \ref{topopt3}.
+
+
+The examples provided only present current research incorporating machine learning in TO and is not an exhaustive review of all applications of TO. A general review of topology optimization advancements for additive manufacturing can be found in Liu et al\cite{Liu2018}.
+

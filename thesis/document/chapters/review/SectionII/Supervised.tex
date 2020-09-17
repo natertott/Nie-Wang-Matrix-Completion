@@ -1,0 +1,31 @@
+\subsection{Supervised Machine Learning}
+In a \textit{supervised machine learning algorithm} the goal is to determine a functional relationship $f(\mathbf{x}) = \mathbf{y}$ based on previous measurements of $\mathbf{y}$ at points $\mathbf{x}$ in the design space. That is, supervised machine learning algorithms relate manufacturing inputs to labeled output data. 
+
+Functional mappings of input data $\mathbf{x}$ to process outcomes $\mathbf{y}$ can take the form of either regression or classification. In a regression problem, the goal is to find mappings between inputs $\mathbf{x}$ to continuous values of $\mathbf{y}$. An example includes predicting mechanical strength from processing conditions, where the process conditions can be continuous or discrete, like those in Table \ref{table:design_space}, and the output $\mathbf{y}$ can be any reasonable value of strength. A classification problem sorts inputs $\mathbf{x}$ into categories with associated labels. These classifications can be binary or one-of-many classes. An example would be training an algorithm to answer the question ``Will the build fail?" based on processing inputs, with the possible class labels being ``Yes" or ``No."
+
+
+Functional relationships can take many forms, depending on the specific supervised ML algorithm being used. One method is to model the relationships as a vector product
+\eqn
+\mathbf{X}\beta = \mathbf{Y}.
+\label{map}
+\equ
+where $\beta$ is a vector of coefficients that weight the machine inputs to approximate an entry in $\mathbf{Y}$. 
+
+A researcher usually seeks this relationship through the measurements they have observed; in this case, the measurements are stored in the matrices of Eqns. \ref{matrix} \& \ref{outputs}.
+A common method to find a vector representation of $\beta$, and a critical element in most machine learning algorithms, is through least squares regression. Least squares regression finds $\beta$ through a minimization problem, given by
+\eqn
+\min || \mathbf{X}\beta - \mathbf{Y} ||_{2}^{2}.
+\label{leastsquares}
+\equ
+Equation \ref{leastsquares} can be interpreted analogously to similarity measurements for unsupervised algorithms: the closer that $\mathbf{X}\beta - \mathbf{Y}$ is to zero, the more similar $\mathbf{X}\beta$ is to $f(\mathbf{x})$.
+
+The methods of solving equation \ref{leastsquares} are many and varied; indeed, much of this review will focus on finding solutions to Eqn. \ref{leastsquares} for various problems throughout additive manufacturing.
+The result is an approximation to the functional relationship $f(\mathbf{x}) = \mathbf{y}$.
+A new point of interest in the design space $\mathbf{x'}$ can be chosen and its associated material property $\mathbf{y'}$ can be predicted by computing
+
+\eqn
+\mathbf{x'}\beta = \mathbf{y'}.
+\equ
+This simple example demonstrates how functional relationships can elucidate more information about design spaces from previously generated data.
+
+

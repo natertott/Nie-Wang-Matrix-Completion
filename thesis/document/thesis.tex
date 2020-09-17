@@ -16,12 +16,38 @@
 % Turn off all document sanity checks.  This option can be used to render a ``sub-document'' that is part of the root thesis document.  It is important to note that you should NEVER disable this check on your root thesis document, as important format errors and warnings will be disabled.
 % * \usepackage[nolabel]{csm-thesis}
 % Disables automatic reference ``labeling'' of figures and tables.  By default the thesis template prepends any reference to a figure or table with ``Figure~'' or ``Table~''.  This option is meant for disabling the labeling behavior when a document already has the appropriate labeling.  It is important to note that if your document DOES NOT have the appropriate labeling (the reference label must EXACTLY MATCH the caption label) then it will not pass the format review.
-\usepackage{csm-thesis}
+\usepackage[insane]{csm-thesis}
 % For inserting large multi-page tables:
 \usepackage{array}
 \usepackage{longtable}
 % For inserting sideways tables and figures
 \usepackage{rotating}
+
+% Packages used by the review article for Additive Manufacturing
+\usepackage{amscd}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{dcolumn}
+\usepackage{booktabs}
+\usepackage{dashrule}
+\usepackage{bm}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{float}
+%\usepackage{floatrow}
+\usepackage{graphicx}
+\usepackage{import}
+\usepackage{mathtools}
+%\usepackage{natbib}
+\floatstyle{plaintop}
+\usepackage{subfiles}
+%\restylefloat{table}
+\usepackage{tabularx}
+\usepackage{verbatim}
+\usepackage{xcolor}
+%\usepackage{subcaption}
+%\usepackage[bottom]{footmisc}
 
 % Since hyperref and cite don't completely get along, the template now recommends using natbib:
 % For an explanation, see http://www.tex.ac.uk/cgi-bin/texfaq2html?label=citesort
@@ -53,13 +79,37 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
+%%%%%%%%%%%%%%% Define Command %%%%%%%%%%%%%%%%%
+
+\DeclareMathOperator*{\argmin}{argmin}
+\DeclareMathOperator*{\argmax}{argmax}
+\newcommand{\eqn}{\begin{equation}}
+\newcommand{\equ}{\end{equation}}
+
+\def\dashedrule#1#2#3{{
+	%% #1 is length of dash
+	% #2 is length of gap between dashes
+	% #3 is number of dashes
+	\dimen1=#2 \divide\dimen1 by 2
+	
+	\def\@ruledash{%
+		\rule{\dimen1}{0pt}%
+		\rule[0.5ex]{#1}{0.4pt}%
+		% line is 0.5ex above the baseline
+		% and 0.4pt thick
+		\rule{\dimen1}{0pt}}%
+		
+	\count1=0\loop%
+	\ifnum\count1<#3%
+		\advance\count1 by 1%
+		\@ruledash%
+	\repeat}}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%% DOCUMENT START %%%%%%%%%%%%%%%%%%%%%%
 
-% <<AUTOMATIC PYRAMID:>>
 % Do not put any carriage returns (\\), all normal LaTeX should function properly.
-	\title{Ph.D Thesis Working Title}
-% Please note: If you are generating a title containing math mode then it is best to use \texorpdfstring to provide an alternative text for the PDF Title.  If you do not do this then you will see a ''Token not allowed in a PDFDocEncoded string`` warning when rendering your document.
+	\title{{\large \textbf{Ph.D Thesis Working Title:}} In Situ Diffraction Characterization of Phase Transformations and Mechanical Behaviors in Additively Manufactured Titanium Alloys}
 
 
 \degreetitle{Doctor of Philosophy}
@@ -68,7 +118,6 @@
 
 \author{Nathan S. Johnson}
 \advisor{Dr. Craig A. Brice}
-% Comment out the following line if you do not have a co-advisor:
 \coadvisor{Dr. Aaron P. Stebner}
 \dpthead{Dr. John Berger}{Professor and Department Head}
 
@@ -76,7 +125,6 @@
 
 % Parts of a Thesis
 %% Parts of a Thesis - Front Matter
-
 \frontmatter
 
 %%% Parts of a Thesis - Front Matter - Title Page (required)
@@ -158,8 +206,12 @@ This thesis focused on the characterization of additively manufactured titanium 
 
 %%% Parts of a Thesis - Front Matter - Acknowledgments (optional)
 \begin{acknowledgments}
-Mom \& Dad \& Noelle \& Zack \\
+
+Mom \& Dad \& Noelle\\
 Thomas \& Marcella \\
+Matt Zappulla \& Jasmin Honegger \\
+Maria Strantza \& Bj\"orn Clausen \& Sven Vogel \& Travis Carver \\
+Brian Toby \& Robert Von Dreele \\
 
 \end{acknowledgments}
 \newpage
@@ -176,17 +228,22 @@ To be determined.
 \bodymatter
 
 % Outline
-\input{chapters/outline.tex}
-\input{chapters/review.tex}
-\input{chapters/insitu.tex}
-\input{chapters/lattices.tex}
+\include{chapters/outline}
+\include{chapters/introduction}
+\include{chapters/review}
+\include{chapters/ssweldbead}
+\include{chapters/tiweldbead}
+\include{chapters/niti}
+\include{chapters/single_lattice}
+\include{chapters/many_lattice}
+\include{chapters/conclusion}
 
 %% Parts of a Thesis - Back Matter
 \backmatter
 
 %%% Parts of a Thesis - Back Matter - References Cited (required)
 % Use "Advanced" Bibliography Techniques
-\bibliography{thesis}
+\bibliography{bib.bib}
 
 %%% Appendices
 

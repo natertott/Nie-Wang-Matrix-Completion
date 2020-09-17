@@ -1,0 +1,28 @@
+\paragraph{Current ICME Tools are Well Equipped to Integrate with an ML Framework}
+
+The following section discusses how machine learning approaches can be used in current R\&D efforts in AM. This discussion includes how physics-based analyses, characterizations, and simulation methods may connect with different machine learning algorithms. Overall, the discussion is aimed at conveying how ML can be used to automate the generation of AM PSPP knowledge. Still, this article stops short of providing an exhaustive review of either machine learning algorithms or additive manufacturing. Instead, the intent is to introduce how ML approaches can be connected to AM research. The algorithms that are discussed were chosen because they were previously demonstrated in a materials science and engineering application \textbf{or} because the possible application of an algorithm to AM was clear and immediate. Similarly, the additive manufacturing problems addressed are not all-encompassing; they are merely a few that may be immediately addressable with machine learning approaches. 
+
+%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~
+\subsection{Experimental Methods and Manufacturing Design}
+\input{/Users/njohnson/git/thesis/document/chapters/review/SectionIII/AlloyDesign.tex}
+\input{/Users/njohnson/git/thesis/document/chapters/review/SectionIII/DesignOfExperiments}
+\input{/Users/njohnson/git/thesis/document/chapters/review/SectionIII/TopologyOptimization}
+
+%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~
+
+\subsection{Machine Learning Assisted Modeling of Additive Manufacturing}
+As previously discussed, the design space of AM experiments is often vast (e.g., Fig. \ref{AMgene}). While the design of process parameters is often integral to the material design methods reviewed in the previous sections, there are some additional process-centric engineering objectives where machine learning methods may also be beneficial. This section reviews the use of machine learning algorithms to aid in computational design of additive manufacturing process developments. Martukanitz et al. published a full ICME investigation of AM \cite{Martukanitz2014}. There are two modeling scenarios that plague the advancement of AM: the case where a model exists but current numerical methods are too expensive to simulate the model; or the case where a model does not exist. Put slightly differently, in either case $\mathbf{y} = f(\mathbf{x})$ exists but cannot be computed in a reasonable amount of time; or $\mathbf{y} = f(\mathbf{x})$ does not exist. 
+
+Machine learning algorithms have addressed both these cases. In the first case, ML algorithms provide an alternative numerical method for calculating $\mathbf{y} = f(\mathbf{x})$ based on experimental measurements of $\mathbf{y}$ and $\mathbf{x}$, or based on the results of previously run simulations. Machine learning algorithms have also been developed to help visualize trends in high dimensional spaces, allowing researchers to study complex relationships and ask deeper questions. For the second case, ML algorithms provide a form of $\mathbf{y} = f(\mathbf{x})$ from observations (measurements) of the relationship between $\mathbf{y}$ and $\mathbf{x}$.
+
+\input{/Users/njohnson/git/thesis/document/chapters/review/SectionIII/NumericalMethods}
+\input{/Users/njohnson/git/thesis/document/chapters/review/SectionIII/Visualization}
+\input{/Users/njohnson/git/thesis/document/chapters/review/SectionIII/ModelCreation}
+
+%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~%~
+\subsection{Process Monitoring and Control}
+
+The numerousness of signals to measure in situ for AM warrants use of quick, efficient, and robust signal processing methods for process monitoring, feedback, and control. These signal processing algorithms are closely related to machine learning. They serve as tools in their own right, and can also pre-process data for use in other machine learning applications, like clustering and regression. Computer vision is one class of image recognition algorithms that has been developed for automated feature identification in signals. Intelligent computer vision uses ML algorithms to identify objects and features in a wide variety of data types. We proceed to discuss the potential uses of data analytics and ML to advance our ability to directly study and control AM process technologies.
+
+\input{/Users/njohnson/git/thesis/document/chapters/review/SectionIII/InSituMonitoring}
+\input{/Users/njohnson/git/thesis/document/chapters/review/SectionIII/Featurization}

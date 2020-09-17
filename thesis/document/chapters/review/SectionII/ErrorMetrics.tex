@@ -1,0 +1,47 @@
+\subsection{Error Metrics}\label{errormetrics}
+Models that are used to predict values, whether numerical regression or classification algorithms, must have metrics to assess success. There are a multitude of error metrics that are used in the machine learning community. Different error metrics provide different information about the model, such as its ability to predict mean values, its robustness against outliers, and uncertainty in predictions, amongst other information. Many different error metrics have been formulated by the statistics community and used by the ML community \cite{Navidi2006}. Here, we review many of the most commonly used error metrics. For readers interested in more in depth discussion and examples, the website DataQuest provides an open source article about common error metrics\cite{DataQuestError}, explanations of commonly used error metrics and their benefits/drawbacks can be found in Table V of Shan et al\cite{Shan2010}, and Botchkarev wrote a review article detailing different error metrics used by the machine learning community over time\cite{Botchkarev}.
+
+The following parameter definitions are used in the ensuing basic introduction of common error metrics and the remainder of the article.
+\begin{itemize}
+	\item $\hat y$ -- the value predicted by a regression algorithm $f(\mathbf{x}) = \hat y$
+	\item $y$ -- the actual value of a material process/structure/property at input location $\mathbf{x}$
+	\item $n$ -- the sample size used to train a machine learning algorithm
+\end{itemize}
+
+The mean absolute error (MAE) assesses the absolute residual between the predicted value of a regression problem and the actual value. It is calculated as the absolute difference between predicted value $\hat y$ and the actual value $y$, normalized by the sample size. Stated mathematically, the mean absolute error is 
+\begin{equation}
+	\text{MAE} = \frac{1}{n} \sum_{i=1}^n \left|y_i - \hat y_i \right|.
+	\label{MAE}
+\end{equation}
+MAE penalizes error linearly. The MAE penalizes outliers in the data with the same magnitude as data points lying close to the mean. The mean absolute error can also be changed into a percentage, the mean absolute percentage error (MAPE) by normalizing each individual error measurement against the actual value $y$. Stated mathematically, 
+\begin{equation}
+	\text{MAPE} = 100 \times \frac{1}{n} \sum_{i=1}^n \left|\frac{y_i - \hat y_i}{y_i}\right|.
+	\label{MAPE}
+\end{equation}
+
+Other error metrics highlight the impact of outliers on the dataset. The mean squared error (MSE) squares the difference term in Eqn. \ref{MAE} to produce
+\begin{equation}
+	\text{MSE} = \frac{1}{n} \sum_{i=1}^n |y_i - \hat y_i|^2.
+	\label{MSE}
+\end{equation}
+The MSE penalizes error quadratically. Outliers in the dataset will have a much larger impact on MSE than they will on the MAE. A downside of the MSE is that the errors are reported as the square of the units being predicted by the model. Some users wish to have an error with the same units as the value being predicted; thus the root mean squared error (RMSE) adds a square root such that
+\begin{equation}
+	\text{RMSE} = \sqrt{\frac{1}{n} \sum_{i=1}^n |y_i - \hat y_i|^2}.
+	\label{RMSE}
+\end{equation}
+
+All of the above metrics produce a measure of the absolute value of the error in the model. In some cases it is useful to know if a model is \textit{over} predicting the value (negative error) or \textit{under} predicting the value (positive error). In these cases, the MAE can be modified to the mean percentage error (MPE), given as
+\begin{equation}
+	\text{MPE} = \frac{1}{n} \sum_{i=1}^n \left( \frac{y_i - \hat y_i}{y_i}\right).
+	\label{MPE}
+\end{equation}
+The MPE can reveal if a machine learning prediction algorithm is skewed towards certain types of values.
+
+All of the above error metrics are suitable for regression problems with continuous value of $\hat y$. In the case of a classification problem, where the outputs are non-numerical, a non-numerical method of measuring error must be defined. While several methods have been developed \cite{Metrics2018, Metrics2019} a common method is to use a \textit{confusion matrix}. A confusion matrix displays the percentage of classifications that were correctly identified, as well as the percentage of classifications made to the wrong class. An example confusion matrix can be seen in Figure \ref{confusionmatrix}. In this figure, the main diagonal of the figure displays the percentage of data points that were correctly identified by class. The off-diagonal components display when a certain class was mis-identified as another class and how often it occurred.
+
+\begin{figure}
+	\includegraphics[width=1\linewidth]{/Users/njohnson/git/thesis/document/chapters/review/Images/Fig2_confusionmatrix}
+	\caption{A confusion matrix used in a study by DeCost and Holm \cite{DeCost2015}. The goal of the study was to classify materials based on images of their microstructures. The main diagonal of the matrix represents correct classifications. In the case of the upper-leftmost entry, 11 images of ductile cast iron were correctly identified as ductile cast iron. The upper-rightmost entry indicates that 1 image of ductile cast iron was incorrectly classified as a superalloy.}
+	\label{confusionmatrix}
+\end{figure}
+
